@@ -1,0 +1,453 @@
+cat,n,blood,1
+turkey vulture,n,bones,7
+pack mule,n,blood,2
+stunted wolf,t,blood,1
+the stoat,t,blood,1
+bell tentacle,n,blood,2
+worker ant,n,blood,1
+flying ant,n,blood,2
+mantis,n,bones,4
+wolverine,n,bones,6
+mantis god,r,blood,1
+noble stag,t,blood,2
+magpie,n,blood,2
+wolf,n,blood,2
+trotting fox,t,blood,2
+tick,n,blood,1
+tadpole,n,blood,0
+elk fawn,n,blood,1
+wolf cub,n,blood,1
+dire wolf pup,n,blood,1
+mole seaman,r,blood,2
+elk,n,blood,2
+ringworm,n,blood,1
+bullfrog,n,blood,1
+black goat,n,blood,1
+sparrow,n,blood,1
+bloodhound,n,blood,2
+geck,r,blood,0
+flatshell,n,blood,1
+adder,n,blood,2
+rattler,n,bones,6
+hawk,n,blood,2
+mirror tentacle,n,blood,1
+hand tentacle,n,blood,2
+amalgam,r,blood,2
+salmon,n,blood,2
+squirrel ball,n,blood,1
+lil' frog,n,blood,0
+hodag,r,blood,2
+raven egg,n,blood,1
+alpha,n,bones,5
+coyote,n,bones,4
+corpse maggots,n,bones,0
+moose buck,n,blood,3
+mud turtle,n,blood,2
+brever,n,blood,2
+field mice,n,blood,2
+beached fish,n,bones,4
+hyena,n,blood,2
+god dam,r,bones,6
+black scorpion,n,blood,1
+raven,n,blood,2
+great white,n,blood,3
+dire wolf,n,blood,2
+mealworm,n,bones,3
+lamprey,n,blood,1
+redhart,n,blood,2
+cockroach,n,bones,4
+lammergeier,n,blood,3
+ouroboros,r,blood,2
+porcupine,n,blood,1
+rooster,n,blood,2
+child 13,r,blood,2
+skink,n,blood,2
+wriggling tail,n,bones,1
+rabbit,n,blood,0
+bat,n,bones,4
+rat king,n,blood,2
+mole,n,blood,1
+mole man,r,blood,1
+pack rat,r,blood,2
+urayuli,r,blood,4
+opossum,n,bones,2
+skunk,n,blood,1
+river otter,n,blood,1
+great kraken,r,blood,2
+bone tentacle,n,bones,6
+pronghorn,n,blood,2
+wild bull,n,blood,2
+bee,n,blood,0
+hrokkall,r,blood,1
+octopus,n,blood,1
+raccoon,n,blood,1
+energy tentacle,n,energy,3
+leuchloridium,n,blood,2
+mox tentacle,n,sprism,1
+stinkbug,t,bones,3
+miner mole,t,blood,2
+anglerfish,t,blood,2
+man faced spider,t,blood,2
+kingfisher,n,blood,1
+beehive,n,blood,1
+ant queen,n,blood,2
+river snapper,n,blood,2
+corpse collector,n,bones,3
+dead hand,r,bones,5
+headless horseman,r,bones,13
+lich,n,bones,6
+skelemagus,n,prism,1
+burnt body,t,blood,1
+meat man,n,blood,3
+plague doctor,n,bones,5
+zombie,n,bones,3
+cadaver rat,n,bones,0
+rotten cell,n,energy,3
+bone scrounger,n,bones,5
+gnawed remains,t,bones,3
+shadow,n,bones,5
+skeletaur,r,bones,11
+floating eye,n,bones,8
+bonehound,n,bones,6
+wechuge,n,bones,5
+privateer,n,bones,5
+skeleton army,n,bones,7
+big bones,n,bones,7
+dave,t,bones,5
+rabbit skull,n,blood,2
+wererabbit,n,blood,3
+soot rabbit,n,blood,1
+spooky miku,t,bones,5
+overgrown pumpkin,n,bones,6
+pumpkin patch,n,bones,7
+scurvy captain,t,blood,1
+mutant,n,blood,3
+dulce de marrow,n,bones,5
+cerberus,r,bones,10
+exorcist,n,bones,7
+falling pumpkin,n,blood,2
+flaming jack,n,bones,4
+disturbed grave,n,bones,1
+horseless headman,n,bones,5
+reaper,r,bones,8
+lich gnome,n,bones,8
+nurikabe,n,bones,4
+patiant zero,n,bones,5
+pumpkin farmer,n,blood,2
+pumpkin carver,n,bones,5
+slinger's soul,r,bones,6
+skelephone,n,bones,6
+night shifters,r,bones,8
+greater smoke,n,bones,6
+gone,n,bones,2
+shade,n,bones,3
+mimic,n,sapphire,2
+sarcophagus,n,bones,5
+skeleton crewmate,n,bones,2
+record player,r,bones,10
+allip,n,bones,7
+haunted trombone,n,bones,7
+haunted trumpet,n,bones,6
+mummy lord,n,bones,8
+frank & stein,n,bones,5
+the smoke,n,bones,2
+the walkers,n,bones,4
+hanged man,n,bones,4
+revenant,n,bones,3
+banshee,n,bones,2
+gavedigger,n,bones,1
+pharaoh's pets,n,bones,8
+spine wyrm,n,bones,8
+the bloated,n,bones,3
+ghost ship,n,bones,4
+ghast,n,bones,3
+long elk,r,bones,4
+drowned soul,r,bones,4
+pumpkin king,r,blood,3
+bone heap,r,bones,5
+tomb robber,r,bones,3
+carrion mouth,n,bones,10
+gargoyle,n,bones,6
+starvation,n,bones,4
+licket e. split,r,bones,4
+dalgyal,n,energy,3
+possesed armor,n,bones,5
+spine ripper,r,bones,10
+animator,r,bones,6
+bag o' bones,t,bones,3
+unlucky corpse,t,bones,4
+draugr,n,bones,1
+bolthead,n,bones,3
+abomination,n,bones,11
+librarian,n,bones,6
+clot,n,blood,2
+freak,n,blood,1
+gnarl bark,n,bones,2
+spirit orb,n,bones,2
+bone lord's horn,n,bones,3
+tombstone,n,bones,5
+undead cat,n,blood,3
+ectoplasm,n,bones,5
+spiteful spectre,n,bones,6
+nosferatu,n,blood,2
+davy jones,r,bones,11
+necromancer,r,bones,6
+mound of flesh,n,blood,2
+jikininki,n,energy,4
+ghoul,n,blood,0
+skelemancer,n,bones,4
+head hunter,n,bones,4
+poltergeist,n,energy,3
+fred,t,bones,5
+matt,t,bones,5
+junk-o,n,energy,2
+qu177,n,blood,1
+50-nar,n,menergy,2
+bad fish,n,blood,3
+ourobot,r,blood,1
+garn-o-bot,n,garnet,1
+photographer,t,menergy,3
+archivist,t,menergy,2
+automaton,n,energy,3
+double gunner,n,energy,6
+shield bot,n,energy,3
+janitor,n,bones,1
+gem head,n,energy,6
+steven,t,energy,6
+the hooligans,r,energy,6
+phone guy,n,menergy,2
+phoney profligate,n,menergy,2
+strong phone,n,energy,5
+spam caller,n,menergy,2
+dialup conduit,n,energy,4
+phone commute,n,bones,4
+factory phone,n,menergy,2
+cell phone,n,energy,5
+river reaper,n,bones,5
+buff conduit,n,energy,4
+golly,t,menergy,2
+spider-dr0id,n,blood,1
+lamp head,n,energy,4
+the managers,r,menergy,4
+c-mine,n,energy,3
+mycobot,n,menergy,3
+gunbot,n,energy,5
+blood bank,n,menergy,2
+kingdroid,r,menergy,6
+sniper bot,n,energy,3
+49er,n,energy,2
+sentry drone,n,energy,1
+insectodrone,n,energy,2
+energy bot,n,energy,1
+mrs.bomb,r,energy,3
+technoripper,n,energy,6
+roboboardscale.obj,n,energy,0
+obs3rv3r,n,menergy,4
+baker,n,menergy,3
+coffee head,n,energy,6
+phone face,n,energy,4
+bone mill,n,energy,3
+gr1zz,r,blood,3
+pylomancer,n,prism,1
+exeskelemagbot,n,menergy,2
+draugear,n,menergy,1
+dredger,t,energy,3
+gamblobot,n,energy,3
+protect-o-latcher,n,menergy,2
+boom-o-latcher,n,menergy,3
+skel-e-latcher,n,menergy,2
+rooktank,n,menergy,4
+gift bot,n,menergy,2
+alarm bot,n,menergy,2
+factory conduit,n,energy,4
+shutterbug,r,menergy,3
+c0pper-h34d,n,blood,1
+c0r3-v1d,n,blood,2
+k-9,n,blood,2
+c-diver,n,energy,6
+good fish,n,blood,1
+overcharger,n,menergy,2
+null mage,n,energy,5
+overclock conduit,r,menergy,3
+bishobot,n,amethyst,1
+scrapdigger,n,menergy,2
+swapbot,n,energy,6
+thick droid,n,energy,5
+explode bot,n,energy,3
+steel mice,n,energy,4
+pon,n,ssapphire,1
+springknight,n,energy,4
+curve hopper,r,energy,4
+plasma jimmy,r,energy,3
+energy conduit,r,energy,5
+bolthound,n,energy,5
+steambot,n,menergy,4
+m3atbot,n,energy,2
+marrow cell,n,energy,3
+tough cell,n,energy,4
+guardian cell,n,menergy,3
+splinter cell,n,energy,3
+split cell,n,energy,3
+kind cell,n,energy,3
+nanoarmor conduit,n,energy,5
+health conduit,n,energy,3
+exeskeleton,n,menergy,1
+quickdraw bot,r,energy,6
+blue bot,t,blood,2
+melter,t,energy,5
+inspector,t,energy,4
+blank canvas,t,prism,1
+dead ringer,n,menergy,2
+empty vessel,n,energy,1
+blue mage,n,sapphire,1
+hover mage,n,sapphire,1
+accelermage,n,sapphire,1
+gem fiend,n,sapphire,1
+lazuli construct,n,sapphire,1
+force mage,n,sapphire,1
+fortune teller,n,sapphire,2
+magiquartet,n,sapphire,2
+soothsayer,n,sapphire,1
+animox,n,sapphire,1
+bookeeper,n,sapphire,3
+magickant,n,sapphire,3
+gift mage,n,ssapphire,2
+energy creep,n,ssapphire,1
+party magicain,n,ssapphire,1
+pot of blue,n,ssapphire,1
+monstrous mage,n,sapphire,1
+possessed sage,n,sapphire,1
+green mage,n,emerald,1
+alchemist,n,emerald,1
+battery mage,n,emerald,1
+fabrege frog,n,emerald,1
+junior sage,n,emerald,1
+gourmage,n,emerald,1
+jade automata,n,emerald,1
+stim mage,n,emerald,1
+dealer mage,n,emerald,2
+enchanter,n,emerald,2
+gem devourer,n,emerald,2
+smithing golem,n,emerald,2
+crystal charger,n,semerald,2
+detective mage,n,semerald,2
+gem pillar,n,emerald,1
+pot of green,n,semerald,1
+mox conduit,n,semerald,1
+power pillar,n,emerald,1
+bloating pillar,n,semerald,1
+ghastly pillar,n,semerald,1
+ascended slime,n,emerald,3
+brhorber,n,emerald,3
+electromancer,n,emerald,1
+electric slime,n,emerald,1
+desplacer beast,n,emerald,2
+moglee,n,emerald,1
+orange mage,n,ruby,1
+mage knight,n,ruby,1
+practice mage,n,ruby,1
+ruby golem,n,ruby,1
+spike mage,n,ruby,1
+iron maiden,n,ruby,2
+stop sage,n,ruby,2
+mox mage,n,sruby,1
+pot of orange,n,sruby,1
+reinforce mox,n,ruby,2
+bixhound,n,ruby,2
+mosquito mage,n,ruby,3
+shell mage,n,ruby,1
+worm mage,n,ruby,1
+prism mox,n,prism,0
+mage pupil,n,prism,0
+spade sage,n,prism,1
+mirror mage,n,prism,1
+stasis mage,n,prism,1
+spell slinger,n,prism,2
+slhoon,n,sprism,1
+mage slayer,n,sprism,1
+purple mage,n,amethyst,1
+shovel mage,n,amethyst,1
+hag,n,amethyst,1
+corrupt construct,n,amethyst,1
+mind flayer,n,amethyst,2
+smoke conjurer,n,amethyst,2
+hexen,n,amethyst,2
+reanimator,n,amethyst,2
+spirit spider,n,amethyst,2
+cerebral swarm,n,amethyst,1
+fleeting conjurer,n,amethyst,1
+ghoulish mage,n,amethyst,1
+mass of marrow,n,amethyst,1
+amalgamage,r,emerald,2
+chronogolem,r,emerald,3
+former noble,r,semerald,2
+prismatic pillar,r,semerald,2
+flawless clockwork,r,prism,3
+magnus mox,r,sprism,3
+grand astrologer,r,prism,3
+master mispr,r,sprism,3
+pot of grey,r,sprism,2
+brogg polliwog,r,ruby,2
+merry maidens,r,prism,0
+archne wizard,r,ruby,3
+book of darkness,r,amethyst,2
+osteomancer,r,samethyst,2
+squidling,n,amethyst,1
+por of purple,n,samethyst,2
+death lich,r,amethyst,3
+puppeteer,r,amethyst,1
+arachne wizard,r,garnet,3
+ringleader,r,topaz,2
+wild witch,r,sgarnet,1
+magickal maid,r,stopaz,1
+red mage,n,garnet,1
+slinger mage,n,garnet,1
+mirror magus,n,garnet,1
+cruel mage,n,garnet,1
+essence weaver,n,garnet,1
+muscle mage,n,garnet,1
+submage,n,garnet,1
+skybound sorcerer,n,garnet,1
+magickal mariner,n,garnet,2
+shatter mage,n,garnet,2
+ticked mage,n,garnet,2
+dark lord,n,garnet,3
+pot of red,n,sgarnet,1
+siege weaponry,n,sgarnet,3
+beast mage,n,sgarnet,2
+battle mage,n,sgarnet,2
+brush mage,t,prism,1
+marvin the magnificent,t,sapphire,2
+blue magus the good,t,ssapphire,2
+lonely wizard,t,sapphire,1
+clone mage,t,sgarnet,2
+maw mage,t,garnet,1
+gem channeler,t,samethyst,2
+king sage,t,stopaz,3
+runett,t,emerald,2
+goo mage,t,emerald,1
+savage sage,t,emerald,1
+spear mage,t,ruby,1
+dizzy mage,t,topaz,1
+vuvian,t,ruby,1
+strange gnome,t,stopaz,1
+will the wisp,t,amethyst,1
+yellow mage,n,topaz,1
+drowsy mage,n,topaz,1
+loud mage,n,topaz,1
+sniper mage,n,topaz,1
+gnome horde,n,topaz,1
+tome sage,n,topaz,1
+automatox,n,topaz,2
+chaos sorcereer,n,topaz,2
+fire breather,n,topaz,2
+gem miner,n,topaz,2
+hat trickster,n,topaz,2
+box tricksters,n,topaz,2
+telekinetic,n,topaz,2
+strongmang,n,stopaz,1
+wizard lizard,n,stopaz,1
+pot of yellow,n,stopaz,1
+kablooie conjurer,n,stopaz,1
+forest gnome,n,stopaz,2
+chaos gnome,n,stopaz,3

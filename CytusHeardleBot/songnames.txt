@@ -1,0 +1,327 @@
+bodytalk=Body Talk=PAFF=12
+survive=Survive=PAFF=10
+bulletwaitingforme=Bullet Waiting for Me=PAFF=11
+kanata=KANATA=PAFF=9
+fightanotherday=Fight Another Day=PAFF=10
+baptismoffire=Baptism of Fire=PAFF=12
+fireflies=Fireflies=PAFF=10
+gravity=Gravity=PAFF=12
+reboost=Re:Boost=PAFF=11
+greenhope=Green Hope=PAFF=11
+underthesamesky=Under the same sky=PAFF=9
+wintergames=Winter Games=PAFF=9
+newworld=New World (PAFF)=PAFF=10
+secretweapon=SECRET;WEAPON=PAFF=14
+lilacforanabel=Lilac for Anabel=PAFF=13
+whoami=Who Am I?=PAFF=10
+morethandiamond=More Than Diamond=PAFF=9
+blossomsforlife=Blossoms for Life=PAFF=11
+recall=Recall=PAFF=9
+sleepingbeast=Sleeping Beast=PAFF=10
+streetlights=Streetlights=PAFF=12
+savemenow=Save me Now=PAFF=13
+illmenate=illMenate=PAFF=14
+lightupmylove=Light up my LOVE=Cytus 1=12
+thespark=The Spark=NEKO#ΦωΦ=12
+resurrection=Resurrection=NEKO#ΦωΦ=12
+onewaylove=One Way Love=NEKO#ΦωΦ=9
+happinessbreeze=Happiness Breeze=NEKO#ΦωΦ=12
+alternapt1=Alterna Pt.1 -Cosmogony-=NEKO#ΦωΦ=12
+zealoushearts=Zealous Hearts=NEKO#ΦωΦ=12
+keepitup=Keep It Up=NEKO#ΦωΦ=14
+codenamegamma=CODE NAME: GAMMA=NEKO#ΦωΦ=15
+blowmymind=Blow My Mind=NEKO#ΦωΦ=14
+chromevox=Chrome VOX=NEKO#ΦωΦ=14
+hardlanding=Hard Landing=NEKO#ΦωΦ=11
+brainpower=Brain Power=NEKO#ΦωΦ=13
+extinguisher=Extinguisher=NEKO#ΦωΦ=11
+foryouthebellztoll=For You The Bellz Toll=NEKO#ΦωΦ=14
+rei=Rei=NEKO#ΦωΦ=11
+sound=響け！=NEKO#ΦωΦ=13
+carefreecloudy=気楽なCloudy=NEKO#ΦωΦ=13
+droppinglightspeed=Dropping Lightspeed=NEKO#ΦωΦ=15
+betterthanyourerrorsystem=Better Than Your Error System=NEKO#ΦωΦ=13
+hydra=Hydra=NEKO#ΦωΦ=12
+liberation=Liberation=NEKO#ΦωΦ=14
+ramenisgod=Ramen Is God=NEKO#ΦωΦ=14
+revelation=Re:VeLΔTiØN ～光道ト破壊ノ双白翼～=NEKO#ΦωΦ=14
+rebirth=Rebirth=NEKO#ΦωΦ=12
+readytotakethenextstep=Ready To Take The Next Step=NEKO#ΦωΦ=15
+deadlyslotgame=Deadly Slot Game=ROBO_Head=13
+makemeburn=Make Me Burn=ROBO_Head=13
+restriction=Restriction=ROBO_Head=11
+luolimasi=Luolimasi=ROBO_Head=11
+claimthegame=Claim the Game=ROBO_Head=12
+devillicsphere=Devillic Sphere=ROBO_Head=13
+purepowerstomper=Pure Powerstomper=ROBO_Head=13
+celestialsounds=Celestial Sounds=ROBO_Head=14
+grimoireofcrimson=Grimoire of Crimson=ROBO_Head=11
+dasein=Daesin=ROBO_Head=13
+chaos=CHAOS=ROBO_Head=14
+ember=EMber=ROBO_Head=13
+midnight=Midnight=ROBO_Head=13
+deadpoint=Dead Point=ROBO_Head=13
+nocturnaltype=Nocturnal Type=ROBO_Head=11
+subconsciousmind=Subconcious Mind=ROBO_Head=12
+hyperbola=Hyperbola=ROBO_Head=12
+thedevilwillpray=The Devil Will Pray=ROBO_Head=15
+arklight=ArkLight=ROBO_Head=14
+sentimentaljourney=Sentimental Journey=Ivy=14
+biotonic=Biotonic=Ivy=13
+alexandrite=Alexandrite=Ivy=14
+tokiwatari=Tokiwatari=Ivy=13
+purge=Purge=Ivy=12
+area184=Area184=Ivy=12
+bloodymare=Bloodymare=Ivy=13
+assaultmare=Assaultmare=Ivy=14
+lunarmare=Lunar Mare=Ivy=14
+99glooms=99 Glooms=Ivy=14
+pressure=Pressure=Ivy=12
+v=V.=Ivy=15
+halloweenparty=Halloween Party=Ivy=14
+bloodypurity=Bloody Purity=Ivy=14
+masquerade=Masquerade=Ivy=11
+quantumlabyrinth=Quantum Labyrinth=Ivy=12
+saika=Saika=Ivy=12
+tofurtherdream=To Further Dream=Ivy=12
+liberame=Libera Me=Ivy=13
+qualia=Qualia=Ivy=13
+conflict=conflict=Ivy=15
+freedomdive=FREEDOM DiVE=Ivy=15
+summerzephyr=Summer Zephyr=Ivy=10
+sovereign=Sovereign=Ivy=14
+paradigm=paradigm-paragramme-program=Ivy=14
+secretgarden=Secret Garden=Ivy=11
+halcyon=Halcyon=Ivy=14
+digigroove=DigiGroove=Ivy=13
+heatring=Heat Ring=Ivy=11
+leavingallbehind=Leaving All Behind=Ivy=13
+symmetry=Symmetry=Ivy=15
+timetofight=Time to Fight=Ivy=14
+reset=Reset=Ivy=12
+drg=D R G=Ivy=11
+effervesce=Effervesce=Crystal PuNK=13
+chandelierxiii=Chandelier XIII=Crystal PuNK=12
+sunshineduration=Sunshine Duration=Crystal PuNK=12
+deepdive=Deep Dive=Crystal PuNK=13
+binary=βinαrΨ=Crystal PuNK=12
+darkmadness=Dark Madness=Crystal PuNK=13
+thecross=The Cross=Crystal PuNK=11
+familylove=眷戀/Family Love=Crystal PuNK=11
+stillpianoversion=Still (Piano Version)=Crystal PuNK=9
+premaflowers=Prema Flowers=Crystal PuNK=12
+collide=Collide=Crystal PuNK=12
+anchor=Anchor=Vanessa=10
+syuten=syūten=Vanessa=11
+rosarubus=Rosa Rubus=Vanessa=11
+xyz=XYZ=Vanessa=15
+iiv=II-V=Vanessa=12
+chaosandabyss=Chaos and Abyss -3rd Movement-=Vanessa=15
+duality=Duality=Vanessa=11
+ra=Ra=Vanessa=13
+chaossystemoffline=CHAOS //System Offline//=Vanessa=12
+vsystemoffline=V. //System Offline//=Vanessa=13
+ii=	͟͝͞Ⅱ́̕=Vanessa=14
+usedtobe=Used to be=Vanessa=9
+thewholerest= The Whole Rest=Vanessa=12
+blessingreunion=Blessing Reunion=Vanessa=12
+300am=3:00 a.m.=Vanessa=12
+installation=Installation=Vanessa=8
+risoluto=Risoluto=Vanessa=12
+theendyears=The End Years=Vanessa=13
+incyde=Incyde=Vanessa=15
+thebeginning=THE BEGINNING=Vanessa=12
+aventyr=Äventyr=Bo Bo=12
+nordlys=NORDLYS=Bo Bo=12
+snowblossom=Snow Blossom=Bo Bo=13
+quinsialyn=Quinsialyn=Bo Bo=13
+dawnreimei=黎明-REIMEI-=Bo Bo=12
+ibuki=IBUKI=Bo Bo=12
+thebreathofthesoul=The breath of the soul=Bo Bo=14
+firstborns=Firstborns=Bo Bo=14
+heliopolisproject=Heliopolis Project=Bo Bo=12
+tsubaki=TSUBAKI=Bo Bo=13
+voxenchanted=Vox Enchanted=Bo Bo=10
+kingofdesert=King of Desert=Bo Bo=12
+trinitysaga=tRinity saga=Bo Bo=15
+tombrobber=Tomb Robber=Bo Bo=13
+newquest=New Quest=Bo Bo=12
+bastet=バステット (Cytus II Edit)=Bo Bo=12
+conundrum=Conundrum=Graff.J=13
+sdorica=Sdorica The Story Unfolds=Graff.J=10
+hesitantblade=Hesitant Blade=Graff.J=11
+stewricacross=Stewrica -Cross-=Graff.J=13
+poundingdestination=Pounding Destination=Graff.J=10
+fujinrumble=FUJIN Rumble=Graff.J=15
+ascensiontoheaven=Ascension to Heaven=Graff.J=14
+friction=Friction=Alice=12
+legacy2=Legacy (Alice)=Alice=9
+livingintheone=Living In The One=Alice=10
+yubikirigenman=YUBIKIEI-GENMAN=Alice=9
+ihatetotellyou=I hate to tell you=Alice=12
+utopiosphere=Utopiosphere=Alice=11
+marigold=Marigold=Alice=15
+thebeautifulmoonlight=The Beautiful Moonlight=Alice=10
+breathofthecity=都市の呼吸/Breath of the City=Alice=13
+tonextpage=to next page=Alice=12
+anima=ANiMA=Alice=15
+sunset=Sunset=Hans=11
+ephemeral=Ephemeral=Hans=12
+ruinsinthemirage=Ruins in the Mirage=Hans=10
+rungorun=Run Go Run=Hans=12
+platinum=Platinum=Hans=9
+leviathan=Leviathan=Hans=13
+lostinthenowhere=Lost in the Nowhere=Hans=14
+dream=Dream=Hans=11
+pathandperiod=Path and Period=Hans=13
+aragami=Aragami=Hans=14
+rhuzerv=Rhuzerv=Hans=15
+aiaiai=AIAIAI=Kizuna AI=12
+hellomorning=Hello, Morning=Kizuna AI=13
+futurebase=future base=Kizuna AI=12
+newworld2=new world (Kizuna AI)=Kizuna AI=11
+miraclestep=miracle step=Kizuna AI=11
+meetyou=meet you=Kizuna AI=12
+mirai=mirai=Kizuna AI=9
+overthereality=over the reality=Kizuna AI=13
+meltyworld=melty world=Kizuna AI=13
+helloalone=hello, alone=Kizuna AI=10
+bluestar=Blue Star=Miku=11
+breakit=BREAK IT=Miku=13
+cantmakeasong=Can't Make A Song!!=Miku=12
+miku=Miku=Miku=10
+sharingtheworld=Sharing The World=Miku=10
+venusdiujungjari=Venus di Ujung Jari=Miku=8
+luckyorb=ラッキー☆オーブ/Lucky Orb=Miku=11
+musiclikemagic=魔法みたいなミュージック！/Music Like Magic!=Miku=13
+moonwestriver=月西江/Moon West River=Miku=8
+tenthousandstars=Ten Thousand Stars=Miku=12
+glasswall=Glass Wall=Miku=11
+cybernetic=Cybernetic=Miku=13
+decade=Decade=Miku=9
+luckyorb3r2remix=ラッキー☆オーブ(3R2 Remix)/Lucky Orb (3R2 Remix)=Miku=11
+inspion=INSPION=Xenon=13
+whispersinmyhead=Whispers in my Head=Xenon=13
+return=Return=Xenon=11
+concentriccircles=concentric circles=Xenon=12
+fighting=Fighting=Xenon=11
+tothelight=To the Light=Xenon=12
+phantomrazor=Phantom Razor=Xenon=13
+blackhole=Black Hole=Xenon=10
+samurai=SAMURAI=Xenon=13
+iolitesunstone=IOLITE-SUNSTONE=Xenon=11
+sairai=Sairai=Xenon=10
+ultimatefeat=Ultimate feat. 放課後のあいつ=Xenon=13
+karma=Karma=Xenon=11
+chosen=Chosen=Xenon=13
+violet=Violet=Xenon=14
+asylum=Asylum=Xenon=12
+xiorc=Xiorc=ConneR=14
+rebellium=REBELLIUM=ConneR=14
+imprinting=Imprinting=ConneR=13
+gekkouka=Gekkouka=ConneR=12
+lightofbuenosaires=Light of Buenos Aires=ConneR=12
+tondarihanetari=tondari-hanetari=ConneR=12
+abduction=Abduction=ConneR=11
+nostalgiasonatina=Nostalgia Sonatina=ConneR=13
+iluvu=I luv U=ConneR=10
+instinct=Instinct=ConneR=12
+flooroflava=Floor of Lava=ConneR=15
+aphasia=Aphasia=ConneR=13
+olympia=Olympia=ConneR=12
+demetrius=Demetrius=ConneR=13
+lultimacena=L'Ultima Cena=ConneR=14
+deusexmachina=Deus Ex Machina=ConneR=13
+furwarpurwar=Fur War, Pur War=ConneR=15
+reboot=Re:boot=ConneR=14
+sceneryinyoureyes=Scenery in your eyes=Cherry=9
+level4=LEVEL4=Cherry=13
+livingforyou=Living for you=Cherry=11
+imnot=I'M NOT=Cherry=11
+stopatnothing=Stop at nothing=Cherry=11
+retrieve=RETRIEVE=Cherry=12
+still=Still=Cherry=11
+credence=CREDENCE=Cherry=12
+systemfeit=SYSTEMFEIT=Cherry=13
+hunted=hunted=Cherry=12
+captureme=Capture me=Cherry=11
+realize=Realize=Cherry=12
+childish=Childish=12
+turnstilejumper=Turnstile Jumper=Joe=13
+juicygossip=Juicy Gossip=Joe=11
+standbyforaction=Standby for Action=Joe=12
+openthegame=Open the Game=Joe=13
+hydrangea=Hydrangea=Joe=12
+absolutely=Absolutely=Joe=11
+higherandhigher=Higher and Higher=Joe=14
+takemetothefuture=Take me to the future=Joe=14
+nautilus=Nautilus=Joe=11
+bassmusic=Bass Music=Joe=13
+amenemhat=Amenemhat=Sagar=14
+elysium=Elysium=Sagar=12
+immranbrain=Immran Brain=Sagar=13
+spacealien=Space Alien=Sagar=14
+doldrums=Doldrums=Sagar=14
+nidhogg=Nídhögg=Sagar=14
+legacy=Legacy (Sagar)=Sagar=13
+aportentofthesilverwheel=A Portent of the Silver Wheel=Sagar=13
+sacrifice=Sacrifice=Sagar=14
+returnofthelamp=Return of the Lamp=Sagar=14
+thesiege=The Siege=Rin=13
+thegranddebate=The Grand Debate=Rin=12
+threelights=三灯火 (Three Lights)=Rin=13
+yokairock=「妖怪録、我し来にけり。」/"O Yo-Kai ROCK, Come to Thee".=Rin=14
+starrysummoner=Starry Summoner=Rin=11
+goaheadkunoichi=すゝめ☆クノイチの巻/Go Ahead, Kunoichi=Rin=14
+leafygreen=彩/Color/Leafy Green=Rin=14
+decisivebattle=決戦/Decisive Battle=Rin=13
+maritemari=Mari-Temari=Rin=12
+inari=Inari=Rin=10
+change=change=Aroma=9
+noonecantstopme=No One Can't Stop Me=Aroma=11
+spotlighton=Spotlight On=Aroma=12
+bringthelight=Bring the light=Aroma=9
+makeumine=Make U Mine=Aroma=11
+anzennakusuri=Anzen Na Kusuri=Aroma=10
+drifting=漂流/Drifting=Aroma=14
+perspectives=Perspectives=Aroma=10
+thewindsvoice=風の声/The Wind's Voice=Aroma=9
+neonescape=Neon Escape=Aroma=10
+beautifullie=Beautiful Lie=Aroma=11
+accelerator=Accelerator=Nora=14
+dancetilldawn=Dance till Dawn=Nora=11
+uranus=Uranus=Nora=12
+droptheworld=Drop The World=Nora=14
+starlight=Starlight=Nora=11
+bastardofhardcore=Bastard of Hardcore=Nora=13
+jakartaprogression=Jakarta PROGRESSION=Nora=14
+eternity=Eternity=Nora=11
+phagymutation=Phagy Mutation=Nora=12
+atonement=ATONEMENT=Nora=11
+grandemotion=Grand Emotion=Nora=13
+chocolatemissile=Chocolate Missile=Neko=13
+icanavoidit=I can avoid it.#φωφ=Neko=13
+pinkgraduation=Pink Graduation=Neko=10
+onebitetwobites=一啖兩啖/One Bite, Two Bites=Neko=12
+mammal=Mammal=Neko=14
+blah=Blah!!=Neko=14
+lira=リラ/lira=Neko=12
+login=Log In=Neko=13
+djmashiroisdeadoralive=DJ Mashiro is dead or alive=Neko=14
+reincarnation=Re:incRnaTiØN ～夕焼ケ世界ノ決別ヲ～=Neko=15
+rip=R.I.P.=Neko=14
+alb=Alb=Ilka=14
+codered=CODE:RED=Ilka=14
+rebelliontrigger=Rebellion Trigger=Ilka=15
+silverlotus=Silver Lotus=Ilka=11
+victimsofwill=Victims of Will=Ilka=13
+historydestoryer=History Dstr0yeR=Ilka=15
+elysianvolitation=Elysian Volitation-Ilka=14
+retheend=Re:The END - 再 -=Ilka=15
+3go=3GO=Ilka=12
+levolution=Levolution=Ilka=13
+iavavi=IɅVɅVI=Ilka=15
+oneiroi=Oneiroi=Ilka=13
+lamentation=Lamentation=Ilka=14
+samuelsfarewell=Samuel's Farewell=Ilka=13
+noir=Noir=Ilka=12.
