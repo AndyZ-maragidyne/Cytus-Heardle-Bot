@@ -1,0 +1,597 @@
+-STILL NEED TO DO:
+-fix rins ability (finish later when its a problem and I can actually figure out what exactly to nerf)
+-make troops for the last few floors of clash dungeon, evo cards, geared up buildings, clan captial buildings?
+-max level variable for a card? Like switch case and default is 10 if its 26, its 5
+-speed decrease ailment, everytime speed it reset, it increases it by the speed amount
+-see what ailments your active character has in doPlayerAttack
+A team button to display your teams HP before a battle.
+maybe something to tell you what floor and level you are currently in
+
+
+Wizard room:
+-random welcome message.
+-get 3 random spells and set their ids to negative
+-thats it, maybe check if negative id cards get deleted at the end of your run
+
+
+cards rewards: One time.
+[1, 3, 5, 7, 9, 11, 13, 15, 16, 17, 19] 
+
+
+Medium:
+-some cards are just not worth having 10 levels, like barb barrel. Make every card have a max level stat. in the constructor, have a function to find the max level of the card given the ID
+-change invisibility so that enemies dont choose invisible targets
+-reward for cytus heardle trial is either essence or a temp card whos level is the amount of songs you got correct
+-bug with calling upgarde after your go into characters and try to upgrade them. I have no idea whats wrong so it just throws an error and you have to restart
+-change melee boost to be 2.13x more damage instead of 113% more damage
+-stun ailment, make it so that you do more damage to frozen units
+-needfs to be a way to load dungeons (??? idk what this is talking about)
+-make the really cool thing in the upgrade character that has all the ability buffs but its like crossed out
+-cards have a tier field, but no functionality. Code the prestiege mechanic later, with leveling up single target cards to all target cards.
+-when you place a character down, should its speed be scrambled?
+-maybe different tiered cards should cost different amounts to upgrade idk
+-make a talk option for the blacksmith and he says "If you need to upgrade anything, I can do it for you for a price if you bring me the MMessence. I need money to buy VOEZ Pack 1
+-if someones still in the dungeon while the dungeon resets, if they are in a battle, they can finish it and it puts them in the main menu. If not, they automatically leave with all their loot
+
+Not very high priority:
+be able to use cards during boost
+-should summon cards have decay? Wait and see
+wagon action where you can replace a card
+A voice line field for enemy. So they can say stuff or something
+shield ailment where it takes a certain amount of hits to break it.
+life steal, where you heal yourself with the hp you steal, custom % of hp healed
+make an enemy that gives a big damage boost when it dies, so a swarm of those enemies, should be taken out evenly instead of lowest hp first
+
+
+Archer Queen boss:
+-has a low base speed like 3
+-has giant arrow attack - hits all enemies (3 superCharge)
+-frozen arrow - freezes its target for 1 turn (3 superCharge)
+-healer puppet - summons 3 healers (3 superCharge)
+-at 50% health, she goes invisizble for 3 turns, summons 10 archers
+
+King boss:
+-king tower, 2 princess towers
+-have spells that he uses to inflict ailments.
+-summons recruits idk, royal troops. So Royal giant, knight, royal hogs, princess, little prince?
+
+Clash of clans base:
+town hall
+a bunch of cannons, archer towers and stuff at the beginning.
+then theres like scattershot, xbow, monolith and all that stuff comes in later
+
+Royal Champion:
+-medium speed
+-seeking shield super (deals massive damage (150) to 3 random enemies), hast vial super (increase speed)
+-at 30%hp: heal to full, summon 7 hog riders
+-maybe rocket spear ability where she shoots 5 high damage spears to random enemies
+
+
+
+
+every character should have a super ability. If you guard, it charges the ability. 
+Coded in super charge variable that increases whenever you guard but nothing else
+
+
+make a dungeon room class that has a pointer to a functin
+
+have all these functions with dungeon rooms and stuff
+
+dungeonInfo:
+[isDungeon, isBattle, [floor, room], [players, enemies, type, hand, xp, wagonSpeed, characterChance, numBoosts], loot]
+
+
+
+
+
+have a 2d array where the first row is all the easy rooms
+second row is intermediate and 
+third is hard
+
+
+
+
+
+Boss Fight:
+Guess a Cytus Song, deal Massive damage to the boss,
+You can choose to guess the song on any of your character's turns. If you guess wrong, you take damage (10% of Max HP).
+The more damage you do to the boss, the more seconds you get for the song (1 second every 10%)
+
+
+
+
+ideas:
+A room where you sacrifice cards in your deck for essence
+some trial that has to do with answering cytus heardles correctly
+a thing where you have to answer with songs, like "answer all ROBO_Head songs" and then you literally just type them out. you have 3 lives
+a room where you can sacrifice the cards in your deck for CAPSO Coins or MMessense.
+A blacksmith room, where you can upgrade a card for free (reverts back at the end of your run)
+A shop, you can get money for every kill and can spend it here. 
+nominate a person on your team, they will get an ailment for the next battle, or they could lose hp or something, but you will get a reward
+A guy who makes someone take damage and gives you their health as a healing card
+vending machine with cards in it?
+booster pack??
+A room where you can combine 2 cards and make a card that calls cardManager multiple times. Maybe the tradeoff is you cant upgrade the card anymore after that
+A feature where you can mount a weapon on your wagon.
+
+OS world:
+-Room where you play a random cytus song and they give you a cytus heardle and you have to answer if that song is the one you just played
+-A way to obtain CAPSOs
+-You use the CAPSOs to buy song parts and theres an area where you can craft them into "songs", which are just cards
+-"You played CODE NAME: GAMMA to your party. It increased their attack for ____ turns"
+-song parts are like titles, difficulties, length. At the end, you have to play the song in Cytus and give your score.
+-send help on IM. You'll get some random IM user on your team.
+
+Vanessa- has ended virus ability: gives entire enemy team decay
+
+Enemy ideas:
+Drones that attack xenon and cherry?
+
+People who took over Nora’s company
+Architect 
+
+Card donation room
+-ask to donate a random card in your deck. (Discard). Then you get like 10 CAPSO coins or something. Only once per dungeon. 
+
+Go into your recycling bin and take out a card you have already used
+
+Maybe a room to revive a dead character. Say like 50 essence or something. Or free
+
+A room to get a really good card. (Cytus trial?)
+Maybe Cytus trial is if you get all 5, you get to do 5 more. And that’s the level of your card
+
+Song creation room?
+
+Clone:
+-makes clones of your entire team. They have 1 Hp. Maybe 10% of normal attack and only lasts 1 turn. Upgrades can be increasing the attack and increase by the turn
+
+Lightning:
+Hits the highest 3 HP enemies
+
+Magic item rework - maybe make the prices dependent of the one you got right
+
+
+
+You fight songs?
+Maybe some new battle system. You have to “compose” songs or you “play them” like a Cytus level idk.
+Multiple steps to hacking the enemies. Cytus Heardle, but idk what else the hacks should have
+
+A way to hack the enemies like bring the IM users offline. You do this by doing Cytus Heardles or something. 
+
+Make your own IM profile
+
+You have to kill them and figure out what their Cytus song is maybe?
+The only problem is that it might make Cytus hearldes too easy cause you do them so often
+
+
+
+
+
+Clash Royale/Clash of clans world:
+-room where someone is requesting cards (a random card in your deck) and you can donate it to him
+
+helper character you find in the dungeon. Only stays with you for your run
+
+
+
+
+Boss is a hard Cytus Heardle song. With modifiers. It’s the same song for everyone 
+- Take damage if you guess it wrong
+-You use your action to guess the song, if you do, it will greatly weaken the boss (like maybe 90% of its hp, or 80% or 50% idk. Hey maybe the lower the floor, the less it weakens it.)
+-You can damage the boss to get more time for the video
+
+Bring back the letter power up but you take damage every use
+
+tier 1 cards should have the same upgrade
+tier 2 cards should have the same upgrade costs
+and so on
+upgrades need: xp - get from playing the card
+essence - get from sacrificing cards and winning battles and stuff
+
+
+wagon leveling
+starts at 100HP
++10 hp per level
+the cost only increases every 100 HP
+100-200 - 10 CAPSO Coins 5
+200-300 - 20 CAPSO Coins 6-10
+300-400 - 30 CAPSO Coins 11-15
+400-500 - 40 CAPSO Coins 16-20
+500-600 - 50
+                 60
+                 70
+                 80
+                 90
+2250 total
+
+Boost the same but increase by 25
+
+Deck is a consitant 50 CAPSO Coins
+
+characters HP and Atk:
+lvl1 - 10 or  10 CAPSO Coins
+lvl2 - 20       10
+lvl3 - 50       20
+lvl4 - 80       30
+lvl5 - 100     40
+lvl6 - 110     50
+lvl7 - 130     60
+lvl8 - 150     75
+lvl9 - 175     85
+lvl10 - 200   100
+total  1010   550
+Ability:
+essence is HP/Atk but doubled? idk
+
+Blacksmith:
+have to pay capso coins and essence to upgrade a card
+tier 1:
+lvl2 - 5 CC  2XP  10 MMessence
+lvl3 - 5 CC 5XP   20MM
+lvl4 - 5 CC 10XP 35 MM
+lvl5 - 5CC  15XP 50 MM
+lvl6 - 10CC25XP 75 MM
+lvl7 - 10CC35XP 100 MM
+lvl8 - 10CC50XP 125 MM
+lvl9 - 10CC75XP 150 MM
+lvl10 -10CC100XP 200MM
+Prestiege cards can be obtained by combining 2 of the same MAX level cards
+prestiege:
+lvl1 - 5 CC  2XP  10 MMessence
+lvl2 - 5 CC  5XP  15 MM
+lvl3 - 5 CC 10XP 20MM
+lvl4 - 5 CC 15XP 35 MM
+lvl5 - 5CC  25XP 50 MM
+lvl6 - 10CC35XP 75 MM
+lvl7 - 10CC45XP 100 MM
+lvl8 - 10CC50XP 125 MM
+lvl9 - 10CC75XP 150 MM
+lvl10 -10CC100XP 200MM
+salvage:
+FREE, lvl 1 should give 10 MMessence?
+-depends on how much you actually get
+maybe the sacrifice should be the cost in essence to upgrade to the next level
+
+Gameplay should not be just attacking. Every character should have an additional ability and you should be able to win a battle in a few turns if you play correctly
+Paff - Ability: Buffs the damage of other people (3 uses)
+lvl 2 - Unlock ability - 10% damage buff, 1 turn
+lvl 3 - 15%, unlock Cytus Heardles (50% - 100%(double) more damage buff) 
+lvl 4 - 20%, +1 turn duration
+lvl 5 - 25%
+lvl 6 - 30%, +1 turn
+lvl 7 - 35%, buffed person recieves 5% max HP healing
+lvl 8 - 40%, 10% max HP healing
+lvl 9 - 45% 15% max HP healing
+lvl 10 - 50%, cytus heardle now gives half the damage boost to everyone else
+MAX - gives a 50% damage buff, with 15% healing
+
+Neko - Abilty: summons a meowbot (1 use) - has decay 50%
+lvl 2 - 34% decay
+lvl 3 - 1 more use, unlock boost - 1 extra or 2 extra. (If its too underwhelming then do double or triple the spawn)
+lvl 4 - 20% decay
+lvl 5 - double meowbiot 
+lvl 6 - 1 more use
+lvl 7 - chance to summon super meowbot - 5% chance
+lvl 8 - meowbot is better (like some other better meowbot. Meower bot, MeowBot v2.0)
+lvl 9 - super meowbot chance increase - 10% chance
+lvl 10 - no decay
+MAX - use up to 3 times, each time summon 2 meowbots or no decay?
+
+Robo Head - Ability: take 50 damage and give a character a 50 HP shield (1 turn)
+lvl 2 - +10 shield
+lvl 3 - +2 turns, unlock Cytus Heardles (take no damage and gives shield to entire team)
+lvl 4 - +15 shield
+lvl 5 - 125HP shield but now for 100 damage,
+lvl 6 - +25HP, +1 turn
+lvl 7 - sheilded characters now also get a 10% damage buff (3 turns) ,harder Cytus Heardle option
+lvl 8 - +25HP, damage buff lasts for 5 turns
+lvl 9 - every other party member gets a shield, 10% of the ability shield
+lvl 10 - +25HP, damage buff now lasts for 10 turns
+MAX - gives a 200HP shield for 100 damage and a 10% damage buff (10 turns) and every other party memeber gets a 10% shield. (3 uses)
+**May need to be buffed.
+
+Ivy- Ability: Revive with 1 hp if you complete a 0.5 second, scrambled, reverse Cytus Heardle
+lvl 2 - plus 0.2 seconds (0.7)
+lvl 3 - revive with 10% HP
+lvl 4 - plus 0.3 seconds (1)
+lvl 5 - remove reverse
+lvl 6 - plus 0.5 seconds (1.5)
+lvl 7 - revive with 25% HP
+lvl 8 - plus 0.5 seconds (2)
+lvl 9 - revive with 50% HP
+lvl 10 - give Cytus Heardle thing to someone else
+MAX: revive with half hp if you complete a 2 second scrambled Cytus Heardle with the ability to give it to someone else. (Give to someone else should either have a limited number of uses (1 or 3 per battle), OR it should only last for 3 turns.
+how to code: give ivy's onDeath a second things with its number of uses. For ivy, this is set at -1. For everyone else, everytime they live, the duration goes down by 1. If ivy gives ability to an ally multiple times, the duration increases
+
+Maybe deals more damage the lower hp he has (damage gear)
+
+Xenon - Ability: inflicts fragile to all enemies (25%)
+lvl 2: inflicts weakness
+lvl 3: inflicts fear
+lvl 4: inflicts freeze (1 turn)
+lvl 5: unlock boost - super hard, doubles effects of ailments or something
+lvl 6: upgrade fragile (50%)
+lvl 7: upgrade weakness
+lvl 8: upgrade fear
+lvl 9: upgrade freeze
+lvl 10: +2 turns (except freeze)
+MAX: Hack the enemy team. Inflict weakness, fragile, fear, and freeze
+
+ConneR - Ability: deals 25 damage to every enemy (1 use)
+lvl 2: +5 damage (30)
+lvl 3: unlock boosts - does 100%-200% more base damage?
+lvl 4: +5 damage (35)
+lvl 5: does 10 more damage for each additional enemy
+lvl 6: +5 damage (40), +5 extra damgage (15)
+lvl 7: inflict 5% decay if there is 7 or more enemies (3 turns)
+lvl 8: +10 damage (50)
+lvl 9: +10 extra damage (25)
+lvl 10: inflict 5% decay if there is only 5 or more enemies
+MAX: Deals 50 damage to every enemy. +25 damage for each additional enemy. inflict ailment if there is more than 5
+
+Cherry - Ability: increase the attack of an ally by 50% for 1 turn, 50% chance of landing, -50HP (1 use)
+lvl 2: -25 HP penalty
+lvl 3: boosts
+lvl 4: 60% chance of landing
+lvl 5: double ally attack
+lvl 6: 80% chance of landing
+lvl 7: +1 use
+lvl 8: no HP penalty
+lvl 9: 100% chance of landing
+lvl 10: triple the attack
+MAX: triple the attack of an ally for 1 turn, 2 uses
+support that focuses on debuffing enemy rather than buffing team
+
+OR
+
+Ability: give someone a cherry (level 1 heals like 1 hp or something, but it tastes good. Does not waste a turn, 3 uses)
+You have p.getName() a cherry. Mmmmm it was good
+lvl 2: Cherry heals 10x more!!!! Healing now lasts multiple turns (10 healing per turn, 3 turns. Now uses up a turn.)
+lvl 3: unlock boost - gives cherries to the entire team
+lvl 4: +10HP more healing
+lvl 5: no longer uses up a turn
+lvl 6: Cherry healing is now 5 turns
+lvl 7: healing amplified ailment (30%, 1 turn)
+lvl 8: +30HP Cherry healing (50)
+lvl 9: healing amplified ailment now lasts 3 turns
+lvl 10: Cherry healing duration increased to 10 turns
+MAX: cherry restores 50HP for 10 turns. Also gives them an ailment for 3 turns where their healing is amplified (3 uses)
+
+
+JOE - Ability: select either someone from your team or enemy team and apply a random buff If its on your team, and a debuff if its on enemy team
+Player team: healing over time, damage boost, speed boost
+enemy team: fragile, weakness, poison
+maybe only has 6 uses - 1 for each ailment
+gives an ally 1 healing over time bottle (50 HP 3 turns)
+lvl 2 - unlock poison, +1 use
+lvl 3 - unlock damage boost, +1 use
+lvl 4 - unlock fragile, +1 use
+lvl 5 - unlock speed boost, +1 use
+lvl 6 - unlock weakness, +1 use
+lvl 7 - unlock boost - complete to do double effect and restore one use
+lvl 8 - potions last for longer (3 turns -> 5 turns)
+lvl 9 - medical use - heals JOE for 50 HP every time he uses one
+lvl 10 - potions are stronger
+MAX - has 6 bottles: healing over time ()
+
+Sagar - Ability: Gets a gun that can be fired 3 times, does not consume a turn (10 damage)
+lvl 2 - gun now does 15 more damage
+lvl 3 - gets 1 more ammo, unlock Cytus Heardles - 5 more bullets
+lvl 4 - gets 1 more ammo
+lvl 5 - gun has a 50% chance to burn (20, damage, 1 turn)
+lvl 6 - burn lasts 2 additional turns
+lvl 7 - burn does double damage
+lvl 8 - burn chance increased to 100%
+lvl 9 - 5 more ammo
+lvl 10 - gun has a 50% chance to do fragile (50% more damage, 2 turns)
+MAX - gun with 100% chance to burn (10 damage, 3 turns), 10 ammo, 10 damage, 50% chance to make enemy fragile (50% more damge, 1 turn)
+
+Rin - Ability: plants a plant that either does damage or heals the team (1 use)
+lvl 2: Plant upgrade (shoots an additional shot)
+lvl 3: unlocks boost - replenish a use
+lvl 4: Plant upgrade (shoots an additional shot)
+lvl 5: has a chance to inflict healing over time/damage over time ailment (9%)
+lvl 6: Plant upgrade (shoots an additional shot)
+lvl 7: ailment last +1 turn
+lvl 8: +1 use
+lvl 9: ailment last +2 turns
+lvl 10: Plant upgrade final form (shoots an additional shot. Also has cooler name)
+MAX:Plant a plant that either does damage or healing (50 healing/damage, 5 times per turn) (2 uses)
+
+
+After rin, you should be able to choose who you want to unlock next:
+Aroma
+Nora - something with os like the eye or something
+neko
+Crystal PuNK
+Vanessa
+Ilka
+Bo Bo - Ability: summon voez birds
+Graff
+Miku
+Kizuna AI - Ability: Cover: do an enemy or ally attack
+Alice - plays piano, maybe has something to do with cytus heardle or deemo
+Hans - same
+
+More characters soon... (not cytus but other stuff)
+
+Rin and Miku should be healers
+rin should have an ability that has something to do with plants
+
+could get like 3 attacks or something like a gun in persona (does not use up turn)
+Miku could heal/overheal
+Nora could have a shield at the start of battle so her normal hp dosent decrease 
+Xenon could hack the enemy or teammate. Swap hp and attack (maybe shield will count to the swapped attack to synergize hack enemy with every attack
+ConneR - decrease the speed of enemies, increase speed of allies
+Nora - build an enemy to fight for your team
+Win con:
+Ivy
+Robo head
+Nora
+Neko
+
+healing/buff:
+paff
+miku
+rin
+
+support:
+xenon
+conneR
+
+Ability ideas:
+negotiate with an enemy and get their card.
+
+Easrly game, cards should be hard to get. Late game, cards should be abundant and its easy to get a large amount of them. The challenge could be managing your cards
+
+
+Progression:
+Cards should be upgradable and fine tunable. For example, the card you collect will all be base tier cards, these can then be upgraded/fine tuned to be stronger, but will require you do a Cytus Heardle to work
+Cards you find in the dungeon are temporary, can be a room where you sacrifice your temp cards for CAPSO Coins or MMessence
+set speed to random things at the start of a battle
+Upgrade health and attack - CAPSO Coins
+Upgrade ability - MMessense
+
+
+CARD IDEAS:
+healing card variant that lets you heal above max hp or maybe thats just a shield
+cards that give you a free magic item, like a squirrel in a bottle, but its like reveal character in a bottle
+cards that extend the length of a video
+MAX ENERGY - level 1 - 10% chance to set your speed to 0, increase by 10 each level until 100% to set your speed to zero
+MAX ENERGY - 6 Pack - same but it is set your party speed to 0
+hypercharge - deal more damage, get a % shield so like damage reduciton, something with higher speed
+
+
+deals damage to every enemy 50
+
+
+deals some damage to someone 100
++20 damage per level
+MAX: 300 damage to someone
+You can take other paths, that will mutate the cards, so maybe they will have different levels and stuff
+lvl 3 - inflicts poison, burn, weakness, or fragile, unlock Cytus Heardle
+lvl 7 - inflicts the selected one but buffs its damage
+lvl 9 - inflicts a second ailment, but its not as strong
+lvl 10 - idk maybe a choice to remove th second ailment and make it hit everyone??
+or remove all ailments, but it does a lot of damage
+
+instant kill:
+MAX: instantly kills a random person if you do a cytus heardle (havent thought of what it should be yet)
+
+boost your teams attack by 50% for 3 turns
+
+gives your entire team a 1000 shield for 1 turn
+
+power up: gives your entire team a 1% stat boost
+MAX: gives your entire team a 10% stat boost
+
+cure: cures someone 1 turn of their negative ailments
+
+quick speed: 
+MAX: reduced all your character's speeds to 0
+
+
+money: gives 1% more money at the end of this battle (passive)
+MAX: gives 10% more money
+
+
+adds 1 second to a Cytus Heardle
+lvl 2 - +1 second (2)
+lvl 3 - +1 second (3)
+lvl 4 - +1 second (4)
+lvl 5 - +1 second (5) 
+ upgradable to 5 seconds
+
+skips the Cytus Heardle, but your current character has 1 HP
+
+reveal character in a bottle
+
+
+
+mainly through dungeon loot and Cytus heardle
+you should get 1 key every week, with the option to buy 2 more for CAPSO Coins
+secondary currency could be "power points". To get power points, you sacrifice your cards. You get cards with capso coins. Maybe you have to sacrifice permanent cards? temporary cards can give you capso coins or something
+
+Permament upgrades:
+These are upgrades you can buy with CAPSO Coins
+starting hand - buy up to 3 cards appear in your starting hand
+shop slots - you start with 3, can buy up to 6 slots
+character upgrades
+-buy a second, harder boost option
+-deck size, maybe tied to the amount of characters you upgrade?? an incentive to upgrade more characters
+
+
+
+generates 2 positive modifiers, 2 negative modifiers, 1 of each will be increasing/decreasing the time, 1 either positive or negative modifier
+
+
+
+offers:
+attack - increase damage by 10-30%, 5 second video, normal
+incorrect guess - 5-20% of Max HP
++ 10% if scrambled
++ 15% if duo
++ 20% if reverse
++ 30% if quad
++ 10% for fragmented
++ 10% for -1 second
++ 20% for -2 seconds
++ 35% for -3 seconds
++ 50% for -4 seconds
++ 60% for -4.5 seconds
++ -5% for another character
++ 100% for a song you may not know
+
+- 5% for +1 second
+- 10% for + 2 seconds
+
+Card 1:
+increase damage by 10-35%, 3 second, scrambled
+
+
+
+passive ability cards
+
+
+Not important rn (Refernce for future maybe):
+Cytus Heardles:
+
+In game, you will have the option to boost some cards by getting a Cytus Heardle correct. You can choose to increase the difficulty by giving yourself less time or adding more modifiers. The harder the song, the bigger the buff, BUT if you fail you will take damage. You take more damage the harder the difficulty.
+boost could be a toggleable switch in the first menu, when it is on, it will offer you a cytus heardle with some base stat increases. (kind of random, but not really random where its totally worth it or totally not worthit) You are able to tune it by making it harder (or maybe easier?) which will increase/decrease the rewards if you get it right. Everytime you get it wrong, you will take a little bit of damage, maybe there is a chance when you get it wrong, it will offer you a magic item or increase the time for more hp. You can keep guessing until your character dies or you give up. If you give up, you will take significant damage
+
+Cards:
+You can buy cards in the shop every day with CAPSO Coins
+cards should be a variety and you can play different builds. Like different characters should have different cards good for them
+cards can be active abilities or passive, such as a card where you earn more coins (10%) in the dungeon or a card that can damage every enemy when used.
+You cant carry all of your cards, but maybe you can be able to add more cards from your collection to your deck
+Leveling up cards will cost multiple of the same card and some MMessence
+
+
+Dungeon:
+card class
+player class
+enemy class
+battle function w/ a card manager that will find the id of the card and do the thing
+class for every character??
+toString for every class for the reader and writer
+Cards can be boosted if you choose to complete a cytus heardle. The more modifiers you add and the shorter the video, the better boost you'll get, but you will take more damage if you get it wrong
+You get your cards every game and they can be like "power up" and increase you atk. Certain cards are a one time use tho
+
+you have action points, some cards use 0 action points, some will use more than 1, everytime you cycle your speed, you get an action point. If you guard, you keep your action points and will gain one in your next attck
+
+Player:
+has a list of cards in their collection
+has a list of characters w/ their levels
+has amount of CAPSO Coins
+
+
+Battle:
+check the players character's speed if its less than or equal to 0
+for each character who passes, they do the amount of actions equal to their action points
+sets speed to their speed stat
+check if any player or enemy's health is less than zero
+if they are, remove them the their respective lists
+check if enemy's speed is less than or equal to zero
+if it is, do the enemy action
+check if any player character or enemies are less than zero, if they are, remove them from the list
+subtract enemy and player speeds by 1
