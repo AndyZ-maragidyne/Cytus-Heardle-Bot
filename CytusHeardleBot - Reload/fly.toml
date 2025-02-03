@@ -1,0 +1,22 @@
+# fly.toml app configuration file generated for cytusheardlebot2 on 2024-12-12T19:01:19-05:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'cytusheardlebot2'
+primary_region = 'iad'
+
+[build]
+
+[[services]]
+  internal_port = 8080
+  processes = ["app"]
+
+[[vm]]
+  memory = 256
+  cpu_kind = 'shared'
+  cpus = 1
+
+[[mounts]]
+  source = "data"
+  destination = "/data"
