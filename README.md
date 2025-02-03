@@ -2,7 +2,7 @@
 
 This is a discord bot that has two major functionalities:
 
-## 1. It gets a random song from the rhythm game "Cytus" and makes the user try and guess it. 
+## 1. It plays a random song from the rhythm game "Cytus" and the user tries to guess it. 
 ---
  It is discord bot version of the daily song guessing game heardle, where the user starts with a one second clip of the song and can listen to more of the song with each incorrect guess.
  expands upon the heradle game with many new features:
