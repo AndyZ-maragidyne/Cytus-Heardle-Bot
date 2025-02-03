@@ -24,7 +24,7 @@ This is a discord bot that has two major functionalities:
 - command to play any song in the bot's library
    - The bot can join your active voice channel and play the song live, or send a video of it to a text channel
  
-## 1. A Roguelike dungeon crawler game
+## 2. A Roguelike dungeon crawler game
 ---
 
  the player assembles a team of characters and a deck of cards to explore a dungeon and collect loot to upgrade their deck and their characters.
