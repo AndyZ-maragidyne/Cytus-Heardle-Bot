@@ -31,7 +31,6 @@ This is a discord bot that has two major functionalities:
  features:
    - turn based battling system with support for ailments and on death abilites. Characters have a speed stat that determines how frequently they can attack
    - a shop and dungeon that automatically refresh every week
-   - in depth upgrade system where players choose specific stats to upgrade (damage, health, ability) for the characters and cards
-   branching paths for card upgrades
-      - A card that inflicts weakness on and enemy could inflict 50% for 1 turn, 25% for 5 turns, or 5% for 10 turns depending on which stats you upgraded
+   - in depth upgrade system where players choose specific stats to upgrade for the characters (damage, health, ability) and branching paths for card upgrades
+      - A card that inflicts weakness on and enemy could inflict 50% for 1 turn, 25% for 5 turns, or 5% for 10 turns depending on which stats were upgraded
    - support for saving player, dungeon and shop data to JSON format
