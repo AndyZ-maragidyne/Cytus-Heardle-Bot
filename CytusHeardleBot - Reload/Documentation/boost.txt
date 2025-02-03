@@ -1,0 +1,19 @@
+p - the character
+array of stats: [increase in reward, loss of hp, song length]
+
+
+startBoostProcess:
+    ID -3: Robo head ability (with 2 offers)
+    ID -2: increase damage boost
+    ID -1: increase guard
+    ID 1: increase damage
+    ID 2: increase healing
+    ID 3: increase boost
+    ID 4: increase duration
+    ID 5: Neko Ability (increase meowbots...)
+    ID 6: Xenon
+    ID 7: ConneR
+    ID 8: Cherry (give a cherry to everyone in your party)
+    ID 9: JOE (double the effect)
+    ID 10: Sagar
+    ID 11: Rin

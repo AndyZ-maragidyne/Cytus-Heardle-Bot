@@ -1,0 +1,22 @@
+type - integers
+description - string
+
+ID 0: Battle
+    var1 - enemies - Enemy classes
+    var2 - nothing
+
+ID 1: Campfire
+    var1 - nothing
+    var2 - nothing
+
+ID 2: Cytus Heardle Trial
+
+ID 3: Wizard room
+
+ID 4: Card request
+    var1 - list of players who have completed it
+
+ID 5: card fountain
+    var1 - list of cards and message [[message, card]]
+
+ID 6: Inari shrine

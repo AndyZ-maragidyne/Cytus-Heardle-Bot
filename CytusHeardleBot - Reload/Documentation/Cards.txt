@@ -1,0 +1,249 @@
+Card Documentation:
+
+thoughts:
+    MAYBE: add a prestige cards like "shield II" that start at a higher
+    base shield, but to get it, you sacrifice your MAX "shield I" card
+    AND THEN shield I cards are balanced around floor 1 of the dungeon
+    shield II floor 2 and so on
+    upgrading the boost result is another option?
+
+ID 1: Damage to 1 person
+    var1 - base damage
+    var2 - increase in damage per level
+    Base card: 100 base damage and 20 more per level
+
+ID 2: deal damage to every person
+    var1 - base damage
+    var2 - increase in damage per level
+    Base Card: 100 base damage, 20 per level
+    -can be crafted from damage to 1 person
+
+ID 3: heal 1 person
+    var 1 - base healing
+    var 2 - increase healing per level
+    Base Card: 100 healing, 20 per level
+
+ID 4: heal all people
+    var 1 - base healing
+    var 2 - increase healing per level
+    Base Card: 100 healing, 20 per level
+
+ID 5: damage boost 1 person
+    var 1 - damage boost amount
+    var 2 - turns 
+    Base Card: 5% boost, 5% per level OR 1 turn
+    Boost:
+        10-75% increase
+        1-30% hp loss
+        1-20 sec video
+
+ID 6: damage boost to every person,
+    var 1 - damage boost amount
+    var 2 - how many turns
+    Base Card: 10% boost, 5% per level OR 1 turn
+    Boost:
+        10-50% increase
+        1-30% hp loss
+        1-20 sec video
+
+ID 7: weakness to 1 enemy
+    var 1 - weakness amount
+    var 2 - how many turns
+    Base Card: 10% weakness, 5% per level OR 1 turn per level
+    Boost:
+        10-75% increase
+        1-30% hp loss
+        1-20 sec video
+
+ID 8: weakness to every enemy
+    var 1 - base weakness
+    var 2 - how many turns
+    Base Card: 10% weakness, 5% per level
+    Boost:
+        10-50% increase
+        1-30% hp loss
+        1-20 sec video
+
+ID 9: fragile to 1 enemy
+    var 1 - fragile amount
+    var 2 - how many turns
+    Base Card: 5% fragile, 5% per level
+    Boost:
+        10-75% increase
+        1-30% hp loss
+        1-20 sec video
+
+ID 10: fragile to every enemy
+    var 1 - fragile amount
+    var 2 - how many turns
+    Base Card: 5% fragile, 1 turn, 5% per level OR 1 turn
+    Boost:
+        10-50% increase
+        1-30% hp loss
+        1-20 sec video
+
+ID 11: shield to 1 person
+    var 1 - shield amount
+    var 2 - number of turns
+    Base Card: 50 shield, 1 turn, 25 shield per level OR 1 turn
+    Boost:
+        10-75% increase
+        1-30% hp loss
+        1-20 sec video
+
+ID 12: shield to every person
+    var 1 - shield amount
+    var 2 - number of turns
+    Base Card: 50 shield, 1 turn, 25 shield per level OR 1 turn
+    Boost:
+        10-50% increase
+        1-30% hp loss
+        1-20 sec video
+
+ID 13: fear to 1 person
+    var 1 - fear %
+    var 2 - turns
+    Base Card: 10% for 1 turn, 10% per level OR 1 turn
+    Boost:
+        10-75% increase
+        1-30% hp loss
+        1-20 sec video
+
+ID 14: fear to every person
+    var 1 - fear %
+    var 2 - turns
+    Base Card: 10% for 1 turn, 5% per level OR 1 turn
+    Boost:
+        10-50% increase
+        1-30% hp loss
+        1-20 sec video
+
+ID 15: big shield for 1 turn;
+    var1 - shield amount
+    Base Card: 100 shield for 1 turn, 100 shield per level (cannot upgrade turn)
+    Boost:
+        increase shield by 1 - 1000HP
+        decrease hp by 1-25%
+        video length 1 - 10 seconds
+
+ID 16: cures negative ailments
+    var1 - how many turns it cures
+    var2 - how many extra turns per level? - not implemented (1 would be every level increase turns by 1)
+    Base Card: 1 turn, 1 turn per level
+    Boost:
+        1-5 turns increase
+        5-20% hp loss
+        2-6 second video
+
+ID 17: reduces speed of 1 person
+    var 1 - speed reduction
+    Base Card: 1 speed reduction, 1 per level
+    Boost:
+        1-9 speed reduce
+        5-19% hp decrease (12% is middle)
+        1-10 second video
+
+ID 18: reduces speed for everyone
+    var 1 - speed reduction
+    Base card: 1 speed reduction, 1 per level
+    Boost:
+        1-9 speed reduce
+        5-19% hp decrease (12% is middle)
+        1-10 second video
+
+ID 19: increase speed of 1 enemy
+    var 1 - speed increase
+    Base Card: 1 speed increase, 1 per level
+    Boost:
+        1-9 speed increase
+        1-30% hp decrease (12% is middle)
+        2-7 second video
+
+ID 20: increase speed of all enemies
+    var 1 - speed increase
+    Base Card: 1 speed increase, 1 per level
+    Boost:
+        1-9 speed increase
+        1-30% hp decrease (12% is middle)
+        2-7 second video
+
+ID 21: character card
+    var 1 - character
+
+ID 22: enemy card
+    var 1 - the string for the enemy
+    var 2 - its stats - level 1 is 10% base HP and Atk, increases by 10 each level
+    higher tier cards could just be better cards?? or no higher tier cards since leveling is the same lol
+
+ID 23: cures negative ailments for party
+    var 1 -  how many turns it cures
+    var2 - how many extra turns per level? - not implemented (1 would be every level increase turns by 1)
+    Base Card: 1 turn, 1 turn per level
+    Boost:
+        1-5 turns increase
+        5-20% hp loss
+        2-6 second video
+
+ID 24: zap - does small damage to 1 enemy, does not take a turn
+    var 1 - damage
+    Base Card: 25 damage, 5 per level
+    
+ID 25: clone - clones your entire team. They all have 1 hp and their damage is dependent on level. They have decay equal to the duration
+    var 1 - damage - like 30 will be 30% of their base damage
+    var 2 - duration
+    Base Card: 30% base damage, 1 turn.
+
+ID 26: rage - speed boost and damage boost
+    var 1 - damage boost
+    var 2 - speed boost
+    Base Card: 3 turns, 20% damage boost, 0 speed boost, 3% increase 1 turn every 2 levels
+    maxed Card: 50% damage boost, 5 speed boost
+    **generateCard gives maxed out card
+
+ID 27 Invisibility spell
+    var 1 - 5 turns
+    Base Card: 1 turn
+    Max card: 5 turns, 1 turn per level
+    **generateCard gives maxed out card
+
+ID 28 healing spell - gives healing over time to the entire party
+    var 1 - 50 healing
+    3 duration
+    Base Card:
+
+ID 29 poison spell - gives the enemies poison, increase their current speed by 5
+    var 1 - 50 damage
+    3 duration
+
+ID 30 freeze - gives the enemies freeze
+    maybe upgrade is more targets? 2 turns
+
+ID 31 void - hits every enemy 3 times, does less damage if there's multiple targets
+    200 - one target
+    75 - 2-3 targets
+    25 - 4+ targets
+    maybe be able to upgarde each damge, like single target, 2-3 targets, 4+ targets damage
+
+ID 32 arrows - 5 random enemies
+    var 1 50 damage
+
+ID 33 barbarin barrel, 25 damage to 1 enemy spawn a barbarian
+    var 1 25 damage
+
+ID 34 fireball - 3 random enemies
+    var 1 100 damage
+
+ID 35 log - small damage to every enemy, speed increase of 5
+    var 1 30 damage
+
+ID 36 Lightning - damage to 3 highest enemies
+    var 1 150 damage
+
+ID 37 Rocket - 50% chance to do 500 damage to an enemy 
+    var 1 500 damage
+    no upgrades
+
+fire sprirt
+ice spirit
+electro spirit
+heal spirit

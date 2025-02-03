@@ -1,0 +1,14 @@
+On death numbers:
+
+-1: Ivy's on death where she has the guess video
+
+1: bomb - damage to every player and enemy
+    num[1] - damage
+
+2: summon - summons everything after the 0 index in num
+
+3: damage everyone on your team
+    num[1] - damage
+
+4: damage everyone on enemy team 
+    num[1] - damage

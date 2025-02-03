@@ -1,0 +1,40 @@
+PREPARE FOR A PUBLIC RELEASE:
+
+
+get rid of rigging cytus heardle generation random = 100
+
+TEST:
+test with a bot that does not just have all the administrator commands (When you add it to server, its not just the administrator checkbox)
+
+//not happening for this release
+Make it so that you can download the source code and host it locally. Easy way to modify what songs are chosen
+    -REMOVE MY BOT TOKEN ID BEFORE I PUSH
+
+
+Mention:
+Its running on an old computer, so there may be problems where it goes offline
+I have never tested how it would handle under many people's inputs. Please bear with me if there are any errors regarding this
+The bot uses the english name for song names that are in a different language, type /names for english names. 
+    Translations are provided by the Cytus wiki, and elsewhere on the internet when no english name was listed. Google translate was used when no other translation could be found
+no cytus 1 songs only cytus 2 (maybe I'll add them later)
+theres probably going to be some bugs, Ill try my best to fix them. There may be problems with the bot if too many people are using it at once, since it's not something I'm able to test.
+open to new gif ideas (might take a while for me to actually implement them)
+A lot of people may not have every DLC, so for now the song pool will start from version 1 of the game and increase to the next character release. (every few weeks or every month)
+    This is because in my testing, as someone who has all the characters except for the new ones and a decent amount of black market packs, I still wasn't able to get around half the songs just because I dont own them. I made it this way so that more people are able to play in the beginning and not worry about not owning every song. It also means that new players can always replay those first Cytus Heardles to get songs that they own.
+bot can only send 5 messages in a short time span, so it may lag a bit in trying to respond to you if you send messages very quickly
+your progress will not be saved if you quit midway out of a previous heardle
+try not the spam the bot, in my testing it has caused some errors with your save file being inaccurate
+
+
+Hello! This is the first time I've made something like this so please bear with me if there are any bugs that I didn't find in my testing. I'll try my best to fix them as soon as possible. Also, the bot is running on an old computer so there 100% will be times where the bot stops working (windows updates and internet problems). There may be problems with the bot if too many people are using it at once, since it's not something I'm able to test. Just don't be suprised if the bot is constantly down. 
+
+For now, so that more people are able to play, the only songs that can be chosen are the original songs from the first version of the game. I will slowly expand the song pool until every song from the game is added. I was thinking of adding all the songs up to a new character release every month, but I'm open to changing that cadence if it feels too slow.
+
+I've been playing this with a group of friends for some time now. I've already coded in different gamemodes (such as having the song start at a random time instead of the beginning or having it alternate between two songs and you have to guess both of them). I plan to slowly add these in over the next few weeks so it is not overwhelming. Im also open to adding more gifs.
+
+
+Hello everyone! I created a discord bot that will generate a random cytus song every day and you try and guess the song in the shortest amount of time. This is the first time I've done something like this, so I'm still trying to figure stuff out. The bot is running on an old computer since I can't afford to host it anywhere. I'm not sure if this will even work out with so many people using it at the same time, so there might be a chance I stop doing this if it's way too hard to maintain. In my testing, the bot already goes down on its own every few days so bear with me lol. 
+
+The only way to currently play it is to join a discord server I created. When you join the server, you type /create to make a private channel for yourself and you type /start to start the Cytus Heardle. From there, you just send messages to guess the song. 
+
+If you are interested, here is the link: https://discord.gg/6ne2Hqhf

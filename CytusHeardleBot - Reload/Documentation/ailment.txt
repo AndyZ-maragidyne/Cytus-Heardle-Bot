@@ -1,0 +1,42 @@
+
+Ailment types:    
+     * 0-burn
+     * 1-poison
+     * 2-silence
+     * 3-damage boost
+     * 4-weakness
+     * 5-fragile
+     * 6-shield
+     * 7-decay
+     * 8-fear
+     * 9-healing over time
+     * 10-damage over time
+     * 11-summon
+     * 12-freeze
+    13 - haste
+    14 - invisibility
+    15 - healing boost
+    16 - healing reduction
+
+when adding new ailments to characters:
+    add to field in character and enemy class (is[Ailment], [Ailment]Duration, [Ailment]Damage)
+
+    Add the ailment to the toJSON and FromJSON methods as well as set ailments
+
+    new Methods:
+        set[ailment] (damage, duration)
+        has[Ailment] - for some of them like silenced or fear
+        do[Ailment] - if person has the ailment, does damage like poison or burn or just ticks the duration down by 1. then if duration is <= 0, call remove[Ailment]
+        cure[Ailment] - moves the duration of the ailment down by 1
+        remove[Ailment] - set the boolean to false, the duration to 0
+
+Also adding to doAilments and all that:
+    add to doAilments
+    add to either curePosAilments or cureNegAilments
+    add to removeAilments
+
+Do the same to Enemies Class
+
+Add to doEnemyAttack and ailment manager
+
+

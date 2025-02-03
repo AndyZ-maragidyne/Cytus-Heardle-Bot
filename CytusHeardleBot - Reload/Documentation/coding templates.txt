@@ -1,0 +1,126 @@
+//message collector template
+let choosemessage = await message.channel.send(sendStr);
+let filter = m => m.author.id === m.author.id  && !m.author.bot;
+let Collector = choosemessage.channel.createMessageCollector(filter, { max: 1, time: 60000, errors: ["time"] });
+        Collector.on("collect", async response => {
+            if (response.author.id === client.user.id) return
+            console.log(`Collected: ${response.content}`);    
+            userResponse = response.content;
+            Collector.stop()
+
+            if (userResponse == 1) {
+              //your code here                  
+              resolve();
+            }          
+
+        })
+
+**For selecting a player/enemy it's:
+userResponse >= 1 && userResponse <= players.length
+
+//label expample
+ newLabel = {label: account.getCharacters()[i].getName(), description: account.getCharacters()[i].getDescription(), value: String(i), default: inTeam}
+
+
+//the dropdown menu where you can choose things
+const row = new MessageActionRow()
+.addComponents(
+    new MessageSelectMenu()
+        .setCustomId('starter-chooser')
+        .setPlaceholder('Choose a starting character...')
+        .addOptions(chooseStarter) //this is the thing with the labels
+        .setMinValues(1)
+        .setMaxValues(4) //sets the min and max values that can be chose. remove these 2 to make it select only 1
+);
+                            
+let sentMessage = await message.channel.send({ components: [row] });
+            
+filter = interaction => interaction.customId === 'starter-chooser' && interaction.user.id === message.author.id;
+        
+collector = sentMessage.createMessageComponentCollector({ filter, max: 1, time: 60000 });
+        
+collector.on('collect', async interaction => {
+    await interaction.deferUpdate();
+    const selectedValue = parseInt(interaction.values[0]);
+    
+    //your code here
+  resolve();
+        
+});
+        
+collector.on('end', collected => {
+  if (!collected.size) {
+    resolve(null);
+  }
+});
+
+
+//adding buttons and stuff (from wizard room)
+ const newembed = new MessageEmbed()
+                        .setColor('#A020F0')
+                        .setTitle(card1.getName())
+                        .setDescription(card1.getDescription());
+
+                    const row = new MessageActionRow()
+                        .addComponents(
+                            new MessageButton()
+                                .setCustomId('view_item1')
+                                .setLabel(card1.getName())
+                                .setStyle('PRIMARY'),
+                            new MessageButton()
+                                .setCustomId('view_item2')
+                                .setLabel(card2.getName())
+                                .setStyle('PRIMARY'),
+                            new MessageButton()
+                                .setCustomId('view_item3')
+                                .setLabel(card3.getName())
+                                .setStyle('PRIMARY'),
+                        );
+
+                        const row2 = new MessageActionRow()
+                            .addComponents(
+                                new MessageButton()
+                                    .setCustomId('confirm')
+                                    .setLabel('Confirm')
+                                    .setStyle('SUCCESS'),
+                                new MessageButton()
+                                    .setCustomId('cancel')
+                                    .setLabel('Cancel')
+                                    .setStyle('DANGER')
+                            );
+
+                    const sentMessage = await message.channel.send({ embeds: [newembed], components: [row, row2] });
+                    const infoFilter = i => i.user.id === message.author.id;
+                    const infoCollector = sentMessage.createMessageComponentCollector({ infoFilter });
+                    infoCollector.on('collect', async interaction => {
+                        if (interaction.customId === 'view_item1') {
+                            newembed.setTitle(card1.getName());
+                            newembed.setDescription(card1.getDescription());
+                            currentCard = card1;
+                        } else if (interaction.customId === 'view_item2') {
+                            newembed.setTitle(card2.getName());
+                            newembed.setDescription(card2.getDescription());
+                            currentCard = card2;
+                        } else if (interaction.customId === 'view_item3') {
+                            newembed.setTitle(card3.getName());
+                            newembed.setDescription(card3.getDescription());
+                            currentCard = card3;
+                        } else if (interaction.customId === 'confirm') {
+                            account.getDeck().push(currentCard);
+                            message.channel.send("You added " + currentCard.getName() + " to your deck");
+                            row2.components[0].setDisabled(true);
+                            row2.components[1].setDisabled(true);
+                            resolve();
+                        } else if (interaction.customId === 'cancel') {
+                            if (cancelState) {
+                                message.channel.send("Ok bye");
+                                row2.components[1].setDisabled(true);
+                                resolve();
+                            } else {
+                                message.channel.send("Press Cancel again to leave")
+                                cancelState = true;
+                            }
+                        }
+
+                        await interaction.update({ embeds: [newembed], components: [row, row2] });
+                    });
