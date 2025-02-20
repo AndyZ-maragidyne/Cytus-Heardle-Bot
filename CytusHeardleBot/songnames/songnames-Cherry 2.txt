@@ -1,0 +1,67 @@
+bodytalk=bodytalk=Body Talk=PAFF=12
+survive=survive=Survive=PAFF=10
+bulletwaitingforme=bulletwaitingforme=Bullet Waiting for Me=PAFF=11
+kanata=kanata=KANATA=PAFF=9
+fightanotherday=fightanotherday=Fight Another Day=PAFF=10
+baptismoffire=baptismoffire=Baptism of Fire=PAFF=12
+fireflies=fireflies=Fireflies=PAFF=10
+gravity=gravity=Gravity=PAFF=12
+reboost=reboost=Re:Boost=PAFF=11
+greenhope=greenhope=Green Hope=PAFF=11
+underthesamesky=underthesamesky=Under the same sky=PAFF=9
+thespark=thespark=The Spark=NEKO#ΦωΦ=12
+resurrection=resurrection=Resurrection=NEKO#ΦωΦ=12
+onewaylove=onewaylove=One Way Love=NEKO#ΦωΦ=9
+happinessbreeze=happinessbreeze=Happiness Breeze=NEKO#ΦωΦ=12
+alternapt1=alternapt1=Alterna Pt.1 -Cosmogony-=NEKO#ΦωΦ=12
+zealoushearts=zealoushearts=Zealous Hearts=NEKO#ΦωΦ=12
+keepitup=keepitup=Keep It Up=NEKO#ΦωΦ=14
+codenamegamma=codenamegamma=CODE NAME: GAMMA=NEKO#ΦωΦ=15
+blowmymind=blowmymind=Blow My Mind=NEKO#ΦωΦ=14
+chromevox=chromevox=Chrome VOX=NEKO#ΦωΦ=14
+hardlanding=hardlanding=Hard Landing=NEKO#ΦωΦ=11
+brainpower=brainpower=Brain Power=NEKO#ΦωΦ=13
+deadlyslotgame=deadlyslotgame=Deadly Slot Game=ROBO_Head=13
+makemeburn=makemeburn=Make Me Burn=ROBO_Head=13
+restriction=restriction=Restriction=ROBO_Head=11
+luolimasi=luolimasi=Luolimasi=ROBO_Head=11
+claimthegame=claimthegame=Claim the Game=ROBO_Head=12
+devillicsphere=devillicsphere=Devillic Sphere=ROBO_Head=13
+purepowerstomper=purepowerstomper=Pure Powerstomper=ROBO_Head=13
+celestialsounds=celestialsounds=Celestial Sounds=ROBO_Head=14
+grimoireofcrimson=grimoireofcrimson=Grimoire of Crimson=ROBO_Head=11
+dasein=dasein=Daesin=ROBO_Head=13
+chaos=chaos=CHAOS=ROBO_Head=14
+ember=ember=EMber=ROBO_Head=13
+inspion=inspion=INSPION=Xenon=13
+whispersinmyhead=whispersinmyhead=Whispers in my Head=Xenon=13
+return=return=Return=Xenon=11
+concentriccircles=concentriccircles=concentric circles=Xenon=12
+fighting=fighting=Fighting=Xenon=11
+tothelight=tothelight=To the Light=Xenon=12
+phantomrazor=phantomrazor=Phantom Razor=Xenon=13
+blackhole=blackhole=Black Hole=Xenon=10
+samurai=samurai=SAMURAI=Xenon=13
+iolitesunstone=iolitesunstone=IOLITE-SUNSTONE=Xenon=11
+sairai=sairai=Sairai=Xenon=10
+xiorc=xiorc=Xiorc=ConneR=14
+rebellium=rebellium=REBELLIUM=ConneR=14
+imprinting=imprinting=Imprinting=ConneR=13
+gekkouka=gekkouka=Gekkouka=ConneR=12
+lightofbuenosaires=lightofbuenosaires=Light of Buenos Aires=ConneR=12
+tondarihanetari=tondarihanetari=tondari-hanetari=ConneR=12
+abduction=abduction=Abduction=ConneR=11
+nostalgiasonatina=nostalgiasonatina=Nostalgia Sonatina=ConneR=13
+iluvu=iluvu=I luv U=ConneR=10
+instinct=instinct=Instinct=ConneR=12
+flooroflava=flooroflava=Floor of Lava=ConneR=15
+sceneryinyoureyes=sceneryinyoureyes=Scenery in your eyes=Cherry=9
+level4=level4=LEVEL4=Cherry=13
+livingforyou=livingforyou=Living for you=Cherry=11
+imnot=imnot=I'M NOT=Cherry=11
+stopatnothing=stopatnothing=Stop at nothing=Cherry=11
+retrieve=retrieve=RETRIEVE=Cherry=12
+still=still=Still=Cherry=11
+credence=credence=CREDENCE=Cherry=12
+systemfeit=systemfeit=SYSTEMFEIT=Cherry=13
+hunted=hunted=hunted=Cherry=12
