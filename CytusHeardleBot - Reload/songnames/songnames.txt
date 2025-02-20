@@ -124,7 +124,7 @@ fadeintothedarkness=fadeintothedarkness=Fade Into The Darkness=ROBO_Head=13
 shiro=shiro=SHIRO=ROBO_Head=12
 tunnefsnightmare=tunnefsnightmare=Tunnef's Nightmare=ROBO_Head=14
 tundra=tundra=tundra=ROBO_Head=12
-zeus=zeus=Zeus==ROBO_Head=12
+zeus=zeus=Zeus=ROBO_Head=12
 symbol=symbol=Symbol (PTB10 Remix)=ROBO_Head=13
 breachingbios=breachingbios=Breaching BIOS=ROBO_Head=13
 thedevilwillpray=thedevilwillpray=The Devil Will Pray=ROBO_Head=15
@@ -173,7 +173,7 @@ thelastillusion=thelastillusion=The Last Illusion=Ivy=13
 visions=visions=Visions=Ivy=12
 cristalisia=cristalisia=Cristalisia=Ivy=12
 occidens=occidens=Occidens=Ivy=14
-redfive=redfive=Red Five=ivy=13
+redfive=redfive=Red Five=Ivy=13
 homeboundtrainandmovingthoughts=homeboundtrainandmovingthoughts=Homebound Train & Moving Thoughts=Ivy=10
 il=il=iL=Ivy=15
 codenamesigma=codenamesigma=CODE NAME : SIGMA=Ivy=15

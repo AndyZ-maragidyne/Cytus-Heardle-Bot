@@ -19,6 +19,7 @@ const { REST } = require('@discordjs/rest')
 const axios = require('axios');
 const { Routes } = require('discord-api-types/v9');
 const { InteractionType } = require('discord-api-types/v10')
+require('dotenv').config();
 
 const GUILD_ID = 412950444089016320
 const CLIENT_ID = 965925868436353064
@@ -29,9 +30,9 @@ blacklistedChannels = ["1310332415088132150", "1311476063804592230", "1312522788
 whitelistedUsers = ["412950175342919680", "620074662994640926", "586663270144933895", "798958594116419604"]
 const songcorrection = ["hi","alternapt1","sound", "carefreecloudy", "revelation", "paradigm", "binary", "familylove", "stillpianoversion", "dawnreimei", "bastet", "legacy2", "breathofthecity", "newworld2", "luckyorb", "magicalmusic", "moonwestriver", "luckyorb3r2remix", "ultimatefeat", "threelights", "yokairecord", "goaheadkunoichi", "leafygreen", "decisivebattle", "drifting", "thewindsvoice", "onesipstwosips", "lira", "reincarnation"]
 const fametiers = ["NONE","PAFF","Neko#ΦωΦ","ROBO_Head","Xenon","ConneR","Cherry","JOE","Aroma","Nora","Neko","Ivy","Miku","Crystal PuNK","Sagar","Rin","Vanessa","Kizuna AI","Bo Bo","Alice","Hans","Graff. J","Amiya","Kaff","Ilka"]
-CytusHeardleBotTESTtoken = ''
-CytusHeardleBotTEST2token = ''
-CytusHeardleBottoken ='' //this one (public version of the bot)
+CytusHeardleBotTESTtoken = process.env.CYTUS_BOT_TEST_TOKEN
+CytusHeardleBotTEST2token = process.env.CYTUS_BOT_TEST_TWO_TOKEN
+CytusHeardleBottoken = process.env.CYTUS_BOT_TOKEN_PUBLIC //this one (public version of the bot)
 CytusHeardleChannelID = '958518859072172132' //this one
 CytusHeardleWareHouseID = '965929751560736808'
 CytusHeardleLiveTestID = '1039741662861205585'
@@ -73,7 +74,7 @@ const dir = 'D:/CytusHeardleBot/songlist'
 CytusHeardleBotTESTApplicationID = '1039555744757981204'
 CytusHeardleBotTEST2ApplicationID = '1295453343392596009'
 CytusHeardleBotApplicationID = '1316939814058328074'
-currentBotMode = 'tests';
+currentBotMode = 'test';
 currentBotToken = '';
 currentApplicationID = '';
 levelDirectory = "./level/"
@@ -96,8 +97,33 @@ if (currentBotMode == 'test') {
     currentScoresChannel = CytusHeardleServerScoresChannelID
 }
 
-
-
+paffsongs = [['PAFF Songs:\n', '']]
+nekosongs = [["NEKO #ΦωΦ Songs:\n", '']]
+roboheadsongs = [["ROBO_Head Songs:\n", '']]
+ivysongs = [["Ivy Songs:\n", '']]
+crystalpunksongs = [["Crystal PuNK songs:\n", '']]
+vanessasongs = [["Vanessa Songs:\n", '']]
+bobosongs = [["Bo Bo Songs:\n", '']]
+tairitsusongs = [["Tairitsu songs:\n", '']]
+amiyasongs = [["Amiya songs:\n", '']]
+kafsongs = [["Kaf songs:\n", '']]
+graffjsongs = [["Graff.J Songs:\n", '']]
+alicesongs = [["Alice Songs:\n", '']]
+hanssongs = [["Hans Songs:\n", '']]
+kizunaaisongs = [["Kizuna Ai Songs:\n", '']]
+mikusongs = [["Miku Songs:\n", '']]
+ilkasongs = [["Ilka songs:\n", '']]
+xenonsongs = [["Xenon Songs:\n", '']]
+connersongs = [["ConneR Songs:\n", '']]
+cherrysongs = [["Cherry Songs:\n", '']]
+joesongs = [["JOE Songs:\n", '']]
+sagarsongs = [["Sagar Songs:\n", '']]
+rinsongs = [["Ring Songs:\n", '']]
+aromasongs = [["Aroma Songs:\n", '']]
+norasongs = [["Nora Songs:\n", '']]
+youngnekosongs = [["Neko Songs:\n", '']]
+nekoiisongs = [["NEKO_II songs:\n", '']]
+othersongs = [["other songs (this is here in case I mess up):\n", '']];
 class Player {
     constructor(id, lastHeardle, score, video, alreadyGuessed, lives, numCorrect, finished, usingCommand){
         this.id = id
@@ -954,6 +980,109 @@ async function isFileReady(filePath) {
     }
 }
 
+async function loadSongLists(filePath) {
+    const data = fs.readFileSync(filePath, 'utf8'); // Read the file
+    const lines = data.split('\n'); // Split by line
+
+
+    lines.forEach(line => {
+        const parts = line.split('='); // Split by "="
+        if (parts.length >= 4) {
+            const answer = parts[1];     // The answer (used in the game)
+            const displayName = parts[2]; // Display name
+            const character = parts[3];  // Character name
+
+            // Format entry as ["displayname (character)", answer]
+            const entry = [`${displayName} (${character})`, answer];
+
+            // Sort into the correct list based on the character
+            switch (character) {
+                case 'PAFF':
+                    paffsongs.push(entry);
+                    break;
+                case 'NEKO#ΦωΦ':
+                    nekosongs.push(entry);
+                    break;
+                case 'ROBO_Head':
+                    roboheadsongs.push(entry);
+                    break;
+                case 'Ivy':
+                    ivysongs.push(entry);
+                    break;
+                case 'Crystal PuNK':
+                    crystalpunksongs.push(entry);
+                    break;
+                case 'Vanessa':
+                    vanessasongs.push(entry);
+                    break;
+                case 'Bo Bo':
+                    bobosongs.push(entry);
+                    break;
+                case 'Tairitsu':
+                    tairitsusongs.push(entry);
+                    break;
+                case 'Amiya':
+                    amiyasongs.push(entry);
+                    break;
+                case 'Kaf':
+                    kafsongs.push(entry);
+                    break;
+                case 'Alice':
+                    alicesongs.push(entry);
+                    break;
+                case 'Hans':
+                    hanssongs.push(entry);
+                    break;
+                case 'Kizuna AI':
+                    kizunaaisongs.push(entry);
+                    break;
+                case 'Miku':
+                    mikusongs.push(entry);
+                    break;
+                case 'Ilka':
+                    ilkasongs.push(entry);
+                    break;
+                case 'Xenon':
+                    xenonsongs.push(entry);
+                    break;
+                case 'ConneR':
+                    connersongs.push(entry);
+                    break;
+                case 'Cherry':
+                    cherrysongs.push(entry);
+                    break;
+                case 'Joe':
+                    joesongs.push(entry);
+                    break;
+                case 'Sagar':
+                    sagarsongs.push(entry);
+                    break;
+                case 'Rin':
+                    rinsongs.push(entry);
+                    break;
+                case 'Aroma':
+                    aromasongs.push(entry);
+                    break;
+                case 'Nora':
+                    norasongs.push(entry);
+                    break;
+                case 'Neko':
+                    nekosongs.push(entry);
+                    break;
+                case 'Graff.J':
+                    graffjsongs.push(entry);
+                    break;
+                case 'NEKO_II':
+                    nekoiisongs.push(entry);
+                    break;
+                default:
+                    othersongs.push(entry);
+                    break;
+            }
+        }
+    });
+}
+
 
 
 /**
@@ -1117,7 +1246,7 @@ startupTimestamp = Math.floor(Date.now() / 60000);
 let validanswers = []
 startupFunction()
 getheardlenumber()
-
+loadSongLists("./songnamestrue.txt")
 
 async function startupFunction(){
     await loadvalidanswers()
@@ -5068,8 +5197,110 @@ client.on('interactionCreate', async interaction => {
                     return;
                 }
                 break;
+            case 'list':
+                const character = interaction.options.getString('character'); // Get user-selected character
+                let currentSongList = []; // Initialize the list
+                interaction.reply("sending songs names...");
+                switch (character) {
+                    case 'PAFF':
+                        currentSongList = paffsongs;
+                        break;
+                    case 'NEKO#ΦωΦ':
+                        currentSongList = nekosongs;
+                        break;
+                    case 'ROBO_Head':
+                        currentSongList = roboheadsongs;
+                        break;
+                    case 'Ivy':
+                        currentSongList = ivysongs;
+                        break;
+                    case 'Crystal PuNK':
+                        currentSongList = crystalpunksongs;
+                        break;
+                    case 'Vanessa':
+                        currentSongList = vanessasongs;
+                        break;
+                    case 'Bo Bo':
+                        currentSongList = bobosongs;
+                        break;
+                    case 'Tairitsu':
+                        currentSongList = tairitsusongs;
+                        break;
+                    case 'Amiya':
+                        currentSongList = amiyasongs;
+                        break;
+                    case 'Kaf':
+                        currentSongList = kafsongs;
+                        break;
+                    case 'Alice':
+                        currentSongList = alicesongs;
+                        break;
+                    case 'Hans':
+                        currentSongList = hanssongs;
+                        break;
+                    case 'Kizuna AI':
+                        currentSongList = kizunaaisongs;
+                        break;
+                    case 'Miku':
+                        currentSongList = mikusongs;
+                        break;
+                    case 'Ilka':
+                        currentSongList = ilkasongs;
+                        break;
+                    case 'Xenon':
+                        currentSongList = xenonsongs;
+                        break;
+                    case 'ConneR':
+                        currentSongList = connersongs;
+                        break;
+                    case 'Cherry':
+                        currentSongList = cherrysongs;
+                        break;
+                    case 'Joe':
+                        currentSongList = joesongs;
+                        break;
+                    case 'Sagar':
+                        currentSongList = sagarsongs;
+                        break;
+                    case 'Rin':
+                        currentSongList = rinsongs;
+                        break;
+                    case 'Aroma':
+                        currentSongList = aromasongs;
+                        break;
+                    case 'Nora':
+                        currentSongList = norasongs;
+                        break;
+                    case 'Neko':
+                        currentSongList = nekosongs;
+                        break;
+                    case 'Graff.J':
+                        currentSongList = graffjsongs;
+                        break;
+                    case 'NEKO_II':
+                        currentSongList = nekoiisongs;
+                        break;
+                    default:
+                        currentSongList = othersongs;
+                        break;
+                }
+                sendStr = "";
+                sendStr += currentSongList[0][0];
+                for (let i = 1; i < currentSongList.length; i++) {
+                    sendStr += currentSongList[i][0] + " -> " + currentSongList[i][1] + "\n";
+                    if (sendStr.length >= 1500) {
+                        interaction.channel.send(sendStr);
+                        sendStr = "";
+                    }
+                }
+                if (sendStr.length > 0) {
+                    interaction.channel.send(sendStr);
+                }
+
+                break;
         }
         } catch (error) {
+            console.log(error)  
             interaction.reply("There was an error")
         }
     }
@@ -5245,6 +5476,9 @@ client.on('messageCreate', async (message)=>{
     let args = message.content.substring(debugprefix.length).split(" ");
 
     switch(args[0]){
+    case 'test':
+        console.log(paffsongs);
+        break;
     case 'n':
         generateNewHeardle();''
         break;
@@ -5742,401 +5976,8 @@ if (correctguesscandidate1 == -1 && correctguesscandidate2 == -1 && correctguess
 
 
 
-paffsongs = 'PAFF Songs:\n' 
-+ "Body Talk -> bodytalk\n"
-+ "Survive -> survive\n"
-+ "Bullet Waiting For me -> bulletwaitingforme\n"
-+ "KANATA -> kanata\n"
-+ "Fight Another Day -> fightanotherday\n"
-+ "Baptism of Fire -> baptismoffire\n"
-+ "Fireflies -> fireflies\n"
-+ "Gravity -> gravity\n"
-+ "Re:Boost -> reboost\n"
-+ "Green Hope -> greenhope\n"
-+ "Under the same sky -> underthesamesky\n"
-+ "Winter Games -> wintergames\n"
-+ "New World -> newworld\n"
-+ "SECRET;WEAPON -> secretweapon\n"
-+ "Lilac For Anabel -> lilacforanabel\n"
-+ "Who am I? -> whoami\n"
-+ "More Than Diamond -> morethandiamond\n"
-+ "Recall -> recall\n"
-+ "Sleeping Beast -> sleepingbeast\n"
-+ "Streetlights -> streetlights\n"
-+ "Save Me Now -> savemenow\n"
-+ "illMenate -> illmenate\n"
-+ "Mirror -> mirror\n"
-nekosongs = "NEKO #ΦωΦ Songs:\n"
-+ "The Spark -> thespark\n"
-+ "Resurrection -> resurrection\n"
-+ "One Way Love -> onewaylove\n"
-+ "Happiness Breeze -> happinessbreeze\n"
-+ "Alterna Pt.a -Cosmogony- -> alternapt1\n"
-+ "Zealous Hearts -> zealoushearts\n"
-+ "Keep It Up -> keepitup\n"
-+ "CODE NAME: GAMMA -> codenamegamma\n"
-+ "Blow My Mind -> blowmymind\n"
-+ "Chrome VOX -> chromevox\n"
-+ "Hard Landing -> hardlanding\n"
-+ "Brain Power -> brainpower\n"
-+ "Extinguisher -> extinguisher\n"
-+ "For You The Bellz Toll -> foryouthebellztoll\n"
-+ "Rei -> rei\n"
-+ "響け！ -> sound\n"
-+ "気楽なCloudy -> carefreecloudy\n"
-+ "Dropping Lightspeed -> droppinglightspeed\n"
-+ "Better Than Your Error System -> betterthanyourerrorsystem\n"
-+ "Hydra -> hydra\n"
-+ "Liberation -> liberation\n"
-+ "Ramen Is God -> ramenisgod\n"
-+ "Re:VeLΔTiØN ～光道ト破壊ノ双白翼～ -> revelation\n"
-+ "Rebirth -> rebirth\n"
-+ "Ready To Take The Next Step -> readytotakethenextstep\n"
-+ "Afterlife -> afterlife\n"
-roboheadsongs = "ROBO_Head Songs:\n"
-+ "Deadly Slot Game -> deadlyslotgame\n"
-+ "Make Me Brun -> makemeburn\n"
-+ "Restriction -> restriction\n"
-+ "Luolimasi -> luolimasi\n"
-+ "Claim the Game -> claimthegame\n"
-+ "Devillic Sphere -> devillicsphere\n"
-+ "Pure Powerstomper -> purepowerstomper\n"
-+ "Celestial Sounds -> celestialsounds\n"
-+ "Grimoire of Crimson -> grimoireofcrimson\n"
-+ "Dasein -> dasein\n"
-+ "CHAOS -> chaos\n"
-+ "EMber -> ember\n"
-+ "Midnight -> midnight\n"
-+ "Dead Point -> deadpoint\n"
-+ "Nocturnal Type -> nocturnaltype\n"
-+ "Subconscious Mind -> subconsciousmind\n"
-+ "Hyperbola -> hyperbola\n"
-+ "Contact -> contact\n"
-+ "The Devil Will Pray -> thedevilwillpray\n"
-+ "Arklight -> arklight\n"
-ivysongs = "Ivy Songs:\n"
-+ "Sentimental Journey -> sentimentaljourney\n"
-+ "Biotonic -> biotonic\n"
-+ "Alexandrite -> alexandrite\n"
-+ "Tokiwatari -> tokiwatari\n"
-+ "Purge -> purge\n"
-+ "Area184 -> area184\n"
-+ "BloodyMare -> bloodymare\n"
-+ "AssaultMare -> assaultmare\n"
-+ "Lunar Mare -> lunarmare\n"
-+ "99 Glooms -> 99glooms\n"
-+ "Pressure -> pressure\n"
-+ "V. -> v\n"
-+ "Halloween Party -> halloweenparty\n"
-+ "Bloody Purity -> bloodypurity\n"
-+ "Masquerade -> masquerade\n"
-+ "Quantum Labyrinth -> quantumlabyrinth\n"
-+ "Saika -> saika\n"
-+ "To Further Dream -> tofurtherdream\n"
-+ "Libera Me -> liberame\n"
-+ "Qualia -> qualia\n"
-+ "conflict -> confict\n"
-+ "FREEDOM DiVE -> freedomdive\n"
-+ "Summer Zephyr -> summerzephyr\n"
-+ "Sovereign -> sovereign\n"
-+ "paradigm-paragramme-program -> paradigm\n"
-+ "Secret Garden -> secretgarden\n"
-+ "Halcyon -> halcyon\n"
-+ "Dystopia -> dystopia\n"
-+ "UTOPIA -> utopia\n"
-+ "First Gate -> firstgate\n"
-+ "Oriens -> oriens\n"
-+ "The Last Illusion -> thelastillusion\n"
-+ "Visions -> visions\n"
-+ "Digigroove -> digigroove\n"
-+ "Heat Ring -> heatring\n"
-+ "Leaving All Behind -> leavingallbehind\n"
-+ "Symmetry -> symmetry\n"
-+ "Time to Fight -> timetofight\n"
-+ "Reset -> reset\n"
-+ "D R G -> drg\n"
-crystalpunksongs = "Crystal PuNK songs:\n"
-+ "Effervesce -> effervesce\n"
-+ "Chandelier XIII -> chandelier xiii\n"
-+ "Sunshine Duration -> sunshineduration\n"
-+ "Deep Dive -> deepdive\n"
-+ "βinαrΨ -> binary\n"
-+ "Dark Madness -> darkmadness\n"
-+ "The Cross -> thecross\n"
-+ "眷戀 -> familylove\n"
-+ "Still (Piano Version) -> stillpianoversion\n"
-+ "Prema Flowers -> premaflowers\n"
-+ "Collide -> collide\n"
-vanessasongs = "Vanessa Songs:\n"
-+ "Anchor -> anchor\n"
-+ "syūten -> syuten\n"
-+ "Rosa Rubus -> rosarubus\n"
-+ "XYZ -> xyz\n"
-+ "II-V -> iiv\n"
-+ "Chaos and Abyss -3rd Movement- -> chaosandabyss\n"
-+ "Duality -> duality\n"
-+ "Ra -> ra\n"
-+ "CHAOS //System Offline// -> chaossystemoffline\n"
-+ "V. //System Offline?? -> vsystemoffline\n"
-+ "	͟͝͞Ⅱ́̕ -> ii\n"
-+ "Used to be -> usedtobe\n"
-+ "The Whole Rest -> thewholerest\n"
-+ "Blessing Reunion -> blessingreunion\n"
-+ "3:00 a.m. -> 300am\n"
-+ "Installation -> installation\n"
-+ "Risoluto -> risoluto\n"
-+ "The End Years -> theendyears\n"
-+ "Incyde -> incyde\n"
-+ "THE BEGINNING -> thebeginning\n"
-bobosongs = "Bo Bo Songs:\n"
-+ "Äventyr -> aventyr\n"
-+ "NORDLYS -> nordlys\n"
-+ "Snow Blossom -> snowblossom\n"
-+ "Quinsialyn -> quinsailyn\n"
-+ "黎明-REIMEI- -> dawnreimei\n"
-+ "IBUKI -> ibuki\n"
-+ "The breath of the soul -> thebreathofthesoul\n"
-+ "Firstborns -> firstborns\n"
-+ "Heliopolis Project -> heliopolisproject\n"
-+ "TSUBAKI -> tsubaki\n"
-+ "Vox Enchanted -> voxenchanted\n"
-+ "King of Desert -> kingofdesert\n"
-+ "tRinity Saga -> trinitysaga\n"
-+ "Tomb Robber -> tombrobber\n"
-+ "New Quest -> newquest\n"
-+ "バステット (Cytus II Edit) -> bastet\n"
-graffjsongs = "Graff.J Songs:\n"
-+ "Conundrum -> conundrum\n"
-+ "Game on Together! -> gameonetogether\n"
-+ "Drop -> drop\n"
-+ "Go Adventure! -> goadventure\n"
-+ "Code Interceptor -> codeinterceptor\n"
-+ "La Prière -> lapriere\n"
-+ "Sdorica The Story Unfolds -> sdorica\n"
-+ "Hesitant Blade -> hesitantblade\n"
-+ "Pounding Destination -> poundingdestination\n"
-+ "Stewrica -Cross- -> stewricacross\n"
-+ "FUJIN Rubmle -> fujinrumble\n"
-+ "Hop Step Adventure☆ -> hopstepadventure\n"
-+ "Silent Voice -> silentvoice\n"
-+ "Spring -> spring\n"
-+ "dynamo -> dunamo\n"
-+ "Hello Days -> hellodays\n"
-+ "Interstellar Experience -> interstellarexperience\n"
-+ "FUSE -> fuse\n"
-+ "Gigantic Saga -> giganticsaga\n"
-+ "popotnik ~ The Traveller of Ljubljana -> popotnik\n"
-+ "Ascension to Heaven -> ascensiontoheaven\n"
-+ "Lifill -> lifill\n"
-+ "そんなに私を期待させないで => dontexpectsomuch\n"
-+ "Fading Star -> fadingstar\n"
-+ "Magical Toy Box -> magicaltoybox\n"
-+ "Until the Blue Moon Rises -> untilthebluemoonrises\n"
-+ "双龍飛閃-Dual Dragoon- -> dualdragoon\n"
-+ "Like Asian Spirit -> likeasianspirit\n"
-+ "Tsukiyura -> tsukiyura\n"
-+ "Time Traveller => timetraveller\n"
-+ "Flash Gun -> flashgun\n"
-+ "Nyx -Fatal arousal of Madness- -> nyx\n"
-+ "Lights of Muse -> lightsofmuse\n"
-+ "Stargazer -> staragazer\n"
-+ "Blackest Luxury Car -> blackestluxurycar\n"
-+ "粉骨砕身カジノゥ -> funkotsusaishincasino\n"
-+ "時計の部屋と精神世界 -> clockroomandspiritualworld"
-+ "XING -> xing\n"
-+ "Brave my Heart -> bravemyheart\n"
-+ "Final Step! -> finalstep\n"
-+ "Medus -> medusa\n"
-+ "XODUS -> xodus\n"
-+ "The 89's Momentum -> the89smomentum\n"
-+ "The 90 Decision -> the90sdecision\n"
-+ "Kaguya -> kaguya\n"
-+ "Red Storm Sentiment -> redstormsentiment\n"
-+ "非・現実逃避 -> nonescapism\n"
-+ "非・現実逃避 Rabpit Remix -> nonescapismrabpitremix\n"
-+ "Echo over you... -> echooveryou\n"
-+ "Forest of Clock -> forestofclock\n"
-+ "Kokoro Odoro -> kokoroodoro\n"
-+ "Dandelion Girls, Dandelion Boys -> dandeliongirlsdandelionboys\n"
-+ "BlythE -> blythe\n"
-+ "glory day -> gloryday\n"
-+ "OBLIVION -> oblivion\n"
-+ "Play The Future -> playthefuture\n"
-+ "We're All Gonna Die -> wereallgonnadie\n"
-+ "Ask to Wind Live Mix -> asktowindlivemix\n"
-+ "End of the Moonlight -> endofthemoonlight\n"
-+ "Hello Pinky -> hellopinky\n"
-+ "Nightmare -> nightmare\n"
-+ "U.A.D -> uad\n"
-alicesongs = "Alice Songs:\n"
-+ "Friction -> friction\n"
-+ "Legacy -> legacy\n"
-+ "Living In The One -> livingintheone\n"
-+ "YUBIKIRI-GENMAN -> yubikirigenman\n"
-+ "I hate to tell you -> ihattotellyou\n"
-+ "Utopiosphere -> utopiosphere\n"
-+ "Marigold -> marigold\n"
-+ "The Beautiful Moonlight -> thebeautifulmoonlight\n"
-+ "都市の呼吸 -> breathofthecity\n"
-+ "to next page -> tonextpage\n"
-+ "ANiMA -> anima\n"
-hanssongs = "Hans Songs:\n"
-+ "Sunset -> sunset\n"
-+ "Ephemeral -> ephemeral\n"
-+ "Ruin in the Mirage -> ruinsinthemirage\n"
-+ "Run Go Run -> rungorun\n"
-+ "Platinum -> platinum\n"
-+ "Leviathan -> leviathan\n"
-+ "Lost in the Nowhere -> lostinthenowhere\n"
-+ "Dream -> dream\n"
-+ "Path and Period -> pathandperiod\n"
-+ "Aragami -> aragami\n"
-+ "Rhuzerv -> rhuzerv\n"
-kizunaaisongs = "Kizuna Ai Songs:\n"
-+ "AIAIAI -> aiaiai\n"
-+ "Hello, Morning -> hellomorning\n"
-+ "future base -> futurebase\n"
-+ "new world -> newworld2\n"
-+ "miracle step -> miraclestep\n"
-+ "meet you -> meetyou\n"
-+ "mirari -> mirai\n"
-+ "over the reality -> overthereality\n"
-+ "melty world -> meltyworld\n"
-+ "hello, alone -> helloalone\n"
-mikusongs = "Miku Songs:\n"
-+ "Blue Star -> bluestar\n"
-+ "BREAK IT -> breakit\n"
-+ "Can't Make A Song!! -> cantmakeasong\n"
-+ "Miku -> miku\n"
-+ "Sharing The World -> sharingtheworld\n"
-+ "Venus di Ujung Jari -> venusdiujungjari\n"
-+ "ラッキー☆オーブ -> luckyorb\n"
-+ "魔法みたいなミュージック！ -> musiclikemagic\n"
-+ "月西江 -> moonwestrivier\n"
-+ "Ten Thousand Stars -> tenthousandstars\n"
-+ "Glass Wall -> glasswall\n"
-+ "Cybernetic -> cybernetic\n"
-+ "Decade -> decade\n"
-+ "ラッキー☆オーブ(3R2 Remix) -> luckyorb3r2remix\n"
-xenonsongs = "Xenon Songs: \n"
-+ "INSPION -> inspion\n"
-+ "Whispers in my Head -> whispersinmyhead\n"
-+ "Return -> return\n"
-+ "concentric circles -> concentriccircles\n"
-+ "Fighting -> fighting\n"
-+ "To the Light -> tothelight\n"
-+ "Phantom Razor -> phantomrazor\n"
-+ "Black Hole -> blackhole\n"
-+ "SAMURAI -> samurai\n"
-+ "IOLITE-SUNSTONE -> iolitesunstone\n"
-+ "Ultimate feat. 放課後のあいつ -> ultimatefeat\n"
-+ "Karma -> karma\n"
-+ "Chosen -> chosen\n"
-+ "Violet -> violet\n"
-+ "Asylum -> asylum\n"
-+ "Tiny Giant Goes To The Sea -> tinygiantgoestothesea\n"
-connersongs = "ConneR Songs:\n"
-+ "Xiorc -> xiorc\n"
-+ "REBELLIUM -> rebellium\n"
-+ "Imprinting -> imprinting\n"
-+ "Gekkouka -> gekkouka\n"
-+ "Light of Buenos Aires -> lightofbuenosaires\n"
-+ "tondari-hanetari -> tondarihanetari\n"
-+ "Abduction -> abduction\n"
-+ "Nostalgia Sonatina -> nostalgiasonatina\n"
-+ "I luv U -> iluvu\n"
-+ "Instinct -> instinct\n"
-+ "Floor of Lava -> flooroflava\n"
-+ "Aphasoa -> aphasoa\n"
-+ "Olympia -> olympia\n"
-+ "Demetrius -> demetrius\n"
-+ "L'Ultima Cena -> lultimacena\n"
-+ "Deus Ex Machina -> deusexmachina\n"
-+ "Fur War, Pur War -> furwarpurwar\n"
-+ "Re:boot -> reboot\n"
-+ "Last Landing -> lastlanding\n"
-cherrysongs = "Cherry Songs:\n"
-+ "Scenery in your eyes -> sceneryinyoureyes\n"
-+ "LEVEL 4 -> level4\n"
-+ "Living for you -> livingintheone\n"
-+ "I'M NOT -> imnot\n"
-+ "Stop at nothing -> stopatnothing\n"
-+ "RETRIEVE -> retrieve\n"
-+ "Still -> still\n"
-+ "CREDENCE -> credence\n"
-+ "SYSTEMFEIT -> systemfeit\n"
-+ "hunted -> hunted\n"
-+ "Capture me -> captureme\n"
-+ "Realize -> realize\n"
-joesongs = "JOE Songs:\n"
-+ "Childish -> childish\n"
-+ "Turnstile Jumper -> turnstilejumper\n"
-+ "Juicy Gossip -> juicygossip\n"
-+ "Standby for Action -> standbyforaction\n"
-+ "Open the Game -> openthegame\n"
-+ "Hydrangea -> hydrangea\n"
-+ "Absolutely -> absolutely\n"
-+ "Higher and Higher -> higherandhigher\n"
-+ "Take me to the Future\n"
-+ "Nautilus -> nautilus\n"
-+ "Bass Music -> bassmusic\n"
-sagarsongs = "Sagar Songs:\n"
-+ "Amenemhat -> amenemhar\n"
-+ "Elysium -> elysium\n"
-+ "Immran Brain -> immranbrain\n"
-+ "Space Alien -> spacealien\n"
-+ "Doldrums -> doldrums\n"
-+ "Nídhögg -> nidhogg\n"
-+ "Legacy -> legacy\n"
-+ "A Portent of the Silver Wheel -> aportentofthesilverwheel\n"
-+ "Sacrifice -> sacrifice\n"
-+ "Return of the Lamp -> returnofthelamp\n"
-rinsongs = "Ring Songs:\n"
-+ "The Siege -> thesiege\n"
-+ "The Grand Debate -> thegranddebate\n"
-+ "三灯火 -> threelights\n"
-+ "「妖怪録、我し来にけり。」 -> yokairock\n"
-+ "Starry Summoner -> starrysummoner\n"
-+ "すゝめ☆クノイチの巻 -> goaheadkunoichi\n"
-+ "彩 -> leafygreen\n"
-+ "決戦 -> decisivebattle\n"
-+ "Mari-Temari -> maritemari\n"
-+ "Inari -> inari\n"
-aromasongs = "Aroma Songs:\n"
-+ "change -> change\n"
-+ "No One Can't Stop Me -> noonecantstopme\n"
-+ "Spotlight On -> spotlighton\n"
-+ "Bring the light -> bringthelight\n"
-+ "Make U Mine -> makeumine\n"
-+ "Anzen Na Kusuri -> Anzennakusuri\n"
-+ "漂流 -> drifting\n"
-+ "Perspectives -> perspectives\n"
-+ "風の声 -> thewindsvoice\n"
-+ "Neon Escape -> neonescape\n"
-+ "Beautiful Lie -> beautifullie\n"
-norasongs = "Nora Songs:\n"
-+ "Accelerator -> accelerator\n"
-+ "Dance till Dawn -> dancetilldawn\n"
-+ "Uranus -> uranus\n"
-+ "Drop The World -> droptheworld\n"
-+ "Starlight -> starlight\n"
-+ "Bastard of Hardcore -> bastardofhardcore\n"
-+ "jakarta PROGRESSION -> jakartaprogression\n"
-+ "Eternity -> eternity\n"
-+ "Phagy Mutation -> phagymutation\n"
-+ "ATONEMENT -> atonement\n"
-youngnekosongs = "Neko Songs:\n"
-+ "Chocolate Missile -> chocolatemissile\n"
-+ "I can avoid it.#φωφ -> icanavoidit\n"
-+ "Pink Graduation -> pinkgraduation\n"
-+ "一啖兩啖 -> onebitetwobites\n"
-+ "Mammal -> mammal\n"
-+ "Blah!! -> blahh\n"
-+ "リラ -> lira\n"
-+ "Log In -> login\n"
-+ "DJ Mashiro is dead or alive -> djmashiroisdeadoralive\n"
-+ "Re:incRnaTiØN ～夕焼ケ世界ノ決別ヲ～ -> reincarnation\n"
-+ "R.I.P. -> rip\n"
+
+
 
 const helpSongs = [
     ["变身 (PAFF)", "metamorphose"],
@@ -6272,6 +6113,19 @@ const registerSlashCommands = async () => {
         {
             name: 'create',
             description: 'Create a private channel to play the Cytus Heardle. Only works in the Cytus Heardle server',
+        },
+        {
+            name: 'list',
+            description: 'send a list of songs for a character',
+            options: [
+                {
+                    name: 'character',
+                    description: 'Send a list of songs for this character',
+                    type: 3,
+                    required: true,
+                    autocomplete: true 
+                }
+            ]
         }
         //Add more commands here
     ];
@@ -6291,3 +6145,22 @@ const registerSlashCommands = async () => {
     }
 };
 
+client.on('interactionCreate', async (interaction) => {
+    if (!interaction.isAutocomplete()) return;
+
+    if (interaction.commandName === 'list') {
+        const focusedValue = interaction.options.getFocused();
+        const characters = [
+            'PAFF', 'NEKO#ΦωΦ', 'ROBO_Head', 'Ivy', 'Crystal PuNK', 'Vanessa', 'Bo Bo', 
+            'Tairitsu', 'Amiya', 'Kaf', 'Alice', 'Hans', 'Kizuna AI', 'Miku', 'Ilka', 
+            'Xenon', 'ConneR', 'Cherry', 'Joe', 'Sagar', 'Rin', 'Aroma', 'Nora', 'Neko', 'Graff.J', 'NEKO_II', 'other'
+        ];
+
+        // Filter based on user input
+        const filtered = characters.filter(c => c.toLowerCase().includes(focusedValue.toLowerCase())).slice(0, 25);
+
+        await interaction.respond(
+            filtered.map(c => ({ name: c, value: c }))
+        );
+    }
+});
