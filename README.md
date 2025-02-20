@@ -37,4 +37,4 @@ This is a discord bot that has two major functionalities:
 
 # Cytus Heardle Bot - reload
 
-Updated version of the first functionality using updated discord functions liks slash commands and buttons. Only has the core Cytus Heardle with nothing else coded in
+Updated version of the first functionality using updated discord functions liks slash commands and buttons. Only has the core Cytus Heardle game with nothing else coded in
