@@ -34,3 +34,7 @@ This is a discord bot that has two major functionalities:
    - in depth upgrade system where players choose specific stats to upgrade for the characters (damage, health, ability) and branching paths for card upgrades
       - A card that inflicts weakness on and enemy could inflict 50% for 1 turn, 25% for 5 turns, or 5% for 10 turns depending on which stats were upgraded
    - support for saving player, dungeon and shop data to JSON format
+
+# Cytus Heardle Bot - reload
+
+Updated version of the first functionality using updated discord functions liks slash commands and buttons. Only has the core Cytus Heardle game with nothing else coded in
