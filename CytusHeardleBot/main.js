@@ -64,20 +64,21 @@ const fametiers = ["NONE","PAFF","Neko#ΦωΦ","ROBO_Head","Xenon","ConneR","Che
 CytusHeardleBotTESTtoken = process.env.CYTUS_BOT_TEST_TOKEN
 CytusHeardleBotTEST2token = process.env.CYTUS_BOT_TEST_TWO_TOKEN
 CytusHeardleBottoken = process.env.CYTUS_BOT_TOKEN_PUBLIC //this one (public version of the bot)
-CytusHeardleChannelID = '958518859072172132' //this one
+CytusHeardleBottoken = process.env.CYTUS_BOT_TOKEN; //Cytus Heardle Deluxe
+CytusHeardleChannelID = '958518859072172132' //this one (in video call)
 CytusHeardleWareHouseID = '965929751560736808'
 CytusHeardleLiveTestID = '1039741662861205585'
 CytusHeardleScoresChannelID = '958534665214521366'
 CytusHeardleServerScoresChannelID = '1311476063804592230'
 GeneralChannelID = '584420631324524557'
 CytusHeardleServerID = '1310332415088132147'
-// Hehehebutinreallife = '945034814489239683'
-// Hehehe = '910327131857358909'
-// gemz = '955971112431419422'
-// tick = '950613255645171762'
-// MillionMaster = '640720107475042314'
-// projectDivaMiku = '1216851993784619079'
-// angryMiku = '1216532048840364182'
+Hehehebutinreallife = '945034814489239683'
+Hehehe = '910327131857358909'
+gemz = '955971112431419422'
+tick = '950613255645171762'
+//MillionMaster = '640720107475042314'
+projectDivaMiku = '1216851993784619079'
+angryMiku = '1216532048840364182'
 const MillionMaster = "<:MillionMaster:1311354203809251398>";
 const ScoreS = "<:SScore:1310336830939598901>";
 const ScoreA = "<:AScore:1310336650882322482>";
@@ -102,6 +103,7 @@ const bCapsoLogo = "<:capso:1310416806715854898>";
 const ScoreWrong = "<:Wrong:1311345640034275410>";
 const ScoreSkip = "<:Skip:1311349174071201813>";
 const dir = 'D:/CytusHeardleBot/songlist'
+CytusHeardleBotDeluxeApplicationID = '965925868436353064'
 CytusHeardleBotTESTApplicationID = '1039555744757981204'
 CytusHeardleBotTEST2ApplicationID = '1295453343392596009'
 CytusHeardleBotApplicationID = '1316939814058328074'
@@ -122,11 +124,16 @@ if (currentBotMode == 'test') {
     currentScoresChannel = CytusHeardleWareHouseID
     levelDirectory = "./level/"
     savesDirectory = "./saves/"
-}else {
+} else if (currentBotMode == 'deluxe') {
+    currentBotToken = CytusHeardleDeluxeBottoken
+    currentApplicationID = CytusHeardleBotDeluxeApplicationID
+    currentScoresChannel = CytusHeardleScoresChannelID
+} else {
     currentBotToken = CytusHeardleBottoken
     currentApplicationID = CytusHeardleBotApplicationID
     currentScoresChannel = CytusHeardleServerScoresChannelID
 }
+
 
 paffsongs = [['PAFF Songs:\n', '']]
 nekosongs = [["NEKO #ΦωΦ Songs:\n", '']]
@@ -340,6 +347,83 @@ class Player {
         }
         return p;
     }
+}
+
+class DungeonPlayer {
+    constructor(id, capsocoins,lifetimecapsos, streak, highstreak, famepoints, ping){
+        this.id = id
+        this.capsocoins = parseInt(capsocoins)
+        this.lifetimecapsos = parseInt(lifetimecapsos)
+        this.streak = parseInt(streak)
+        this.highstreak = parseInt(highstreak)
+        this.famepoints = parseInt(famepoints)
+        this.ping = parseInt(ping)
+    }
+
+    getId(){
+        return this.id
+    }
+
+    getCapsocoins(){
+        return this.capsocoins
+    }
+
+    getLifetimeCapsos(){
+        return this.lifetimecapsos
+    }
+
+    getCurrStreak(){
+        return this.streak
+    }
+
+    getHighStreak(){
+        return this.highstreak
+    }
+    
+    getFamePoints(){
+        return this.famepoints
+    }
+
+    getPing(){
+        return this.ping
+    }
+
+    modifyCoins(number){
+        this.capsocoins = this.capsocoins + number
+    }
+
+    modifyLifetimeCapsos(number){
+        this.lifetimecapsos = this.lifetimecapsos + number
+    }
+
+    modifyStreak(number){
+        this.streak = this.streak + number
+    }
+
+    modifyFamePoints(number){
+        this.famepoints = this.famepoints + number
+    }
+
+    resetStreak(){
+        this.streak = 0
+    }
+
+    setHighstreak(number){
+        this.highstreak = number
+    }
+
+    togglePing(){
+        if (this.ping == 1){
+            this.ping = 0;
+        } else {
+            this.ping = 1;
+        }
+    }
+
+    toString(){
+        return this.id+","+this.capsocoins+","+this.lifetimecapsos+","+this.streak+","+this.highstreak+","+this.famepoints+","+this.ping+","
+    }
+    
 }
 
 var songname
@@ -719,8 +803,6 @@ async function increasenumber(){
         resolve()
     })
 }
-
-
 
 
 async function loadvalidanswers(){
@@ -1282,9 +1364,8 @@ loadSongLists("./songnamestrue.txt")
 async function startupFunction(){
     await loadvalidanswers()
     await loadCytusHeardleInfo()
-    // if (currentBotMode != 'test' && currentBotMode != 'test2') {
-    //     initializeDataDirectories();
-    // }
+    // newDungeon = await loadDungeon();
+    // dungeonShop = await loadShop();
 }
 
 function generateNewHeardle() {
@@ -5877,10 +5958,703 @@ client.on('messageCreate', async (message)=>{
 
 })
 
+client.on('messageCreate', async (message)=>{
+    if(!message.content.startsWith(prefix) || message.author.bot || !whitelistedUsers.includes(message.author.id)) return;
+    let args = message.content.substring(prefix.length).split(" ");
+
+
+    switch(args[0]){
+        case'ping':
+            message.channel.send('-ping is deprecated. Please use /ping');
+            break;
+        case 'help':
+            help = message.content
+            if (help.length == 5){
+            message.channel.send("How to write songs with special/japanese characters:\n"
+            +"(1) Alterna Pt.1 -Cosmogony- (Neko) -> alternapt1\n(2) 響け！(Neko) -> sound\n(3) 気楽なCloudy (Neko) -> carefreecloudy\n(4) Re:VeLΔTiØN ～光道ト破壊ノ双白翼～ (Neko) -> revelation (Re:VeLΔTiØN ~Twin White Wings Destroying the Light Path~ )\n(5) paradigm-paragramme-program (Neko) -> paradigm\n(6) βinαrΨ (Crystal Punk) -> binary\n(7) 眷戀 (Crystal Punk)-> familylove\n(8) still (piano version) (Crystal Punk) -> stillpianoversion\n(9) 黎明-REIMEI- (Bobo) -> dawnreimei\n(10) バステット (Cytus II Edit) (Bobo) -> bastet\n" 
+            + "そんなに私を期待させないで (Graff.j) -> Dont expect so much\nNyx -Fatal arousal of Madness- (Graff.j) -> nyx\npopotnik ~ The Traveller of Ljubljana (Graff.j) -> popotnik\n粉骨砕身カジノゥ(Funkotsu Saishin Casino) (Graff.j) -> casino\n非・現実逃避 (Graff.j) -> Unreality escape\n非・現実逃避 Rabpit Remix (Graff.j) -> unreality escape rabpit remix\n" 
+            + "IɅVɅVI (Ilka) -> iavavi\n"
+            + "(11) legacy (Alice) -> legacy2\n(12) 都市の呼吸 (Alice)-> breathofthecity\n(13) new world (Kizuna Ai) -> newworld2\n(14) ラッキー☆オーブ(Miku) -> luckyorb\n(15) 魔法みたいなミュージック！(Miku)-> musiclikemagic\n(16) 月西江(Miku) -> moonwestriver (yuexiriver)\n(17) ラッキー☆オーブ(3R2 Remix)(Miku) -> luckyorb3r2remix\n(18) Ultimate feat. 放課後のあいつ (Xenon) -> ultimatefeat\n(19) 三灯火 (Rin) -> threelights\n(20) 「妖怪録、我し来にけり。」(Rin) -> yokairock\n(21) すゝめ☆クノイチの巻 (Rin) -> goaheadkunoichi\n(22) 彩 (Rin) -> leafygreen\n(23) 決戦 (Rin) -> decisivebattle\n(24) 漂流 (Aroma) -> drifting\n(25) 風の声 (Aroma) -> thewindsvoice\n(26) 一啖兩啖 (Neko) -> onebitetwobites\n(27) リラ (Neko) -> lira\n(28) Re:incRnaTiØN ～夕焼ケ世界ノ決別ヲ～ (Neko) -> reincarnation (Re:incRnaTiØN ~Farewell to the Yuyakeke World~)\n")
+            } else{
+                if (help.length>=7){
+                helpindex = help.substring(6, help.length)
+                //console.log(helpindex)
+                message.channel.send("-g " + songcorrection[helpindex])
+                }
+
+
+            }
+
+
+            break;
+        case 'fullsong':
+            if (fullsongprocessed == 0){
+            ffmpeg({source: './songlist/' + songname +'.mp4'}) 
+            .setStartTime(0)
+            .on('start',function(commandLine){
+                console.log("Processing has started. Hopefully it works :-)")
+                message.channel.send("Processing has started, it will send once it's done")
+            })
+            .on('error',function(err){
+                console.log("ok what the crap: ", + err)
+                message.channel.send("There was an error" + err)
+            })
+            .on('end',function(err){
+                //console.log("processing done lets go")
+                //message.channel.send("1st video done")
+                message.channel.send({files: ['./fullsong.mp4']})
+            })
+            .saveToFile("fullsong.mp4")
+            fullsongprocessed = 1
+            }else{
+                message.channel.send({files: ['./fullsong.mp4']})
+            }
+            
+             break;
+        case 'playsong':
+            playsong = message.content
+            if (playsong.length >=11){
+                playsong = playsong.substring(10,playsong.length)
+                if(playsong == "random"){
+                    fs.readFile("songnames.txt", "utf-8", function(err, data){
+                        if(err) {
+                            throw err;
+                        }
+                    
+                        // note: this assumes `data` is a string - you may need
+                        //       to coerce it - see the comments for an approach
+                        var lines = data.split('\n');
+                        
+                        //while(ready == 0){
+                        // choose one of the lines...
+                        var line = lines[Math.floor(Math.random()*lines.length)]
+                  
+                  
+                        //line = line.substring(0,line.length-1)
+                  
+                        line = line.split('=')
+                        //console.log(line)
+                        playsong = line[0]
+                        filepath = "./songlist/" + playsong + ".mp4"
+                        fs.access(filepath, fs.constants.F_OK, (err) => {
+                        if (err) {
+                        // File does not exist
+                        message.channel.send('Cannot find file');
+                        }else{
+                            message.channel.send({files: [filepath]});
+                        }
+                        })
+                    })
+                }else{
+                filepath = "./songlist/" + playsong + ".mp4"
+                fs.access(filepath, fs.constants.F_OK, (err) => {
+                    if (err) {
+                      // File does not exist
+                      message.channel.send('Cannot find file');
+                    }else{
+                        message.channel.send({files: [filepath]});
+                    }
+                    })
+                }
+            }else{
+                //message.channel.send("enter the name of a song (no spaces, all lowercase)")
+                message.channel.send({files: ["none.mp4"]})
+            }
+            break;
+        case 'party':
+                partysong = ""
+                partyanswer = ""
+                duration1 = 1
+                duration2 = 2
+                duration3 = 4
+                duration4 = 7
+                duration5 = 11
+                duration6 = 16
+                ispscrambled = false
+                filename = "songnames.txt"
+                partyfolder = './songlist/'
+                partysongduration = songduration
+
+                function partygetmodifiers(){
+                fs.readFile("partysettings.txt", "utf-8", function(err, data){
+                    if(err) {
+                        throw err;
+                    }
+                
+                    // note: this assumes `data` is a string - you may need
+                    //       to coerce it - see the comments for an approach
+                    var lines = data.split('\n');
+              
+              
+                    //line = line.substring(0,line.length-1)
+                    
+                    //console.log(lines)
+                    //psendone = lines[0].substring(0,lines[0].length-1) //because theres some stupid \r behind it
+                    psendone = lines[0]
+                    psendone = (psendone === "true")
+                    pscrambledchance = lines[1]
+                    phardchance = lines[2]
+                    pchromaticchance= lines[3]
+                    pspecialchance = lines[4]
+                    console.log(psendone)
+                    if (psendone == true){
+                        sendsetting = "One at a time"
+                    }else{
+                        sendsetting = "All at once"
+                    }
+                    console.log(sendsetting)
+            })
+        }
+
+        function partyvideoprocess(){
+                random = Math.random()*100
+                console.log("Special: " + random)
+                if (random <= pspecialchance){
+                    filename = "partysongnames.txt"
+                }
+                
+               getrandompartysong()
+                random = Math.random()*100
+                console.log("Scrambled: " + random)
+               if (random <= pscrambledchance){
+                ispscrambled = true
+               sleep(500).then(() => preparepartyscrambled())
+               }
+
+               random = Math.random()*100
+               console.log("Hard: " + random)
+               if (random <= phardchance){
+                preparepartyhard()
+               }
+               sleep(2500).then(() => {processpartyvideo()})
+
+               function getrandompartysong(){
+                fs.readFile(filename, "utf-8", function(err, data){
+                    if(err) {
+                        throw err;
+                    }
+                
+                    // note: this assumes `data` is a string - you may need
+                    //       to coerce it - see the comments for an approach
+                    var lines = data.split('\n');
+                    
+                    
+                    // choose one of the lines...
+                    var line = lines[Math.floor(Math.random()*lines.length)]
+                    line = line.split('=')
+                    // invoke the callback with our line
+                    //console.log(line);
+
+                    partysong = line[0]
+                    realpartysongname = line[1]
+                 })
+                }
+                 function preparepartyscrambled(){
+                    console.log("partysong is : " + partysong)
+                    ffmpeg.ffprobe(partyfolder + partysong +'.mp4', function(err, metadata) {
+                        if(err) {
+                            console.log("There was an error:" + err)
+                            message.channel.send("There was an error:" + err)
+                        }
+                        //console.dir(metadata); // all metadata
+                        partysongduration = metadata.format.duration
+                        console.log(partysongduration)
+                    });
+                    
+                }
+                function preparepartyhard(){
+                duration1 = 0.5
+                duration2 = 1
+                duration3 = 2
+                duration4 = 3.5
+                duration5 = 5.5
+                duration6 = 8
+                }
+                function processpartyvideo(){
+                    pstarttime = Math.random()*partysongduration
+                    console.log(pstarttime)
+                    console.log(partyfolder + partysong +'.mp4')
+                    //1 second
+                    ffmpeg({source: partyfolder + partysong +'.mp4'}) 
+                    .setStartTime(pstarttime)
+                    .duration(duration1) 
+                    .on('start',function(commandLine){
+                        console.log("Processing has started. Hopefully it works :-)")
+                    })
+                    .on('error',function(err){
+                        console.log("ok what the crap: ", + err)
+                        message.channel.send("There was an error:" + err)
+                    })
+                    .on('end',function(err){
+                        console.log("processing done lets go")
+                        //message.channel.send("1st video done")
+                    })
+                    .saveToFile("party 1.mp4")
+        
+                    // 2 seonds
+                    ffmpeg({source: partyfolder + partysong +'.mp4'}) 
+                    .setStartTime(pstarttime)
+                    .duration(duration2) 
+                    .on('start',function(commandLine){
+                        console.log("Processing has started. Hopefully it works :-)")
+                    })
+                    .on('error',function(err){
+                        console.log("ok what the crap: ", + err)
+                        message.channel.send("There was an error:" + err)
+                    })
+                    .on('end',function(err){
+                        console.log("processing done lets go")
+                        //message.channel.send("2nd video done")
+                    })
+                    .saveToFile("party 2.mp4")
+        
+                    //4 seconds
+                    ffmpeg({source: partyfolder + partysong +'.mp4'}) 
+                    .setStartTime(pstarttime)
+                    .duration(duration3) 
+                    .on('start',function(commandLine){
+                        console.log("Processing has started. Hopefully it works :-)")
+                    })
+                    .on('error',function(err){
+                        console.log("ok what the crap: ", + err)
+                        message.channel.send("bruh there was an error:" + err)
+                    })
+                    .on('end',function(err){
+                        console.log("processing done lets go")
+                        //message.channel.send("3rd video done")
+                    })
+                    .saveToFile("party 3.mp4")
+        
+                    //7 seconds
+                    ffmpeg({source: partyfolder + partysong +'.mp4'}) 
+                    .setStartTime(pstarttime)
+                    .duration(duration4) 
+                    .on('start',function(commandLine){
+                        console.log("Processing has started. Hopefully it works :-)")
+                    })
+                    .on('error',function(err){
+                        console.log("ok what the crap: ", + err)
+                        message.channel.send("There was an error:" + err)
+                    })
+                    .on('end',function(err){
+                        console.log("processing done lets go")
+                        //message.channel.send("4th video done")
+                    })
+                    .saveToFile("party 4.mp4")
+        
+                    //11 seconds
+                    ffmpeg({source: partyfolder + partysong +'.mp4'}) 
+                    .setStartTime(pstarttime)
+                    .duration(duration5) 
+                    .on('start',function(commandLine){
+                        console.log("Processing has started. Hopefully it works :-)")
+                    })
+                    .on('error',function(err){
+                        console.log("ok what the crap: ", + err)
+                        message.channel.send("There was an error:" + err)
+                    })
+                    .on('end',function(err){
+                        console.log("processing done lets go")
+                        //message.channel.send("5th video done")
+                    })
+                    .saveToFile("party 5.mp4")
+        
+                    //16 seconds
+                    ffmpeg({source: partyfolder + partysong +'.mp4'}) 
+                    .setStartTime(pstarttime)
+                    .duration(duration6) 
+                    .on('start',function(commandLine){
+                        console.log("Processing has started. Hopefully it works :-)")
+                    })
+                    .on('error',function(err){
+                        console.log("ok what the crap: ", + err)
+                        message.channel.send("There was an error:" + err)
+                    })
+                    .on('end',function(err){
+                        console.log("processing done lets go")
+                        message.channel.send("processing done, type -ready to play!")
+                    })
+                    .saveToFile("party 6.mp4")
+                    }
+
+        }
+        message.channel.send("Processing has started")
+        partygetmodifiers()
+        await sleep(500)
+        await partyvideoprocess()
+                break;
+        case 'psetting':
+            async function getpartysettings(){
+            fs.readFile("partysettings.txt", "utf-8", function(err, data){
+                if(err) {
+                    throw err;
+                }
+            
+                // note: this assumes `data` is a string - you may need
+                //       to coerce it - see the comments for an approach
+                var lines = data.split('\n');
+          
+          
+                //line = line.substring(0,line.length-1)
+                
+                console.log(lines)
+                //psendone = lines[0].substring(0,lines[0].length-1) //because theres some stupid \r behind it
+                //psendone = (psendone === "true")
+                psendone = lines[0]
+                psendone = (psendone === "true")
+                pscrambledchance = lines[1]
+                phardchance = lines[2]
+                pchromaticchance= lines[3]
+                pspecialchance = lines[4]
+                console.log(psendone)
+                console.log(pscrambledchance)
+                console.log(phardchance)
+                console.log(pchromaticchance)
+                console.log(pspecialchance)
+                if (psendone == true){
+                    sendsetting = "One at a time"
+                    console.log(sendsetting)
+                }else{
+                    sendsetting = "All at once"
+                }
+        })
+    }
+
+        async function sendpartymenu(){
+        try{
+            const partysetting = await message.channel.send("Party Mode Settings:" + "\n" +
+            "(1) Send setting: " + sendsetting + "\n" +
+            "(2) Chance for Scrambled: " + pscrambledchance + "\n"+ 
+            "(3) Chance for Hard: " + phardchance +"\n" +
+            "(4) Chance for Chromatic: " + "NOT SUPPORTED" + "\n"+
+            "(5) Chance for Special: " + pspecialchance + "\n" + 
+            "Enter 0 to leave")
+            const filter = () => true;
+            const collector = partysetting.channel.createMessageCollector(filter, { max: 1, time: 60000, errors: ["time"] });
+            
+            collector.on("collect", async response => {
+                // Record the user's response
+                const userResponse = response.content;
+                let sentMessage
+                console.log(response.content)
+                console.log(userResponse)
+                if (userResponse === 0){
+                    message.channel.send("Ok bye")
+                } else if (userResponse == 1){
+                    psendone = !psendone
+                    if (psendone == true){
+                        sendsetting = "One at a time"
+                        console.log(sendsetting)
+                    }else{
+                        sendsetting = "All at once"
+                    }
+                    message.channel.send("Send setting has been changed to " + sendsetting)
+                    //console.log(psendone)
+                    savepartysettings(psendone, pscrambledchance, phardchance, pchromaticchance, pspecialchance)
+                } else if (userResponse == 2){
+                    const scrambledchance = await message.channel.send("Enter the new scrambled chance")
+                    const filter = () => true;
+                    const collector2 = scrambledchance.channel.createMessageCollector(filter, { max: 1, time: 600000, errors: ["time"] });
+                    collector2.on("collect", async response => {
+                        const userinput = response.content
+                        if (Number.isInteger(parseInt(userinput))){
+                            pscrambledchance = parseInt(userinput)
+                            message.channel.send("Set Scrambled chance to " + pscrambledchance)
+                            savepartysettings(psendone, pscrambledchance, phardchance, pchromaticchance, pspecialchance)
+                        }else{
+                            message.channel.send("Your input could not be interpreted")
+                        }
+                        collector2.stop()
+                    })
+                } else if (userResponse == 3){
+                    const hardchance = await message.channel.send("Enter the new hard chance")
+                    const filter = () => true;
+                    const collector = hardchance.channel.createMessageCollector(filter, { max: 1, time: 60000, errors: ["time"]})
+                    collector.on("collect", async response => {
+                        const userinput = response.content
+                        if (Number.isInteger(parseInt(userinput))){
+                            phardchance = parseInt(userinput)
+                            message.channel.send('Set hard chance to ' + phardchance)
+                            savepartysettings(psendone, pscrambledchance, phardchance, pchromaticchance, pspecialchance)
+                        }else{
+                            message.channel.send("Your input could not be interpreted")
+                        }
+                        collector.stop()
+                    })
+                } else if(userResponse == 4){
+                    message.channel.send("Chromatic gamemode is currently not supported")
+                    //code if chromatic becomes supported
+                    /*
+                    const chromaticchance = await message.channel.send("Enter the new chromatic chance")
+                    const filter = () => true;
+                    const collector = chromaticchance.channel.createMessageCollector(filter, { max: 1, time: 60000, errors: ["time"]})
+                    collector.on("collect", async response => {
+                        const userinput = response.content
+                        if (Number.isInteger(parseInt(userinput))){
+                            pchromaticchance = parseInt(userinput)
+                            message.channel.send('Set chromatic chance to ' + pchromaticchance)
+                            savepartysettings(psendone, pscrambledchance, phardchance, pchromaticchance, pspecialchance)
+                        }else{
+                            message.channel.send("Your input could not be interpreted")
+                        }
+                        collector.stop()
+                    })
+                    */
+                } else if(userResponse == 5){
+                    const specialchance = await message.channel.send("Enter the new special chance")
+                    const filter = () => true;
+                    const collector = specialchance.channel.createMessageCollector(filter, { max: 1, time: 60000, errors: ["time"]})
+                    collector.on("collect", async response => {
+                        const userinput = response.content
+                        if (Number.isInteger(parseInt(userinput))){
+                            pspecialchance = parseInt(userinput)
+                            message.channel.send('Set special chance to ' + pspecialchance)
+                            savepartysettings(psendone, pscrambledchance, phardchance, pchromaticchance, pspecialchance)
+                        }else{
+                            message.channel.send("Your input could not be interpreted")
+                        }
+                        collector.stop()
+                    })
+                }else{
+                    //message.channel.send("ok bye1")
+                }
+                collector.stop()
+            })
+
+            
+            } catch (error) {
+                console.log(error);
+                await message.channel.send("There was an error processing your request.");
+              }
+            }
+            
+            function savepartysettings(sendtype, scrambled, hard, chromatic, special){
+                console.log(sendtype)
+                parrtysettings = sendtype + "\n" + scrambled +"\n"+hard+"\n"+chromatic +"\n"+ special
+                fs.writeFile("partysettings.txt", parrtysettings, function(err, data) { if (err) {console.log("Error when saving party settings")} });
+            }
+            getpartysettings()
+            await sleep(100)
+            await sendpartymenu()
 
 
 
+            break;
+        case 'ready':
+                partyanswer = partysong
+                displayedanswer = realpartysongname
+                //console.log("The song about to be sent is called: " + partysong)
+                if (ispscrambled){
+                minutes = 0
+                if (pstarttime > 60){
+                    pstarttime = pstarttime -60
+                    minutes = minutes + 1
+                    if (pstarttime > 60){
+                        pstarttime = pstarttime -60
+                        minutes = minutes + 1
+                        if (pstarttime > 60){
+                            pstarttime = pstarttime -60
+                            minutes = minutes + 1
+                            if (pstarttime > 60){
+                                pstarttime = pstarttime -60
+                                minutes = minutes + 1
+                                if (pstarttime > 60){
+                                    pstarttime = pstarttime -60
+                                    minutes = minutes + 1
+                                    if (pstarttime > 60){
+                                        pstarttime = pstarttime -60
+                                        minutes = minutes + 1
+                                        if (pstarttime > 60){
+                                            pstarttime = pstarttime -60
+                                            minutes = minutes + 1
+                                            } 
+                                        } 
+                                    } 
+                                } 
+                            } 
+                        } 
+                    } 
+                    seconds = Math.trunc(pstarttime)
+                    console.log("seconds = " + seconds)
+                    if (seconds == "1" || seconds == "2" || seconds == "3" || seconds == "4" || seconds == "5" || seconds == "6" || seconds == "7" || seconds == "8" || seconds == "9" || seconds == "0"){
+                        displayedanswer = displayedanswer + " (" + minutes + ":0" + seconds + ")"
+                    }else{
+                        displayedanswer = displayedanswer + " (" + minutes + ":" + seconds + ")"
+                    }
+                }
+                numofspaces = Math.random()*75 + 25
+                numofspaces = Math.trunc(numofspaces)
+                space = ""
+                for (i=0;i<numofspaces;i++){
+                    space = space + " "
+                }
+                    console.log(displayedanswer)
+                    console.log(psendone)
+                    if(sendsetting === "All at once"){
+                sleep(10).then(() => {message.channel.send("PARTY Cytus Heardle")})
+                sleep(100).then(() => {message.channel.send({files: ['./party 1.mp4']}) })
+                sleep(200).then(() => {message.channel.send({files: ['./party 2.mp4']}) })
+                sleep(300).then(() => {message.channel.send({files: ['./party 3.mp4']}) })
+                sleep(400).then(() => {message.channel.send({files: ['./party 4.mp4']}) })
+                sleep(500).then(() => {message.channel.send({files: ['./party 5.mp4']}) })
+                sleep(600).then(() => {message.channel.send({files: ['./party 6.mp4']}) })
+                sleep(10000).then(() => {message.channel.send("Answer: ||" + displayedanswer + space + "||") })
+                    }else{
+                        videoindex = 2
+                    sleep(10).then(() => {message.channel.send("PARTY Cytus Heardle")})
+                    sleep(10).then(() => {message.channel.send("Type -next to send the next video")})
+                    sleep(100).then(() => {message.channel.send({files: ['./party 1.mp4']}) })
+                    }
+                break; 
+        case 'next':
+                if(videoindex == 2){
+                    message.channel.send({files: ['./party 2.mp4']})
+                    videoindex = videoindex + 1
+                } else if(videoindex == 3){
+                    message.channel.send({files: ['./party 3.mp4']})
+                    videoindex = videoindex + 1
+                }else if (videoindex == 4){
+                    message.channel.send({files: ['./party 4.mp4']})
+                    videoindex = videoindex + 1
+                }else if (videoindex == 5){
+                    message.channel.send({files: ['./party 5.mp4']})
+                    videoindex = videoindex + 1
+                }else if (videoindex == 6){
+                    message.channel.send({files: ['./party 6.mp4']})
+                    videoindex = 0
+                }else if (videoindex == 0){
+                    message.channel.send("Answer: ||" + displayedanswer + space + "||")
+                    message.channel.send("All videos have been sent")
+                } else if(videoindex == -1){
+                    message.channel.send("Party mode has not been used yet")
+                }
+                break;
+        case 'pg':
+                console.log(partyanswer)
+                partyguess = message.content
+                partyguess = partyguess.substring(4, partyguess.length)
+                partyguess = partyguess.toLowerCase();
+                newpartyguess = "";
+                for (i=0; i < partyguess.length; i++) {
+                    if (partyguess[i] == " "||partyguess[i] == "\'" || partyguess[i] == "."|| partyguess[i] == "-" || partyguess[i] == "~"){
+                        newpartyguess = newpartyguess;
+                    }else{
+                        newpartyguess = newpartyguess + partyguess[i];
+                    }
+                }
+                if (newpartyguess == partyanswer){
+                    message.channel.send("It's party time!")
+                    message.channel.send("https://tenor.com/view/its-dj-franks-party-time-raise-the-roof-costume-party-dj-gif-15612267")
+                    message.channel.send("The Answer was: " + displayedanswer)
+                }else{
+                    fs.readFile("songnames.txt", "utf-8", function(err, data){
+                        if(err) {
+                            throw err;
+                        }
+                        if(validanswers.includes(newpartyguess)){
+                            message.channel.send("Dont make me get Nita!")
+                            message.channel.send("https://tenor.com/view/leon-lose-brawl-stars-bebra-sad-gif-24675352")
+                        }else{
+                            message.channel.send("Could not find that answer")
+                        }
+                    })
+                }
+            break;
+        case 'repeat':
+            repeat = message.content
+            console.log("-repeat was used: " + repeat)
+            repeat = repeat.substring(8, repeat.length)
+            message.channel.send(repeat)
+            break;
+        case 'sendhere':
+            sleep(10).then(() => {message.channel.send(modifier + "Cytus Heardle #" + heardlenumber + ":")})
+            sleep(100).then(() => {message.channel.send({files: ['./1.mp4']}) })
+            sleep(250).then(() => {message.channel.send({files: ['./2.mp4']}) })
+            sleep(400).then(() => {message.channel.send({files: ['./3.mp4']}) })
+            sleep(550).then(() => {message.channel.send({files: ['./4.mp4']}) })
+            sleep(700).then(() => {message.channel.send({files: ['./5.mp4']}) })
+            sleep(850).then(() => {message.channel.send({files: ['./6.mp4']}) })
+            sleep(10000).then(() => {message.channel.send("Answer: ||" + displayedanswer + space + "||") })
+            break;
+        case 'profile':
+            console.log("-profile was used")
+            myid = message.author.id
+            idsmile = findprofile(myid)
+            playerfame = calculatefame(idsmile.getFamePoints())
+            message.channel.send("Your profile stats:\n" +
+            "Current Fame: " + playerfame[0] + "\n" +
+            "CAPSO Coins: " + idsmile.getCapsocoins() + "\n"+
+            "Lifetime CAPSO Coins: " + idsmile.getLifetimeCapsos() + "\n" +
+            "Current Streak: " + idsmile.getCurrStreak() + "\n" +
+            "Highest Streak: " + idsmile.getHighStreak() + "\n"
+            )
+            break;
+        case 't':
+            whattosay = message.content
+            console.log("-t was used: " + whattosay)
+            whattosay = whattosay.substring(3, whattosay.length)
+            client.channels.cache.get("584420631324524557").send(whattosay)
+            break;
+        case 'optin':
+            id = message.author.id
+            player = findprofile(id)
+            await player.togglePing()
+            if(player.getPing() == 1){
+                message.channel.send("You have opted in to get pinged at 9PM if you dont do the Cytus Heardle")
+            } else if (player.getPing() == 0){
+                message.channel.send("You have opted out of getting pinged")
+            }
+            saveprofiles()
+            break;   
+        case 'play':
+            directory = message.content.substring(6, message.content.length);
+            if (!message.member.voice.channel) {
+                return message.reply('You need to be in a voice channel to use this command.');
+            }
+            console.log("directory:" + directory);
+    
+            // Join the voice channel
+            const voiceChannel = message.member.voice.channel;
+            const connection = joinVoiceChannel({
+                channelId: voiceChannel.id,
+                guildId: voiceChannel.guild.id,
+                adapterCreator: voiceChannel.guild.voiceAdapterCreator
+            });
+    
+            // Create the audio player
+            const player = createAudioPlayer();
+    
+            try{
+            // Create the audio resource (replace 'your-file.mp3' with the actual path to your MP3 file)
+            const filePath = path.join(__dirname, directory);
+            const resource = createAudioResource(filePath);
+    
+            
+            // Play the resource
+            player.play(resource);
+            connection.subscribe(player);
+            
+            } catch (error) {
+                message.channel.send("Error")
+            }
+            // Log player status changes
+            player.on(AudioPlayerStatus.Playing, () => {
+                console.log('The audio is now playing!');
+            });
+    
+            player.on(AudioPlayerStatus.Idle, () => {
+                console.log('The audio has finished playing!');
+                connection.destroy(); // Leave the voice channel when finished
+            });
+    
+            player.on('error', error => {
+                console.error(`Error: ${error.message}`);
+                connection.destroy(); // Leave the voice channel on error
+            });
+            break;
+            }
 
+})
 
 
 
@@ -6195,3 +6969,503 @@ client.on('interactionCreate', async (interaction) => {
         );
     }
 });
+
+
+const tycoonDeck = ["ah","2h","3h","4h","5h", "6h", "7h", "8h", "9h", "th", "jh", "qh", "kh", "ac", "2c", "3c", "4c", "5c", "6c", "7c", "8c", "9c", "tc", "jc", "qc", "kc", "as", "2s", "3s", "4s", "5s", "6s", "7s", "8s", "9s", "ts", "js", "qs", "ks", "ad", "2d", "3d", "4d", "5d", "6d", "7d", "8d", "9d", "td", "jd", "qd", "kd", "w1", "w2"];
+let hands = [[],[],[],[]];
+let scores = [0,0,0,0] //maybe make playing the game give capso coins lol
+let reorderedPlayers;
+let tycoonGameOngoing = false;
+
+
+function toCard(a) {
+    let thing;
+    switch(a[0]) {
+        case 'w':
+            return 'Joker';
+        case 't':
+            thing = '10'
+            break;
+        case 'j':
+        case 'q':
+        case 'k':
+        case 'a':
+            thing = a[0].toUpperCase();
+            break;
+        default:
+            thing = a[0];
+            break;
+    }
+    switch (a[1]) {
+        case "h":
+            return thing + "♡"
+        case "d":
+            return thing + "◇"
+        case "s":
+            return thing + "♤"
+        case "c":
+            return thing + "♧"
+    } 
+    /*
+    switch (a) {
+        case "ah":
+            return "<:aceofhearts:emojiid>";
+        case "2h":
+            return "<:2ofhearts:emojiid>";
+        //yeah idk this is probalby the best way to do this
+        //u need to just add all the emotes to a server the bot is in cuz it can send emotes from different servers
+    }*/ return a;
+}
+
+function compareCards(str1, str2) {
+    // Define the custom order in an array
+    const order = ['w', '2', 'a', 'k', 'q', 'j', 't', '9', '8', '7', '6', '5', '4', '3'];
+    
+    // Get the first character of each string
+    const char1 = str1.charAt(0);
+    const char2 = str2.charAt(0);
+
+    // Find the index of the characters in the custom order
+    const index1 = order.indexOf(char1);
+    const index2 = order.indexOf(char2);
+
+    // Compare based on the custom order
+    if (index1 < index2)
+        return true;
+    return false;
+}
+
+
+function loadprofiles(){
+    fs.readFile("profiles.txt", "utf-8", function(err, data){
+        if(err) {
+            throw err;
+        }
+
+        playerlist = new Array
+        var lines = data.split('\n');
+        //console.log(lines)
+        for(i=0;i<lines.length;i++){
+            line = lines[i]
+            //console.log(lines)
+            linesplit = line.split(',')
+            newPlayer = new Player(linesplit[0], linesplit[1], linesplit[2], linesplit[3], linesplit[4], linesplit[5], linesplit[6])
+            if (newPlayer.getId() != '') {
+                playerlist.push(newPlayer)
+            }
+
+        }
+        //The important one:
+        console.log(playerlist)
+        console.log('profiles have been loaded!')
+        
+    })
+}
+
+async function saveprofiles(){
+        //takes the active user, copies their stats back into the txt file
+        //userlist = user.getId()+","+user.getCapsocoins()+","+user.getLifetimeCapsos()+","+user.getCurrStreak()+","+user.getHighStreak()+","+user.getFamePoints()+","+user.getPing()+","
+        //console.log(userlist)
+        filelines = "";
+        for (i = 0; i < playerlist.length; i++){
+            if (playerlist[i].getCapsocoins() != NaN) {
+                filelines += playerlist[i].toString();
+                filelines += "\n";
+            }
+        }
+        // for (i = 0; i < playerlist.length; i++){
+        //     if (playerlist[i][0] == user.getId()){
+        //         playerlist[i][1] = user.getCapsocoins();
+        //         playerlist[i][2] = user.getLifetimeCapsos();
+        //         playerlist[i][3] = user.getCurrStreak();
+        //         playerlist[i][4] = user.getHighStreak();
+        //         playerlist[i][5] = user.getFamePoints();
+        //         playerlist[i][6] = user.getPing();
+        //     }
+        // }
+        // console.log("New playerlist:")
+        // console.log(playerlist)
+
+        // filelines = "";
+        // for (i = 0; i < playerlist.length; i++){
+        //     filelines += playerlist[i][0]
+        //     for (j = 1; j < playerlist[i].length; j++){
+        //         filelines = filelines + "," + playerlist[i][j]
+        //     }
+        //     filelines = filelines + "\n"
+        // }
+        await fsp.writeFile("profilestemp.txt", filelines, function(err, data) { if (err) {console.log("Error when deleting running Save Profiles")} });
+        await fsp.rename("profilestemp.txt", "profiles.txt",(err) => {
+            if (err) {
+                console.error("Error renaming the file:", err);
+                return;
+            }
+        })
+        //console.log(filelines)
+}
+
+function findprofile(id){
+    //looks at all the profiles
+    //finds the correct profile with your id
+    //console.log(playerlist)
+    for(i=0; i<playerlist.length;i++){
+        if(playerlist[i].getId() == id){
+            return playerlist[i];
+        }
+    }
+
+}
+
+function update6Strings(userId, coins, word1, word2, word3, word4, word5, word6) {
+    const words = [word1, word2, word3, word4, word5, word6];
+    scrambledWords = [];
+    
+
+
+    const fileContents = fs.readFileSync('temp.txt', 'utf8');
+    let userData = {}
+    if (fileContents){
+    userData = JSON.parse(fileContents);
+    }
+    //console.log(userData)
+    if (userData[userId]) {
+        alreadybought = 1
+        if (coins < b62){
+            return
+        }
+        scrambledWords = []
+        hiddenStr = userData[userId]
+        console.log(hiddenStr)
+        console.log(hiddenStr[2])
+        console.log(hiddenStr[2][1])
+        for (let i = 0; i < hiddenStr.length; i++) {
+            hiddenStrIndex = hiddenStr[i]
+            const word = words[i]; //the original word
+            
+            
+            const hiddenIndices = [];
+                for (let j = 0; j < hiddenStrIndex.length; j++) {
+                if (hiddenStrIndex[j] === "_") {
+                    hiddenIndices.push(j);
+                    }
+                }
+ 
+                // If there are no underscores left in the string, return the original string
+                if (hiddenIndices.length === 0) {
+                scrambledWords.push(word)
+                }else{
+
+            // Generate a random index to choose an underscore to reveal
+            const randomIndex = Math.floor(Math.random() * hiddenIndices.length);
+            const hiddenIndex = hiddenIndices[randomIndex];
+            
+
+            hiddenStrIndex = hiddenStrIndex.substring(0, hiddenIndex) + word.charAt(hiddenIndex) + hiddenStrIndex.substring(hiddenIndex + 1);
+            scrambledWords.push(hiddenStrIndex)
+            }
+        }
+      }else{
+
+    alreadybought = 0
+    if(coins < 10){
+        return
+    }
+    // Loop through each word
+    for (let i = 0; i < words.length; i++) {
+      const word = words[i];
+      scrambledWord = [];
+  
+      // Create a new string of underscores
+      for (let j = 0; j < word.length; j++) {
+        scrambledWord.push("_");
+      }
+  
+      // Choose a random letter and replace the underscore at that index with the letter
+      const randomIndex = Math.floor(Math.random() * word.length);
+      scrambledWord[randomIndex] = word[randomIndex];
+
+      //for first letter to always be first letter in all 6 songs
+      //scrambledWord[0] = word[0];
+  
+      // Add the scrambled word to the list of scrambled words
+      scrambledWords.push(scrambledWord.join(""));
+    }
+}
+    // Write the user ID and scrambled words to the temp.txt file
+    userData[userId] = scrambledWords
+    fs.writeFileSync("temp.txt", JSON.stringify(userData));
+  
+    return scrambledWords;
+  }
+
+function update2Strings(userId, coins, word1, word2) {
+    const words = [word1, word2];
+    scrambledWords = [];
+    
+    const fileContents = fs.readFileSync('temp.txt', 'utf8');
+    let userData = {};
+    
+    if (fileContents) {
+        userData = JSON.parse(fileContents);
+    }
+
+    if (userData[userId]) {
+        alreadybought = 1;
+        
+        if (coins < b62) {
+            return;
+        }
+        
+        scrambledWords = [];
+        hiddenStr = userData[userId];
+        for (let i = 0; i < hiddenStr.length; i++) {
+            hiddenStrIndex = hiddenStr[i];
+            const word = words[i]; // the original word
+            
+            const hiddenIndices = [];
+            
+            for (let j = 0; j < hiddenStrIndex.length; j++) {
+                if (hiddenStrIndex[j] === "_") {
+                    hiddenIndices.push(j);
+                }
+            }
+
+            if (hiddenIndices.length === 0) {
+                scrambledWords.push(word);
+            } else {
+                const randomIndex = Math.floor(Math.random() * hiddenIndices.length);
+                const hiddenIndex = hiddenIndices[randomIndex];
+
+                hiddenStrIndex = hiddenStrIndex.substring(0, hiddenIndex) + word.charAt(hiddenIndex) + hiddenStrIndex.substring(hiddenIndex + 1);
+                scrambledWords.push(hiddenStrIndex);
+            }
+        }
+    } else {
+        alreadybought = 0;
+
+        if (coins < 10) {
+            return;
+        }
+
+        for (let i = 0; i < words.length; i++) {
+            const word = words[i];
+            scrambledWord = [];
+
+            for (let j = 0; j < word.length; j++) {
+                scrambledWord.push("_");
+            }
+
+            const randomIndex = Math.floor(Math.random() * word.length);
+            scrambledWord[randomIndex] = word[randomIndex];
+
+            scrambledWords.push(scrambledWord.join(""));
+        }
+    }
+    
+    userData[userId] = scrambledWords;
+    fs.writeFileSync("temp.txt", JSON.stringify(userData));
+  
+    return scrambledWords;
+}
+
+function updateString(userId, originalStr, coins) {
+    const data = fs.readFileSync("temp.txt", "utf-8");
+  
+    let userStrings = {};
+    if (data) {
+      // If the file has content, parse the JSON data into an object
+      userStrings = JSON.parse(data);
+    }
+  
+    let hiddenStr = "";
+    if (userStrings[userId]) {
+      alreadybought = 1
+      if (coins < 1){
+          return
+      }
+      // If the user already has a string saved, retrieve it from the object
+      hiddenStr = userStrings[userId];
+  
+       // Find all the indices of underscores in the string
+       const hiddenIndices = [];
+       for (let i = 0; i < hiddenStr.length; i++) {
+         if (hiddenStr[i] === "_") {
+           hiddenIndices.push(i);
+         }
+       }
+   
+       // If there are no underscores left in the string, return the original string
+       if (hiddenIndices.length === 0) {
+         return `\`${originalStr}\``;
+       }
+  
+       // Generate a random index to choose an underscore to reveal
+       const randomIndex = Math.floor(Math.random() * hiddenIndices.length);
+       const hiddenIndex = hiddenIndices[randomIndex];
+   
+       // Replace the underscore with the corresponding letter from the original string
+       hiddenStr = hiddenStr.substring(0, hiddenIndex) + originalStr.charAt(hiddenIndex) + hiddenStr.substring(hiddenIndex + 1);
+    } else {
+      // If the user does not have a string saved, create a new string with the same length as the original string
+      alreadybought = 0
+      if(coins < 5){
+          return
+      }
+      hiddenStr = "_".repeat(originalStr.length);
+  
+      // Generate a random index to choose a letter to reveal
+      const randomIndex = Math.floor(Math.random() * originalStr.length);
+  
+      // Replace the underscore at the random index with the corresponding letter from the original string
+      hiddenStr = hiddenStr.substring(0, randomIndex) + originalStr.charAt(randomIndex) + hiddenStr.substring(randomIndex + 1);
+  
+      // Store the new string in the object
+      
+    }
+  
+    // Write the updated object back to the file
+    userStrings[userId] = hiddenStr;
+    fs.writeFileSync("temp.txt", JSON.stringify(userStrings));
+  
+    return `\`${hiddenStr}\``;
+  }
+  
+
+  function calculatefame(number){
+    let count = 0
+    let subtractor = 50
+
+    while (number >= subtractor){
+        
+        //console.log("Hi")
+        //console.log(number)
+        //console.log(subtractor)
+
+        
+        number -= subtractor
+        count++
+        if (count % 3 === 0 && count !== 0){
+            subtractor += 25
+        }
+        
+    }
+    //console.log(number)
+    //console.log(subtractor)
+
+    if (count === 0){
+        famenumber = ""
+        famelevel = 0
+    }else{
+    if (count % 3 ==0){
+        famelevel = count/3
+        famenumber = " III"
+    } else {
+    famelevel = Math.floor(count/3) + 1
+    }
+    
+    if (count % 3 === 1){
+        famenumber = " I"
+    } else if (count % 3 === 2){
+        famenumber = " II"
+    }
+    }
+
+    remaining = subtractor - number
+    famerank = fametiers[famelevel]  + famenumber
+    console.log([famerank, remaining, subtractor,famelevel])
+    return ([famerank,remaining,subtractor,famelevel])
+}
+
+async function saveDungeonAccount(account) {
+    
+    return new Promise(async(resolve, reject) => {
+        try{
+            const jsonString = JSON.stringify(account.toJSON());
+            filePath = "./saves/" + account.getId() + ".json" 
+            tempFilePath =  "./saves/" + account.getId() + "temp.json"
+            await fsp.writeFile(tempFilePath, jsonString, 'utf8')
+            await fsp.rename(tempFilePath, filePath)
+            console.log("SAVEFD ACCOUNT")
+            saveprofiles()
+            resolve()
+        } catch (err) {
+            console.log("There was an error in SaveAccount", err)
+            resolve()
+        }
+    })
+}
+
+async function loadDungeonAccount(filePath) {
+    return new Promise(async(resolve, reject) => {
+        try {
+            const jsonString = await fsp.readFile(filePath, 'utf8');
+            const jsonObject = JSON.parse(jsonString);
+            resolve(Account.fromJSON(jsonObject));
+        } catch (err) {
+            console.error('Error reading or parsing the file:', err);
+            reject(err);
+        }
+    })
+}
+
+async function saveDungeon(dungeon) {
+    return new Promise(async (resolve, reject) => {
+        try{
+            const jsonString = JSON.stringify(dungeon.toJSON());
+            filePath = "./saves/dungeon.json"
+            tempFilePath = "./saves/dungeontemp.json"
+            await fsp.writeFile(tempFilePath, jsonString, 'utf8')
+            await fsp.rename(tempFilePath, filePath)
+            console.log("SAVEFD duhngeon")
+            resolve()
+        } catch (err) {
+            console.log("There was an error in SaveDungeon", err)
+            resolve()
+        }
+
+    })
+}
+
+async function loadDungeon() {
+    return new Promise(async(resolve, reject) => {
+        try {
+            const jsonString = await fsp.readFile("./saves/dungeon.json", 'utf8');
+            const jsonObject = JSON.parse(jsonString);
+            resolve(Dungeon.fromJSON(jsonObject));
+        } catch (err) {
+            console.error('Error reading or parsing the file:', err);
+            reject(err);
+        }
+    })
+}
+
+async function saveShop(shop) {
+    return new Promise(async (resolve, reject) => {
+        try{
+            const jsonString = JSON.stringify(shop.toJSON());
+            filePath = "./saves/shop.json"
+            tempFilePath = "./saves/shoptemp.json"
+            await fsp.writeFile(tempFilePath, jsonString, 'utf8')
+            await fsp.rename(tempFilePath, filePath)
+            console.log("SAVEFD shop")
+            resolve()
+        } catch (err) {
+            console.log("There was an error in SaveShop", err)
+            resolve()
+        }
+
+    })
+}
+
+async function loadShop() {
+    return new Promise(async(resolve, reject) => {
+        try {
+            const jsonString = await fsp.readFile("./saves/shop.json", 'utf8');
+            const jsonObject = JSON.parse(jsonString);
+            resolve(Shop.fromJSON(jsonObject));
+        } catch (err) {
+            console.error('Error reading or parsing the file:', err);
+            reject(err);
+        }
+    })
+}
