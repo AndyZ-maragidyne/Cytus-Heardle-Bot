@@ -9,6 +9,7 @@ const { Shop } = require('./Dungeon/Shop.js')
 const { ShopItem } = require('./Dungeon/ShopItem.js')
 const { Dungeon } = require('./Dungeon/Dungeon.js')
 const { DungeonRoom } = require('./Dungeon/DungeonRoom.js')
+require('dotenv').config();
 
 const { Client, Intents, Attachment, MessageCollector, Interaction, MessageEmbed, MessageActionRow, MessageSelectMenu, MessageButton, Modal, TextInputComponent, showModal } = require('discord.js');
 const { generateDependencyReport } = require('@discordjs/voice');
@@ -50,8 +51,8 @@ const CLIENT_ID = 965925868436353064
 //ffmpeg.setFfmpegPath("C://Users/Minec/Desktop/ffmpeg/ffmpeg/bin/ffmpeg.exe");
 const songcorrection = ["hi","alternapt1","sound", "carefreecloudy", "revelation", "paradigm", "binary", "familylove", "stillpianoversion", "dawnreimei", "bastet", "legacy2", "breathofthecity", "newworld2", "luckyorb", "magicalmusic", "moonwestriver", "luckyorb3r2remix", "ultimatefeat", "threelights", "yokairecord", "goaheadkunoichi", "leafygreen", "decisivebattle", "drifting", "thewindsvoice", "onesipstwosips", "lira", "reincarnation"]
 const fametiers = ["NONE","PAFF","Neko#ΦωΦ","ROBO_Head","Xenon","ConneR","Cherry","JOE","Aroma","Nora","Neko","Ivy","Miku","Crystal PuNK","Sagar","Rin","Vanessa","Kizuna AI","Bo Bo","Alice","Hans","Graff. J","Amiya","Kaff","Ilka"]
-CytusHearldeBotTESTtoken = ''
-CytusHeardleBottoken = ''
+CytusHearldeBotTESTtoken = process.env.CYTUS_BOT_TEST_TOKEN;
+CytusHeardleBottoken = process.env.CYTUS_BOT_TOKEN;
 CytusHeardleChannelID = '958518859072172132' //this one
 CytusHeardleWareHouseID = '965929751560736808'
 CytusHeardleLiveTestID = '1039741662861205585'
@@ -16972,7 +16973,7 @@ client.on('messageCreate', async (message)=>{
     }
 })
 
-client.login('');
+client.login(currentBotToken);
 //main();
 
 
