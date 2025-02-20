@@ -1,4 +1,4 @@
-# Cytus Hearlde Discord Bot
+# Cytus Heardle Discord Bot
 
 This is a discord bot that has two major functionalities:
 
