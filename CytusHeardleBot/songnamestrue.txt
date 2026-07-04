@@ -96,7 +96,7 @@ devillicsphere=devillicsphere=Devillic Sphere=ROBO_Head=13
 purepowerstomper=purepowerstomper=Pure Powerstomper=ROBO_Head=13
 celestialsounds=celestialsounds=Celestial Sounds=ROBO_Head=14
 grimoireofcrimson=grimoireofcrimson=Grimoire of Crimson=ROBO_Head=11
-dasein=dasein=Daesin=ROBO_Head=13
+dasein=dasein=Dasein=ROBO_Head=13
 chaos=chaos=CHAOS=ROBO_Head=14
 ember=ember=EMber=ROBO_Head=13
 midnight=midnight=Midnight=ROBO_Head=13
@@ -587,3 +587,90 @@ lastresort=lastresort=LAST Re;SØRT=Graff.J=15
 nebulatraveller=nebulatraveller=Nebula Traveller=Graff.J=12
 redshift=redshift=RE:dshift=Graff.J=13
 demoncore=demoncore=Demon Core=Graff.J=11
+worldcall=worldcall=WORLDCALL=Graff.J=13+
+chase=chase=Chase=Graff.J=13
+restrictedaccess=restrictedaccess=Restricted Access=Graff.J=15
+forgottenasteroid=forgottenasteroid=Forgotten Asteroid=Graff.J=14+
+rebootedmind=rebootedmind=Rebooted Mind=Graff.J=14+
+artificialexistence=artificialexistence=Artificial Existence=Graff.J=12
+awakeninruins=awakeninruins=Awaken in Ruins=Graff.J=13
+finalfarewell=finalfarewell=Final Farewell=Graff.J=14
+cyberneticvampire=cyberneticvampire=Cybernetic Vampire=Graff.J=14+
+prayersforthecolourless=prayersforthecolourless=Prayers for the Colourless=Graff.J=15+
+highlight=highlight=Highlight=Miku=10
+plaything=plaything=Plaything=Miku=11+
+parousia=parousia=Parousia=Ivy=13+
+imaginarylovestory=imaginarylovestory=Imaginary love story=Miku=14
+intergalacticbound=intergalacticbound=Intergalactic Bound=Miku=13+
+magicalcureloveshot=magicalcureloveshot=M@GICAL☆CURE! LOVE♥SHOT!=Miku=13
+mikufiesta=mikufiesta=Miku Fiesta=Miku=12+
+thousandlittlevoices=thousandlittlevoices=Thousand Little Voices=Miku=11+
+lunaticircuit=lunaticircuit=LUNATiC CiRCUiT=Graff.J=15+
+synthesis=synthesis=Synthesis.=Graff.J=15+
+cosmicfanfare=cosmicfanfare=コズミックファンファーレ!!!! (COSMiC FANFARE!!!!)=Graff.J=15+
+nyaventure=nyaventure=Nya☆ばんちゅーる (Nya☆venture)=Graff.J=15+
+interstellarbeliever=interstellarbeliever=#Interstellar_Believer=Graff.J=15
+stillstandinghere=stillstandinghere=Still Standing Here=NEKO#ΦωΦ=12+
+devestationcode=devestationcode=DEVESTATION;CODE=NEKO#ΦωΦ=13+
+ghosthvck=ghosthvck=GHOSTHVCK=NEKO#ΦωΦ=13+
+astralparadox=astralparadox=Astral Paradox=NEKO#ΦωΦ=15
+evilintention=evilintention=Evil Intention=NEKO#ΦωΦ=13+
+driveimpact=driveimpact=Drive Impact=NEKO#ΦωΦ=13
+midnightmirage=midnightmirage=Midnight Mirage=NEKO#ΦωΦ=12
+phantomblossom=phantomblossom=Phantom Blossom=NEKO#ΦωΦ=13
+transcendedlove=transcendedlove=Transcended Love=NEKO#ΦωΦ=14+
+glaringeyes=glaringeyes=Glaring Eyes=NEKO#ΦωΦ=14
+thewindofsummer=thewindofsummer=The Wind Of Summer=Graff.J=14
+summerlove=summerlove=summer love=Graff.J=11
+showcase=showcase=Showcase=ROBO_Head=14+
+digitalpunk=digitalpunk=digitAI pun[K]=ROBO_Head=15
+bringmeback=bringmeback=Bring Me Back=NEKO#ΦωΦ=14
+cloudrider=cloudrider=Cloud Rider=NEKO#ΦωΦ=12
+fracture=fracture=Fracture (Cytus II Edit)=NEKO#ΦωΦ=10+
+keeptrying=keeptrying=Keep Trying (Cytus II Edit)=NEKO#ΦωΦ=14
+control=control=Control=NEKO#ΦωΦ=13+
+nadir=nadir=Nadir=Ivy=12+
+saudade=saudade=Saudade (Short Version)=Ivy=13
+feelmylove=feelmylove=Feel My Love=Graff.J=12
+hakumeiinthehill=hakumeiinthehill=Hakumei in the Hill=Graff.J=12+
+changeeverything=changeeverything=Change Everything=PAFF=13+
+lemonadefizz=lemonadefizz=Lemonade Fizz=PAFF=11+
+losingmymind=losingmymind=Losing My Mind=PAFF=12
+amethyst=amethyst=amethyst=Graff.J=14
+deusjudicium=deusjudicium=Deus Judicium=Graff.J=14+
+mvurbd=mvurbd=MVURBD=Graff.J=14
+secretplanet=secretplanet=シークレット・プラネット (Secret Planet)=Graff.J=13
+uchronia=uchronia=Uchronia=Graff.J=12
+suito=suito=翠杜 (Suito)=Graff.J=14+
+battleno1=battleno1=BATTLE NO.1=NEKO#ΦωΦ=15
+bigdaddy=bigdaddy=Big Daddy=NEKO#ΦωΦ=15
+sigma=sigma=Σ=NEKO#ΦωΦ=15+
+leaveallbehind=leaveallbehind=Leave All Behind=Graff.J=12+
+luminescence=luminescence=Luminescence=Graff.J=13
+distortedfate=distortedfate=Distorted Fate=Graff.J=14
+igallta=igallta=Igallta=Graff.J=14+
+rrharil=rrharil=Rrhar'il=Graff.J=15
+thechariotrevival=thechariotrevival=The Chariot ~REVIIVAL~=Graff.J=14
+sincerely=sincerely=Sincerely=Graff.J=10
+tutti=tutti=トゥッティ！ (Tutti!)=Graff.J=14
+godknows=godknows=God knows...=Graff.J=13+
+likeflames=likeflames=Like Flames=Graff.J=13
+deercoloreddays=deercoloreddays=シカ色デイズ (Deer-Colored Days)=Graff.J=13
+zodiacofseabed=zodiacofseabed=溟海のzodiac (Zodiac of Seabed)=Ivy=13
+arkhe=arkhe=Λrkhe (Game Edit.)=Ivy=14
+pickyourpoison=pickyourpoison=Pick your poison!=Graff.J=15
+ambivalentnotes=ambivalentnotes=アンビバレンツ・ノート (Ambivalent Notes)=Graff.J=14+
+forgottenforesthaven=forgottenforesthaven=森奥虚跡 (Forgotten Forest Haven)=Bo Bo=13+
+stardustraveler=stardustraveler=スターダストラベラー☆彡 (Stardust Traveler)=NEKO#ΦωΦ=15
+witheringpetals=witheringpetals=Withering Petals=NEKO#ΦωΦ=14+
+maybe=maybe=かもね (Maybe)=Kizuna AI=12
+mix=mix=まざる (Mix)=Kizuna AI=11+
+whitebalance=whitebalance=ホワイトバランス (White Balance)=Kizuna AI=11+
+handsign=handsign=ハンドサイン (Hand Sign)=Kizuna AI=13
+spell=spell=おまじない (Spell)=Kizuna AI=12
+neo=neo=NEO=Graff.J=12+
+kashika=kashika=仮死化 (Kashika)=Graff.J=12
+loweroneseyes=loweroneseyes=ロウワー (Lower one's eyes)=Graff.J=12+
+stella=stella=ステラ (Stella)=Graff.J=14
+killer=killer=キラー (KILLER)=Graff.J=13+
+tondemowonderz=tondemowonderz=トンデモワンダーズ (Tondemo-Wonderz)=14

@@ -450,3 +450,35 @@ endofthemoonlight=endofthemoonlight=End of the Moonlight=Graff.J=14
 hellopinky=hellopinky=Hello Pinky=Graff.J=12
 nightmare=nightmare=Nightmare=Graff.J=15
 uad=uad=U.A.D=Graff.J=12
+highlight=highlight=Highlight=Miku=10
+plaything=plaything=Plaything=Miku=11+
+parousia=parousia=Parousia=Ivy=13+
+imaginarylovestory=imaginarylovestory=Imaginary love story=Miku=14
+intergalacticbound=intergalacticbound=Intergalactic Bound=Miku=13+
+magicalcureloveshot=magicalcureloveshot=M@GICAL☆CURE! LOVE♥SHOT!=Miku=13
+mikufiesta=mikufiesta=Miku Fiesta=Miku=12+
+thousandlittlevoices=thousandlittlevoices=Thousand Little Voices=Miku=11+
+lunaticircuit=lunaticircuit=LUNATiC CiRCUiT=Graff.J=15+
+synthesis=synthesis=Synthesis.=Graff.J=15+
+cosmicfanfare=cosmicfanfare=コズミックファンファーレ!!!! (COSMiC FANFARE!!!!)=Graff.J=15+
+nyaventure=nyaventure=Nya☆ばんちゅーる (Nya☆venture)=Graff.J=15+
+interstellarbeliever=interstellarbeliever=#Interstellar_Believer=Graff.J=15
+thewindofsummer=thewindofsummer=The Wind Of Summer=Graff.J=14
+summerlove=summerlove=summer love=Graff.J=11
+showcase=showcase=Showcase=ROBO_Head=14+
+digitalpunk=digitalpunk=digitAI pun[K]=ROBO_Head=15
+nadir=nadir=Nadir=Ivy=12+
+saudade=saudade=Saudade (Short Version)=Ivy=13
+amethyst=amethyst=amethyst=Graff.J=14
+battleno1=battleno1=BATTLE NO.1=NEKO#ΦωΦ=15
+bigdaddy=bigdaddy=Big Daddy=NEKO#ΦωΦ=15
+sigma=sigma=Σ=NEKO#ΦωΦ=15+
+leaveallbehind=leaveallbehind=Leave All Behind=Graff.J=12+
+stardustraveler=stardustraveler=スターダストラベラー☆彡 (Stardust Traveler)=NEKO#ΦωΦ=15
+witheringpetals=witheringpetals=Withering Petals=NEKO#ΦωΦ=14+
+neo=neo=NEO=Graff.J=12+
+kashika=kashika=仮死化 (Kashika)=Graff.J=12
+loweroneseyes=loweroneseyes=ロウワー (Lower one's eyes)=Graff.J=12+
+stella=stella=ステラ (Stella)=Graff.J=14
+killer=killer=キラー (KILLER)=Graff.J=13+
+tondemowonderz=tondemowonderz=トンデモワンダーズ (Tondemo-Wonderz)=14

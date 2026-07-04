@@ -6467,7 +6467,33 @@ client.on('interactionCreate', async interaction => {
                 }
                 tycoonGameOngoing = false;
                 break;
-           
+            case 'daily':
+                //Get 3 random cytus songs, 1 for MM, 1 for TP, 1 for Master mode, 
+                let song1 = await randomCytusSong()
+                let range = Math.floor(Math.random() * 1000001)
+                if (Math.random() > 0.5) {
+                    range = 1000000
+                }
+                let outputString2 = "# **Do your Cytus Dailies!!!!**:\n"
+                outputString2 += "`Score challenge`: Clear **" + song1 + "** with at least a score of **" + range + "**\n"
+                let tp = Math.floor(Math.random()*10001) /100
+                let song2 = await randomCytusSong()
+                outputString2 += "`TP Challenge`: Clear **" + song2 + "** with at least **" + tp + "%TP**\n"
+                let mtp = Math.floor(Math.random()*10001) /100
+                let song3 = await randomCytusSong()
+                outputString2 += "`Max Master Challenge`: Clear **" + song3 + "** with at least **" + mtp + "%MasterTP**\n"
+                let pvp1 = await randomCytusSong()
+                let pvp2 = await randomCytusSong()
+                let pvp3 = await randomCytusSong()
+                let pvp4 = await randomCytusSong()
+                let pvp5 = await randomCytusSong()
+                outputString2 += "`PVP Challenge (Optional)`: Play a Cytus 1v1 with these maps:\n"
+                outputString2 += "- " + pvp1 + "\n"
+                outputString2 += "- " + pvp2 + "\n"
+                outputString2 += "- " + pvp3 + "\n"
+                outputString2 += "- " + pvp4 + "\n"
+                outputString2 += "- " + pvp5 + "\n"
+                interaction.reply(outputString2)
         }
         } catch (error) {
             console.log(error)  
@@ -6647,7 +6673,8 @@ client.on('messageCreate', async (message)=>{
 
     switch(args[0]){
     case 'test':
-        console.log(paffsongs);
+        let song = await randomCytusSong()
+        console.log(song)
         break;
     case 'n':
         generateNewHeardle();
@@ -8011,6 +8038,10 @@ const registerSlashCommands = async () => {
             ]
     
         },
+        {
+            name: 'daily',
+            description: 'Do your Cytus Dailies'
+        },
         //Add more commands here
     ];
 
@@ -8673,4 +8704,30 @@ function compareCards(str1, str2) {
     if (index1 < index2)
         return true;
     return false;
+}
+
+function randomCytusSong() {
+    return new Promise((resolve, reject) => {
+        fs.readFile("songnames.txt", "utf-8", function(err, data){
+            if(err) {
+                throw err;
+            }
+
+            // note: this assumes `data` is a string - you may need
+            //       to coerce it - see the comments for an approach
+            var lines = data.split('\n');
+            
+            //while(ready == 0){
+            // choose one of the lines...
+            var line = lines[Math.floor(Math.random()*lines.length)]
+
+
+            //line = line.substring(0,line.length-1)
+
+            line = line.split('=')
+            //console.log(line)
+            playsong = line[2]
+            resolve(playsong)
+        })
+    })
 }
