@@ -1488,12 +1488,12 @@ function generateNewHeardle() {
 
         async function processAllFragmentedVideos() {
             try{
-                await processFragmentedVideo("./songlist/" + songname + '.mp4', "1.mp4", isreverse, duration1, 1)
-                await processFragmentedVideo("./songlist/" + songname + '.mp4', "2.mp4", isreverse, duration2, 2)
-                await processFragmentedVideo("./songlist/" + songname + '.mp4', "3.mp4", isreverse, duration3, 4)
-                await processFragmentedVideo("./songlist/" + songname + '.mp4', "4.mp4", isreverse, duration4, 7)
-                await processFragmentedVideo("./songlist/" + songname + '.mp4', "5.mp4", isreverse, duration5, 11)
-                await processFragmentedVideo("./songlist/" + songname + '.mp4', "6.mp4", isreverse, duration6, 16)
+                await processFragmentedVideo("./songlist/" + songname + '.mp4', levelDirectory + (heardlenumber + 1) +"-1.mp4", isreverse, duration1, 1)
+                await processFragmentedVideo("./songlist/" + songname + '.mp4', levelDirectory + (heardlenumber + 1) +"-2.mp4", isreverse, duration2, 2)
+                await processFragmentedVideo("./songlist/" + songname + '.mp4', levelDirectory + (heardlenumber + 1) +"-3.mp4", isreverse, duration3, 4)
+                await processFragmentedVideo("./songlist/" + songname + '.mp4', levelDirectory + (heardlenumber + 1) +"-4.mp4", isreverse, duration4, 7)
+                await processFragmentedVideo("./songlist/" + songname + '.mp4', levelDirectory + (heardlenumber + 1) +"-5.mp4", isreverse, duration5, 11)
+                await processFragmentedVideo("./songlist/" + songname + '.mp4', levelDirectory + (heardlenumber + 1) +"-6.mp4", isreverse, duration6, 16)
             
                 console.log('Processing done!\nThe Cytus Heardle number is ' + (heardlenumber + 1))
                 finishUpProcessing();

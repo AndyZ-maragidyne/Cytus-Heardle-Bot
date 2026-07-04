@@ -40,6 +40,7 @@ const { REST } = require('@discordjs/rest');
 const axios = require('axios');
 const { Routes } = require('discord-api-types/v9');
 const { InteractionType } = require('discord-api-types/v10');
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 const client = new Client({ 
     intents: [
@@ -58,12 +59,20 @@ const CLIENT_ID = 965925868436353064
 
 //ffmpeg.setFfmpegPath("C://Users/Minec/Desktop/ffmpeg/ffmpeg/bin/ffmpeg.exe");
 blacklistedChannels = ["1310332415088132150", "1311476063804592230", "1312522788904636517", "1317913738766188664"];
-whitelistedUsers = ["412950175342919680", "620074662994640926", "586663270144933895", "798958594116419604"]
+aannzdyID = "412950175342919680"
+tree69420ID = "798958594116419604"
+carrymeplzID = "1253700750018744450"
+arrowheadID = "586164755560136707"
+epicgamerID = "584364636179267595"
+ethoID = "586663270144933895"
+owenID = "719238680568397826"
+zznnaydID = "620074662994640926"
+whitelistedUsers = [aannzdyID, tree69420ID, carrymeplzID, arrowheadID, epicgamerID, ethoID, zznnaydID, owenID]
 const songcorrection = ["hi","alternapt1","sound", "carefreecloudy", "revelation", "paradigm", "binary", "familylove", "stillpianoversion", "dawnreimei", "bastet", "legacy2", "breathofthecity", "newworld2", "luckyorb", "magicalmusic", "moonwestriver", "luckyorb3r2remix", "ultimatefeat", "threelights", "yokairecord", "goaheadkunoichi", "leafygreen", "decisivebattle", "drifting", "thewindsvoice", "onesipstwosips", "lira", "reincarnation"]
 const fametiers = ["NONE","PAFF","Neko#ΦωΦ","ROBO_Head","Xenon","ConneR","Cherry","JOE","Aroma","Nora","Neko","Ivy","Miku","Crystal PuNK","Sagar","Rin","Vanessa","Kizuna AI","Bo Bo","Alice","Hans","Graff. J","Amiya","Kaff","Ilka"]
 CytusHeardleBotTESTtoken = process.env.CYTUS_BOT_TEST_TOKEN
 CytusHeardleBotTEST2token = process.env.CYTUS_BOT_TEST_TWO_TOKEN
-CytusHeardleBottoken = process.env.CYTUS_BOT_TOKEN_PUBLIC //this one (public version of the bot)
+CytusHeardlePublicBottoken = process.env.CYTUS_BOT_TOKEN_PUBLIC //this one (public version of the bot)
 CytusHeardleBottoken = process.env.CYTUS_BOT_TOKEN; //Cytus Heardle Deluxe
 CytusHeardleChannelID = '958518859072172132' //this one (in video call)
 CytusHeardleWareHouseID = '965929751560736808'
@@ -72,13 +81,13 @@ CytusHeardleScoresChannelID = '958534665214521366'
 CytusHeardleServerScoresChannelID = '1311476063804592230'
 GeneralChannelID = '584420631324524557'
 CytusHeardleServerID = '1310332415088132147'
-Hehehebutinreallife = '945034814489239683'
-Hehehe = '910327131857358909'
-gemz = '955971112431419422'
-tick = '950613255645171762'
+Hehehebutinreallife = '<:hehehebutinreallife:945034814489239683>'
+Hehehe = '<:Miku:910327131857358909>'
+gemz = '<:Gemz:955971112431419422>'
+tick = '<:tick:950613255645171762>'
 //MillionMaster = '640720107475042314'
-projectDivaMiku = '1216851993784619079'
-angryMiku = '1216532048840364182'
+projectDivaMiku = '<:othermikuemoji:1216851993784619079>'
+angryMiku = '<:mikuemoji:1216532048840364182>'
 const MillionMaster = "<:MillionMaster:1311354203809251398>";
 const ScoreS = "<:SScore:1310336830939598901>";
 const ScoreA = "<:AScore:1310336650882322482>";
@@ -116,24 +125,21 @@ if (currentBotMode == 'test') {
     currentBotToken = CytusHeardleBotTESTtoken
     currentApplicationID = CytusHeardleBotTESTApplicationID
     currentScoresChannel = CytusHeardleWareHouseID
-    levelDirectory = "./level/"
-    savesDirectory = "./saves/"
 } else if (currentBotMode == 'test2') {
     currentBotToken = CytusHeardleBotTEST2token
     currentApplicationID = CytusHeardleBotTEST2ApplicationID
     currentScoresChannel = CytusHeardleWareHouseID
-    levelDirectory = "./level/"
-    savesDirectory = "./saves/"
 } else if (currentBotMode == 'deluxe') {
-    currentBotToken = CytusHeardleDeluxeBottoken
+    currentBotToken = CytusHeardleBottoken
     currentApplicationID = CytusHeardleBotDeluxeApplicationID
     currentScoresChannel = CytusHeardleScoresChannelID
+    VideoCallSendChannelID = CytusHeardleChannelID
 } else {
-    currentBotToken = CytusHeardleBottoken
+    currentBotToken = CytusHeardlePublicBottoken
     currentApplicationID = CytusHeardleBotApplicationID
     currentScoresChannel = CytusHeardleServerScoresChannelID
+    VideoCallSendChannelID = CytusHeardleChannelID
 }
-
 
 paffsongs = [['PAFF Songs:\n', '']]
 nekosongs = [["NEKO #ΦωΦ Songs:\n", '']]
@@ -162,6 +168,10 @@ norasongs = [["Nora Songs:\n", '']]
 youngnekosongs = [["Neko Songs:\n", '']]
 nekoiisongs = [["NEKO_II songs:\n", '']]
 othersongs = [["other songs (this is here in case I mess up):\n", '']];
+
+
+
+
 class Player {
     constructor(id, lastHeardle, score, video, alreadyGuessed, lives, numCorrect, finished, usingCommand){
         this.id = id
@@ -1063,10 +1073,14 @@ async function saveAccount(account) {
 }
 
 async function loadAccount(filePath) {
-    return new Promise(async(resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         try {
+            // First, check if the file exists
+            await fsp.access(filePath);
+
+            // Now wait for it to be ready
             while (!await isFileReady(filePath)) {
-                await new Promise(res => setTimeout(res, 100)); // Poll every 100ms.
+                await new Promise(res => setTimeout(res, 100)); // Poll every 100ms
             }
 
             const jsonString = await fsp.readFile(filePath, 'utf8');
@@ -1076,7 +1090,7 @@ async function loadAccount(filePath) {
             console.error('There was an error in loadAccount', err);
             reject(err);
         }
-    })
+    });
 }
 
 async function isFileReady(filePath) {
@@ -1239,8 +1253,20 @@ async function processGuess(guess, answers){
 
 //loadprofiles()
 
+const tycoonDeck = ["ah","2h","3h","4h","5h", "6h", "7h", "8h", "9h", "th", "jh", "qh", "kh", "ac", "2c", "3c", "4c", "5c", "6c", "7c", "8c", "9c", "tc", "jc", "qc", "kc", "as", "2s", "3s", "4s", "5s", "6s", "7s", "8s", "9s", "ts", "js", "qs", "ks", "ad", "2d", "3d", "4d", "5d", "6d", "7d", "8d", "9d", "td", "jd", "qd", "kd", "w1", "w2"];
+let hands = [[],[],[],[]];
+let scores = [0,0,0,0] //maybe make playing the game give capso coins lol
+let reorderedPlayers;
+let tycoonGameOngoing = false;
 
-
+let tierListS = {};
+let tierListA = {};
+let tierListB = {};
+let tierListC = {};
+let tierListD = {};
+let tierListF = {};
+let tierList = [tierListS, tierListA, tierListB, tierListC, tierListD, tierListF];
+loadtierlist();
 
 const prefix = '-';
 const debugprefix = '+';
@@ -1251,17 +1277,17 @@ client.once('ready', () => {
     console.log("Cytus Heardle Bot is online!");
     client.user.setActivity('Cytus Heardle', {type: "PLAYING"})
     //minute, hour, day of the month, month, day of the week
-    schedule.scheduleJob('0 4 * * *', async () => {
-        try{ 
-        generateNewHeardle();
-        setTimeout(() => {
-            checkIfCompleted(0);
-        }, 600000);
-        } catch (error) {
-            checkIfCompleted(0);
-        }
+    // schedule.scheduleJob('0 4 * * *', async () => {
+    //     try{ 
+    //     generateNewHeardle();
+    //     setTimeout(() => {
+    //         checkIfCompleted(0);
+    //     }, 600000);
+    //     } catch (error) {
+    //         checkIfCompleted(0);
+    //     }
         
-    });
+    // });
 });
 
 function checkIfCompleted(retryCounter) {
@@ -1357,6 +1383,15 @@ newCytusHeardle = false
 currentlyGeneratingHeardle = false;
 startupTimestamp = Math.floor(Date.now() / 60000);
 let validanswers = []
+//song queue for playing songs in voice channels
+const songQueue = new Map();
+//upload json file to keep track of uploaded songs
+const uploadDataPath = path.join(__dirname, 'uploads.json');
+let userUploads = {};
+
+if (fs.existsSync(uploadDataPath)) {
+    userUploads = JSON.parse(fs.readFileSync(uploadDataPath));
+}
 startupFunction()
 getheardlenumber()
 loadSongLists("./songnamestrue.txt")
@@ -1425,7 +1460,7 @@ function generateNewHeardle() {
     }
     
     random = Math.random()*100
-    //random = 100
+    //random = 1
     console.log("random number for Duo is = " + random)
     if (random <= 10){
         isduo = true
@@ -1447,7 +1482,7 @@ function generateNewHeardle() {
         isscrambled = true
     }
     random = Math.random()*100
-   // random = 100
+    //random = 100
     console.log("random number for Hard Mode = " + random)
     if (random <= 15){
         ishardmode = true
@@ -1906,15 +1941,15 @@ function generateNewHeardle() {
             await processvideo('./songlist/'+songname2+'.mp4', '6b.mp4', isreverse, starttime2 + duration5, (duration6 - duration5)/2)
             await combinevideo('./1a.mp4', './1b.mp4', levelDirectory + (heardlenumber + 1) +"-1.mp4")
             await combinevideo('./2a.mp4', './2b.mp4', './2c.mp4')
-            await combinevideo('./1.mp4', './2c.mp4', levelDirectory + (heardlenumber + 1) +"-2.mp4")
+            await combinevideo(levelDirectory + (heardlenumber + 1) +"-1.mp4", './2c.mp4', levelDirectory + (heardlenumber + 1) +"-2.mp4")
             await combinevideo('./3a.mp4', './3b.mp4', './3c.mp4')
-            await combinevideo('./2.mp4', './3c.mp4', levelDirectory + (heardlenumber + 1) +"-3.mp4")
+            await combinevideo(levelDirectory + (heardlenumber + 1) +"-2.mp4", './3c.mp4', levelDirectory + (heardlenumber + 1) +"-3.mp4")
             await combinevideo('./4a.mp4', './4b.mp4', './4c.mp4')
-            await combinevideo('./3.mp4', './4c.mp4', levelDirectory + (heardlenumber + 1) +"-4.mp4")
+            await combinevideo(levelDirectory + (heardlenumber + 1) +"-3.mp4", './4c.mp4', levelDirectory + (heardlenumber + 1) +"-4.mp4")
             await combinevideo('./5a.mp4', './5b.mp4', './5c.mp4')
-            await combinevideo('./4.mp4', './5c.mp4', levelDirectory + (heardlenumber + 1) +"-5.mp4")
+            await combinevideo(levelDirectory + (heardlenumber + 1) +"-4.mp4", './5c.mp4', levelDirectory + (heardlenumber + 1) +"-5.mp4")
             await combinevideo('./6a.mp4', './6b.mp4', './6c.mp4')
-            await combinevideo('./5.mp4', './6c.mp4', levelDirectory + (heardlenumber + 1) +"-6.mp4")
+            await combinevideo(levelDirectory + (heardlenumber + 1) +"-5.mp4", './6c.mp4', levelDirectory + (heardlenumber + 1) +"-6.mp4")
             console.log("processing done lets go I think")
             }  catch (error){
                 console.error(error);
@@ -2433,7 +2468,8 @@ function generateNewHeardle() {
         await increasenumber()
         currentlyGeneratingHeardle = false;
         title = modifier + "Cytus Heardle #" + heardlenumber + ":"
-        client.channels.cache.get(currentScoresChannel).send("Cytus Heardle #" + heardlenumber + " has been generated!") 
+        //client.channels.cache.get(currentScoresChannel).send("Cytus Heardle #" + heardlenumber + " has been generated!") 
+        sendVideosToVideoCallChannel()
         cooldownprocess()
         
         storeCytusHeardleInfo("CurrentCytusHeardleInfo.json")
@@ -2444,7 +2480,105 @@ function generateNewHeardle() {
     
 }
 
+async function sendVideosToVideoCallChannel(){
+    if (starttime == 0){
+        //gamemode = "solo"
+        //modifier = ""
+    }
+    newanswer = songname
+    displayedanswer = realname
+    console.log("The song about to be sent is called: " + songname + " or " + realname)
+    function getminutesandseconds(starttime){
+        minutes = 0
+        if (starttime > 60){
+            starttime = starttime -60
+            minutes = minutes + 1
+            if (starttime > 60){
+                starttime = starttime -60
+                minutes = minutes + 1
+                if (starttime > 60){
+                    starttime = starttime -60
+                    minutes = minutes + 1
+                    if (starttime > 60){
+                        starttime = starttime -60
+                        minutes = minutes + 1
+                        if (starttime > 60){
+                            starttime = starttime -60
+                            minutes = minutes + 1
+                            if (starttime > 60){
+                                starttime = starttime -60
+                                minutes = minutes + 1
+                                if (starttime > 60){
+                                    starttime = starttime -60
+                                    minutes = minutes + 1
+                                } 
+                            } 
+                        } 
+                    } 
+                } 
+            } 
+        } 
+        seconds = Math.trunc(starttime)
+        //console.log("seconds = " + seconds)
+        if (seconds == "1" || seconds == "2" || seconds == "3" || seconds == "4" || seconds == "5" || seconds == "6" || seconds == "7" || seconds == "8" || seconds == "9" || seconds == "0"){
+            scrambledtime = " (" + minutes + ":0" + seconds + ")"
+        }else{
+            scrambledtime = " (" + minutes + ":" + seconds + ")"
+        }
+        //console.log(displayedanswer)
+        return scrambledtime
+    }
+    if(ischromatic){
+        if(isscrambled){
+        timestamp1 = getminutesandseconds(starttime1)
+        timestamp2 = getminutesandseconds(starttime2)
+        timestamp3 = getminutesandseconds(starttime3)
+        timestamp4 = getminutesandseconds(starttime4)
+        timestamp5 = getminutesandseconds(starttime5)
+        timestamp6 = getminutesandseconds(starttime6)
+        sleep(500).then(() =>{displayedanswer = realname1 + timestamp1 + " & " + realname2 + timestamp2 + " & " + realname3 + timestamp3 + " & " + realname4 + timestamp4 + " & " + realname5 + timestamp5 + " & " + realname6 + timestamp6})
+        }else{
+            displayedanswer = realname1 + " & " + realname2 + " & " + realname3 + " & " + realname4 + " & " + realname5 + " & " + realname6
+        }
 
+    }else if (isduo){
+        if (isscrambled){
+            timestamp1 = getminutesandseconds(starttime1)
+            timestamp2 = getminutesandseconds(starttime2)
+            sleep(500).then(() =>{displayedanswer = realname1 + timestamp1 + " & " + realname2 + timestamp2})
+        }else{
+          displayedanswer = realname1 + " & " + realname2  
+        }
+    } else if (isquad) {
+        if (isscrambled) {
+            timestamp1 = getminutesandseconds(starttime1)
+            timestamp2 = getminutesandseconds(starttime2)
+            timestamp3 = getminutesandseconds(starttime3)
+            timestamp4 = getminutesandseconds(starttime4)
+            sleep(500).then(() =>{displayedanswer = realname1 + timestamp1 + " & " + realname2 + timestamp2 + " & " + realname3 + timestamp3 + " & " + realname4 + timestamp4})
+        } else {
+            displayedanswer = realname1 + " & " + realname2 + " & " + realname3 + " & " + realname4  
+        }
+    }else if (isscrambled){
+        timestamp = getminutesandseconds(starttime)
+        displayedanswer = displayedanswer + timestamp
+    }
+    numofspaces = Math.random()*75 + 25
+    numofspaces = Math.trunc(numofspaces)
+    space = ""
+    for (i=0;i<numofspaces;i++){
+        space = space + " "
+    }
+    channelid = CytusHeardleChannelID
+    sleep(10).then(() => {client.channels.cache.get(channelid).send(modifier + "Cytus Heardle #" + (heardlenumber + 651) + ":")})
+    sleep(1000).then(() => {client.channels.cache.get(channelid).send({files: [levelDirectory + (heardlenumber) +"-1.mp4"]}) })
+    sleep(2000).then(() => {client.channels.cache.get(channelid).send({files: [levelDirectory + (heardlenumber) +"-2.mp4"]}) })
+    sleep(3000).then(() => {client.channels.cache.get(channelid).send({files: [levelDirectory + (heardlenumber) +"-3.mp4"]}) })
+    sleep(4000).then(() => {client.channels.cache.get(channelid).send({files: [levelDirectory + (heardlenumber) +"-4.mp4"]}) })
+    sleep(5000).then(() => {client.channels.cache.get(channelid).send({files: [levelDirectory + (heardlenumber) +"-5.mp4"]}) })
+    sleep(6000).then(() => {client.channels.cache.get(channelid).send({files: [levelDirectory + (heardlenumber) +"-6.mp4"]}) })
+    sleep(10000).then(() => { client.channels.cache.get(channelid).send("Answer: ||" + displayedanswer + space + "||") })
+}
 
 
 
@@ -2557,6 +2691,42 @@ function translateScore(score, lisnormal, lischromatic, lisduo, lisquad) {
     return scoreStr;
 }
 
+function playSong(guildId) {
+    const serverQueue = songQueue.get(guildId);
+    if (!serverQueue || serverQueue.songs.length === 0) {
+        if (serverQueue?.connection) serverQueue.connection.destroy();
+        songQueue.delete(guildId);
+        return;
+    }
+
+    const filePath = serverQueue.songs[0];
+
+    try {
+        const resource = createAudioResource(filePath);
+        serverQueue.player.play(resource);
+
+        // Remove old listeners to prevent stacking
+        serverQueue.player.removeAllListeners(AudioPlayerStatus.Idle);
+        serverQueue.player.removeAllListeners('error');
+
+        serverQueue.player.once(AudioPlayerStatus.Idle, () => {
+            serverQueue.songs.shift(); // Remove the song that just finished
+            playSong(guildId); // Recursively play the next one
+        });
+
+        serverQueue.player.once('error', error => {
+            console.error(`Error: ${error.message}`);
+            serverQueue.songs.shift(); // Skip the problematic song
+            playSong(guildId);
+        });
+
+    } catch (err) {
+        console.error(`Caught error in playSong: ${err}`);
+        serverQueue.connection.destroy();
+        songQueue.delete(guildId);
+    }
+}
+
 client.on('interactionCreate', async interaction => {
 
     if (interaction.isCommand()){
@@ -2567,6 +2737,146 @@ client.on('interactionCreate', async interaction => {
             
             case 'ping':
                 await interaction.reply("Pingged");
+                break;
+            case 'tierlist':
+                let doReply = false;
+                if (interaction.options.getString("add")){
+                    if (!interaction.options.getString("tier")) {
+                        interaction.reply("Please enter a tier. Where the crap am I supposed to put it in")
+                        //handle error and exit and stuff
+                        return;
+                    }
+                    let letter = interaction.options.getString("tier")
+                    doReply = true
+                    switch (letter.at(0).toLowerCase()){
+                        case 's':
+                            tierListS[interaction.options.getString("add")] = true;
+                            break
+                        case 'a':
+                            tierListA[interaction.options.getString("add")] = true;
+                            break
+                        case 'b':
+                            tierListB[interaction.options.getString("add")] = true;
+                            break
+                        case 'c':
+                            tierListC[interaction.options.getString("add")] = true;
+                            break
+                        case 'd':
+                            tierListD[interaction.options.getString("add")] = true;
+                            break
+                        case 'f':
+                            tierListF[interaction.options.getString("add")] = true;
+                            break
+                        default:
+                            doReply = false
+                            interaction.reply("That is not a valid tier")
+                    }
+                }
+                else if (interaction.options.getString("remove")){
+                    let minDistance = Infinity;
+                    let minTier = -1;
+                    let minName = "";
+                    let restaurantName = interaction.options.getString("remove");
+
+                    const allTiers = [
+                        { id: 'S', obj: tierListS },
+                        { id: 'A', obj: tierListA },
+                        { id: 'B', obj: tierListB },
+                        { id: 'C', obj: tierListC },
+                        { id: 'D', obj: tierListD },
+                        { id: 'F', obj: tierListF }
+                    ];
+                    
+                    for (const tierData of allTiers) {
+                        for (const restName in tierData.obj) {
+                            levDist = getLevenshteinDistance(restaurantName, restName.toString());
+                            if (levDist < minDistance) {
+                                
+                                minDistance = levDist;
+                                minTier = tierData.id;
+                                minName = restName;
+                            }
+                        }
+                    }
+                    if (minName === "") {
+                        await interaction.reply("Cannot find that restaurant");
+                        return;
+                    }
+                    if (restaurantName.toLowerCase() == minName.toLowerCase()) {
+                        const targetTierObject = allTiers.find(t => t.id === minTier).obj;
+                        delete targetTierObject[minName];   
+
+                        await interaction.reply(`**${minName}** was removed from the tier list.`)
+
+                    } else {
+                        //check if the user wants to remove
+                        { 
+                            const row = new MessageActionRow()
+                                .addComponents(
+                                    new MessageButton()
+                                        .setCustomId('btn_accept')
+                                        .setLabel('Accept')
+                                        .setStyle('SUCCESS'), // v13 uses string styles ('SUCCESS', 'DANGER', 'PRIMARY', 'SECONDARY')
+                                    
+                                    new MessageButton()
+                                        .setCustomId('btn_decline')
+                                        .setLabel('Decline')
+                                        .setStyle('DANGER')
+                                );
+
+                            // 2. Send the reply with the components attached
+                            const response = await interaction.reply({
+                                content: `Are you sure you want to remove ${minName} from the tier list?`,
+                                components: [row],
+                                fetchReply: true // Required in v13 if you want to use a collector on the response
+                            });
+
+                            // Ensure only the user who triggered the command can click the buttons
+                            const collectorFilter = i => i.user.id === interaction.user.id;
+
+                            try {
+                                // Wait up to 60 seconds for the user to click a button
+                                const confirmation = await response.awaitMessageComponent({ 
+                                    filter: collectorFilter, 
+                                    time: 60000 
+                                });
+
+                                // Check which button was clicked via the customId
+                                if (confirmation.customId === 'btn_accept') {
+                                    const targetTierObject = allTiers.find(t => t.id === minTier).obj;
+                                    delete targetTierObject[minName];
+
+                                    await confirmation.update({ content: `${minName} was removed from the tier list.`, components: [] });
+                                } else if (confirmation.customId === 'btn_decline') {
+                                    await confirmation.update({ content: `${minName} was not removed from the tier list.`, components: [] });
+                                }
+                                
+                            } catch (error) {
+                                // Triggers if the 60 seconds run out without a click
+                                await interaction.editReply({ 
+                                    content: 'You took too long to respond!', 
+                                    components: [] 
+                                });
+                            }
+                        }
+                    }
+                }
+                else {
+                    doReply = true;
+                }
+                savetierlist();
+                let outputString = "# **Restarurant Tier List!!!!**:\n"
+                outputString += `S: ${Object.keys(tierListS).join(', ')}\n`;
+                outputString += `A: ${Object.keys(tierListA).join(', ')}\n`;
+                outputString += `B: ${Object.keys(tierListB).join(', ')}\n`;
+                outputString += `C: ${Object.keys(tierListC).join(', ')}\n`;
+                outputString += `D: ${Object.keys(tierListD).join(', ')}\n`;
+                outputString += `F: ${Object.keys(tierListF).join(', ')}\n`;
+                if (doReply) {
+                    interaction.reply(outputString);
+                } else {
+                    interaction.channel.send(outputString)
+                }
                 break;
             case 'start':
                 if (blacklistedChannels.includes(interaction.channel.id)) {
@@ -5210,7 +5520,14 @@ client.on('interactionCreate', async interaction => {
                     //interaction.reply("You have not completed today's Cytus Heardle");
                 }
 
-                
+                let sentChannelId = interaction.channelId;
+                if (sentChannelId == CytusHeardleScoresChannelID) {
+                    let targetChannel = await client.channels.fetch(CytusHeardleServerScoresChannelID)
+                    targetChannel.send(`<@${interaction.user.id}> - Cytus Heardle #${player.getLastHeardle()}: ${translateScore(player.getScore(), isnormal, ischromatic, isduo, isquad)}`)
+                } else if (interaction.user.id == "412950175342919680" && sentChannelId == CytusHeardleServerScoresChannelID) {
+                    let targetChannel = await client.channels.fetch(CytusHeardleScoresChannelID)
+                    targetChannel.send(`<@${interaction.user.id}> - Cytus Heardle #${player.getLastHeardle()}: ${translateScore(player.getScore(), isnormal, ischromatic, isduo, isquad)}`)
+                }
                 
                 interaction.reply("Cytus Heardle #" + player.getLastHeardle() + ": " + translateScore(player.getScore(), isnormal, ischromatic, isduo, isquad));
                 break;
@@ -5310,10 +5627,10 @@ client.on('interactionCreate', async interaction => {
                 }
                 break;
             case 'list':
-                const character = interaction.options.getString('character'); // Get user-selected character
+                let characterasdf = interaction.options.getString('character'); // Get user-selected character
                 let currentSongList = []; // Initialize the list
                 interaction.reply("sending songs names...");
-                switch (character) {
+                switch (characterasdf) {
                     case 'PAFF':
                         currentSongList = paffsongs;
                         break;
@@ -5410,6 +5727,747 @@ client.on('interactionCreate', async interaction => {
                 }
 
                 break;
+            case 'viewcard':
+                let str = "";
+                let pn = 4;
+                if (reorderedPlayers[0] == interaction.user.id) {
+                    pn = 0;
+                } else if (reorderedPlayers[1] == interaction.user.id) {
+                    pn = 1;
+                } else if (reorderedPlayers[2] == interaction.user.id) {
+                    pn = 2;
+                } else if (reorderedPlayers[3] == interaction.user.id) {
+                    pn = 3;
+                } else {
+                    interaction.reply({content: "You aren't in the game.", ephemeral: true});
+                    return;
+                }
+                if (hands[pn].length == 0) {
+                    interaction.reply({content: "No hand. wait 15 seconds or something", ephemeral: true});
+                    return;
+                }
+                for (let i = 0; i < hands[pn].length; i++) {
+                    str = str + `${(i + 1)}: ${toCard(hands[pn][i])}\n`;
+                }
+                interaction.reply({content: str, ephemeral: true});
+                break;
+            case 'sethand':
+                let str1 = "";
+                let pn1 = 4;
+                if (reorderedPlayers[0] == interaction.user.id) {
+                    pn1 = 0;
+                } else if (reorderedPlayers[1] == interaction.user.id) {
+                    pn1 = 1;
+                } else if (reorderedPlayers[2] == interaction.user.id) {
+                    pn1 = 2;
+                } else if (reorderedPlayers[3] == interaction.user.id) {
+                    pn1 = 3;
+                } else {
+                    interaction.reply({content: "You aren't in the game.", ephemeral: true});
+                    return;
+                }
+                hands[pn1] = [hands[pn1][0], hands[pn1][1]];
+                for (let i = 0; i < hands[pn1].length; i++) {
+                    str1 = str1 + `${(i + 1)}: ${toCard(hands[pn1][i])}\n`;
+                }
+                interaction.reply({content: str1, ephemeral: true});
+                break;
+            case 'tycoon':
+                //new slash command mentions 3 users
+                // slash tycoon i guess idk
+                if (tycoonGameOngoing) {
+                    interaction.reply("There is already a tycoon game ongoing so you cant start one now");
+                    return;
+                }
+                if (interaction.options.getUser('user1').bot || interaction.options.getUser('user2').bot || interaction.options.getUser('user3').bot) {
+                    interaction.reply("You can't start a game with a bot.");
+                    return;
+                }
+                let messagesender = interaction.user.id;
+                const user1 = interaction.options.getUser('user1').id;
+                const user2 = interaction.options.getUser('user2').id;
+                const user3 = interaction.options.getUser('user3').id;
+                let ucc = {};
+                ucc[messagesender] = 1;
+                ucc[user1] = 1;
+                ucc[user2] = 1;
+                ucc[user3] = 1;
+                let ct = 0;
+                for (let i in ucc) {
+                    ct++;
+                }
+                if (ct != 4) {
+                    interaction.reply("You can't start a game with duplicate users.");
+                    return;
+                }
+                tycoonGameOngoing = true;
+                interaction.reply("Starting game...");
+                const players = [messagesender, user1, user2, user3];
+                //const players = [1,2,3,4];
+                let a1 = Math.floor(Math.random() * 4);
+                let player1 = players[a1];
+                players.splice(a1, 1);
+                a1 = Math.floor(Math.random() * 3);
+                let player2 = players[a1];
+                players.splice(a1, 1);
+                a1 = Math.floor(Math.random() * 2);
+                let player3 = players[a1];
+                players.splice(a1, 1);
+                let player4 = players[0];
+                reorderedPlayers = [player1, player2, player3, player4];
+                //maybe make playing the game give capso coins lol
+                // turn order this is really jank but im too lazy to think of a better way
+
+                //im pretty sure that show hand has to be its own function for it to work and then hands and reorderedplayers have to be global
+                //also this means u cant play multiple games of tycoon at once sob
+                let tycoon = 4;
+                let rich = 4;
+                let poor = 4;
+                let beggar = 4;
+                let maxround = maxround1;
+                if (maxround1 < 1) {
+                    maxround = 0;
+                }
+                let collector = interaction.channel.createMessageCollector({ time: 120000 });
+                for (let round = 1; round != maxround + 1; round++) {
+                    interaction.channel.send(`Round ${round} start!`);
+                    let cdeck = tycoonDeck.slice();
+                    console.log(cdeck);
+                    hands = [[],[],[],[]];
+                    let i = Math.floor(Math.random() * 4);
+                    while (cdeck.length) {
+                        let rand = Math.floor(Math.random() * cdeck.length);
+                        hands[i % 4].push(cdeck[rand]);
+                        cdeck.splice(rand, 1);
+                        i++;
+                    } //hand out cards
+                    for (let i = 0; i < 4; i++) {
+                        for (let j = 0; j < hands[i].length; j++) {
+                            for (let k = j + 1; k < hands[i].length; k++) {
+                                if (compareCards(hands[i][j], hands[i][k])) {
+                                    temp = hands[i][j];
+                                    hands[i][j] = hands[i][k];
+                                    hands[i][k] = temp;
+                                }
+                            }
+                        }
+                    } // rearrange the cards in the right order
+                    await handOutDeckPromise;
+                    console.log(hands);
+                    let firstPlayer = Math.floor(Math.random() * 4);
+                    if (round > 1) {
+                        firstPlayer = beggar;
+                        interaction.channel.send("<@!" + reorderedPlayers[tycoon] + ">, you are the tycoon. <@!" + reorderedPlayers[beggar] + "> is the beggar. Pick 2 cards to give to them.\n" + 
+                            "<@!" + reorderedPlayers[rich] + ">, you are the rich. <@!" + reorderedPlayers[poor] + "> is the poor. Pick 1 card to give to them.\n" + 
+                            "<@!" + reorderedPlayers[poor] + ">, you are the poor. <@!" + reorderedPlayers[rich] + "> is the rich. You dont get to pick what to give but respond to this message with \"ok\" to acknowledge it.\n" + 
+                            "<@!" + reorderedPlayers[beggar] + ">, you are the beggar. <@!" + reorderedPlayers[tycoon] + "> is the tycoon. You dont get to pick what to give but respond to this message with \"ok\" to acknowledge it.");
+                        let collectedResponses = {};
+                        let responseCount = 0;
+                        let collectionPromise = new Promise(async (resolve, reject) => {
+
+                        let collector = interaction.channel.createMessageCollector({ time: 120000 });
+                        collector.on('collect', (msg) => {
+                                if (msg.content == "ok" && !collectedResponses[msg.author.id]) {
+                                    if (msg.author.id == reorderedPlayers[poor]) {
+                                        collectedResponses[msg.author.id] = hands[poor].length - 1;
+                                        responseCount++;
+                                    } else if (msg.author.id == reorderedPlayers[beggar]) {
+                                        collectedResponses[msg.author.id] = [hands[beggar].length - 1, hands[beggar].length - 2];
+                                        responseCount++;
+                                    }
+                                } else {
+                                    const numbers = msg.content.split(' ').map(Number);
+                                    if (msg.author.id == reorderedPlayers[rich]) {
+                                        if (!collectedResponses[msg.author.id]) {
+                                            if (numbers.length == 1 && numbers.every(num => num >= 1 && num <= hands[rich].length && Number.isInteger(num))) {
+                                                collectedResponses[msg.author.id] = numbers[0] - 1;
+                                                responseCount++;
+                                            } else {
+                                                interaction.channel.send(`<@!${msg.author.id}>, submit exactly 1 number between 1 and ${hands[rich].length}.`);
+                                            }
+                                        } else {
+                                            if (numbers.length) {
+                                                interaction.channel.send(`<@!${msg.author.id}>, you've already submitted.`);
+                                            }
+                                        }
+                                    }
+                                    if (msg.author.id == reorderedPlayers[tycoon]) {
+                                        if (!collectedResponses[msg.author.id]) {
+                                            if (numbers.length == 2 && numbers.every(num => num >= 1 && num <= hands[tycoon].length && Number.isInteger(num)) && numbers[0] != numbers[1]) {
+                                                collectedResponses[msg.author.id] = [numbers[0] - 1, numbers[1] - 1];
+                                                responseCount++;
+                                            } else {
+                                                interaction.channel.send(`<@!${msg.author.id}>, submit exactly 2 different numbers between 1 and ${hands[tycoon].length}.`);
+                                            }
+                                        } else {
+                                            if (numbers.length) {
+                                                interaction.channel.send(`<@!${msg.author.id}>, you've already submitted.`);
+                                            }
+                                        }
+                                    }
+                                }
+                                if (responseCount == 4) {
+                                    collector.stop();
+                                    resolve();
+                                }
+                            });
+                        })
+                        await collectionPromise;
+                        if (responseCount != 4) {
+                            interaction.channel.send("ok i didnt get 4 responses so im deleting the game");
+                            break;
+                        } else {
+                            let r1 = collectedResponses[reorderedPlayers[rich]];
+                            let p1 = collectedResponses[reorderedPlayers[poor]];
+                            let b1 = collectedResponses[reorderedPlayers[beggar]][0];
+                            let b2 = collectedResponses[reorderedPlayers[beggar]][1];
+                            let t1 = collectedResponses[reorderedPlayers[tycoon]][0];
+                            let t2 = collectedResponses[reorderedPlayers[tycoon]][1];
+                            if (t1 < t2) {
+                                let temp = t1;
+                                t1 = t2;
+                                t2 = temp;
+                            }
+                            let r1c = hands[rich][r1];
+                            let p1c = hands[poor][p1];
+                            let b1c = hands[beggar][b1];
+                            let b2c = hands[beggar][b2];
+                            let t1c = hands[tycoon][t1];
+                            let t2c = hands[tycoon][t2];
+                            hands[rich].splice(r1, 1);
+                            hands[poor].splice(p1, 1);
+                            hands[beggar].splice(b2, 2);
+                            hands[tycoon].splice(t1, 1);
+                            hands[tycoon].splice(t2, 1);
+                            hands[rich].push(p1c);
+                            hands[poor].push(r1c);
+                            hands[beggar].push(t1c);
+                            hands[beggar].push(t2c);
+                            hands[tycoon].push(b1c);
+                            hands[tycoon].push(b2c);
+                            for (let i = 0; i < 4; i++) {
+                                for (let j = 0; j < hands[i].length; j++) {
+                                    for (let k = j + 1; k < hands[i].length; k++) {
+                                        if (compareCards(hands[i][j], hands[i][k])) {
+                                            temp = hands[i][j];
+                                            hands[i][j] = hands[i][k];
+                                            hands[i][k] = temp;
+                                        }
+                                    }
+                                }
+                            } // rearrange the cards in the right order
+                        } // give out the cards
+                    }
+                    let revolution = 0;
+                    let unfinished = true;
+                    let curPlayer = firstPlayer;
+                    let lastTycoon = tycoon;
+                    let finishThisTurn = 0;
+                    rich = 4;
+                    tycoon = 4;
+                    beggar = 4;
+                    poor = 4;
+                    let playersLeft = 4;
+                    while (unfinished) {
+                        while (curPlayer == rich || curPlayer == poor || curPlayer == tycoon || curPlayer == beggar || curPlayer < 0 || curPlayer > 3) {
+                            curPlayer = (curPlayer + 1) % 4;
+                        }
+                        if (curPlayer < 0 || curPlayer > 3) {
+                            console.log("uh what the crap thats not supposed to happen");
+                            console.log("Playersleft: " + playersLeft);
+                            //console.log("passCount outside loop: " + passCount);
+                            console.log("curP outside: " + curPlayer);
+                            console.log(`${tycoon} ${rich} ${poor} ${beggar}`);
+
+                        }
+                        interaction.channel.send(`<@!${reorderedPlayers[curPlayer]}>, you are starting. Pick a play by sending 1-4 numbers in 1 message seperated by spaces.`);
+                        let play = [];
+                        let passCount = 0;
+                        collectionPromise = new Promise (async (resolve) => {
+                            let collector = interaction.channel.createMessageCollector({ time: 120000 });
+                        collector.on('collect', async (msg) => {
+                            if (msg.author.id == reorderedPlayers[curPlayer]) {
+                                const numbers = msg.content.split(' ').map(Number);
+                                let eightstop = false;
+                                if (numbers.length >= 1 && numbers.length <= 4 && numbers.every(num => num >= 1 && num <= hands[curPlayer].length && Number.isInteger(num))) {
+                                    let checker = {};
+                                    let c = 0;
+                                    let card = 0;
+                                    let skip = false;
+                                    for (let i = 0; i < numbers.length; i++) {
+                                        if (!checker[numbers[i]]) {
+                                            c++;
+                                        }
+                                        checker[numbers[i]] = true;
+                                    } // checks if same card used twice
+                                    if (c != numbers.length) {
+                                        interaction.channel.send(`<@!${reorderedPlayers[curPlayer]}>, dont select the same card twice.`);
+                                    } else {
+                                        for (let i = 0; i < numbers.length; i++) {
+                                            if (!card && hands[curPlayer][numbers[i] - 1].charAt(0) != 'w') {
+                                                card = hands[curPlayer][numbers[i] - 1].charAt(0);
+                                                if (card == 8) {
+                                                    eightstop = true;
+                                                }
+                                            }
+                                            if (hands[curPlayer][numbers[i] - 1].charAt(0) != 'w' && hands[curPlayer][numbers[i] - 1].charAt(0) != card) {
+                                                interaction.channel.send(`<@!${reorderedPlayers[curPlayer]}>, please select the same value card (or joker) for all cards.`);
+                                                skip = true;
+                                                eightstop = false;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    if (!skip) {
+                                        numbers.sort((a, b) => b - a);
+                                        play = [];
+                                        for (let i = 0; i < numbers.length; i++) {
+                                            play.push(hands[curPlayer][numbers[i] - 1]);
+                                            hands[curPlayer].splice(numbers[i] - 1, 1);
+                                        }
+                                        let str = "";
+                                        if (numbers.length == 4) {
+                                            revolution++;
+                                            str = "Revolution!";
+                                            for (let i = 1; i < revolution; i++) {
+                                                str = "Counter-" + str;
+                                                str = str + "!";
+                                            }
+                                        }
+                                        //const nickname = "<@!" + msg.author.id +">";
+                                        let nickname = msg.author.displayName;
+                                        let playMsg = `${nickname} played `;
+                                        for (let i = 0; i < play.length; i++) {
+                                            playMsg = playMsg + toCard(play[i]);
+                                        }
+                                        //interaction.channel.send(playMsg);
+                                        console.log(curPlayer);
+                                        if (str.length) {
+                                            //interaction.channel.send(str);
+                                            playMsg = playMsg + `\n${str}`;
+                                        }
+                                        if (eightstop) {
+                                            //interaction.channel.send("An 8-stop!");
+                                            playMsg = playMsg + `\nAn 8-stop!`;
+                                            passCount = 4;
+                                        }
+                                        console.log(hands[curPlayer]);
+                                        console.log(hands[curPlayer].length);
+                                        if (hands[curPlayer].length > 1) {
+                                            //interaction.channel.send(`${nickname} has ${hands[curPlayer].length} cards left!`);
+                                            playMsg = playMsg + `\n${nickname} has ${hands[curPlayer].length} cards left!`;
+                                        } else if (hands[curPlayer].length == 1) {
+                                            //interaction.channel.send(`**${nickname} has 1 card left!**`);
+                                            playMsg = playMsg + `\n**${nickname} has 1 card left!**`;
+                                        } else {
+                                            if (tycoon == 4) {
+                                                tycoon = curPlayer;
+                                                //interaction.channel.send(`${nickname} is the Tycoon!`);
+                                                playMsg = playMsg + `\n${nickname} is the Tycoon!`;
+                                                finishThisTurn = 1;
+                                                playersLeft--;
+                                                if (lastTycoon != 4 && curPlayer != lastTycoon) {
+                                                    beggar = lastTycoon;
+                                                    //const nickname2 = "<@!" + reorderedPlayers[lastTycoon] +">";
+                                                    let member1 = await interaction.guild.members.fetch(reorderedPlayers[lastTycoon]);
+                                                    let nickname2 = member1.displayName;
+                                                    //interaction.channel.send(`${nickname2} has fallen from the Tycoon to the Beggar!`);
+                                                    playMsg = playMsg + `\n${nickname2} has fallen from the Tycoon to the Beggar!`;
+                                                    playersLeft--;
+                                                }
+                                            } else if (rich == 4) {
+                                                rich = curPlayer;
+                                                //interaction.channel.send(`${nickname} is Rich!`);
+                                                playMsg = playMsg + `\n${nickname} is Rich!`;
+                                                finishThisTurn = 1;
+                                                playersLeft--;
+                                                if (beggar != 4) {
+                                                    poor = 6 - tycoon - rich - beggar;
+                                                    //const nickname2 = "<@!" + reorderedPlayers[poor] +">";
+                                                    let member1 = await interaction.guild.members.fetch(reorderedPlayers[poor]);
+                                                    let nickname2 = member1.displayName;
+                                                    //interaction.channel.send(`${nickname2} is Poor!`);
+                                                    playMsg = playMsg + `\n${nickname2} is Poor!`;
+                                                    unfinished = false;
+                                                    passCount = 5;
+                                                    console.log(`${tycoon} ${rich} ${poor} ${beggar}`);
+                                                } // if beggar is 4 then game ends, otherwise continues
+                                            } else if (poor == 4) {
+                                                poor = curPlayer;
+                                                //interaction.channel.send(`${nickname} is Poor!`);
+                                                playMsg = playMsg + `\n${nickname} is Poor!`;
+                                                beggar = 6 - tycoon - rich - poor;
+                                                //const nickname2 = "<@!" + reorderedPlayers[beggar] +">";
+                                                let member1 = await interaction.guild.members.fetch(reorderedPlayers[beggar]);
+                                                let nickname2 = member1.displayName;
+                                                playMsg = playMsg + `\n${nickname2} is the Beggar!`;
+                                                //interaction.channel.send(`${nickname2} is the Beggar!`);
+                                                unfinished = false;
+                                                passCount = 5;
+                                                console.log(`${tycoon} ${rich} ${poor} ${beggar}`);
+                                            } // beggar should always be resolved either here or game already ended
+                                        }
+                                        console.log(playMsg);
+                                        interaction.channel.send(playMsg);
+
+                                        curPlayer = (curPlayer + 1) % 4;
+                                        
+                                        collector.stop(); 
+                                        resolve();
+                                    }
+                                }
+                            }
+                        });
+                        });
+                        await collectionPromise;
+                        if (play.length == 0) {
+                            interaction.channel.send("ok i didnt get a response so im deleting the game");
+                            break;
+                        }
+                        console.log("passCount outside loop: " + passCount);
+                        console.log("curP outside: " + curPlayer);
+                        let finishLoop = 0;
+                        while (passCount < playersLeft - 1 + finishThisTurn) {
+                            while (curPlayer == rich || curPlayer == poor || curPlayer == tycoon || curPlayer == beggar || curPlayer < 0 || curPlayer > 3) {
+                                curPlayer = (curPlayer + 1) % 4;
+                            }
+                            console.log("passCount: " + passCount);
+                            console.log("curP: " + curPlayer);
+                            if (finishThisTurn) {
+                                if (finishLoop < playersLeft - 1) {
+                                    finishLoop++;
+                                } else {
+                                    finishThisTurn = 0;
+                                    if (passCount >= playersLeft) {
+                                        curPlayer = (curPlayer - 1) % 4;
+                                        break;
+                                    }
+                                }
+                            }
+                            let eightstop = false;
+                            let played = false;
+                            interaction.channel.send(`<@!${reorderedPlayers[curPlayer]}>, your turn. Pick a play by sending ${play.length} numbers in 1 message seperated by spaces.`);
+                            collectionPromise = new Promise (async (resolve) => {
+                                let collector = interaction.channel.createMessageCollector({ time: 120000 });
+                            collector.on('collect', async (msg) => {
+                                if (msg.author.id == reorderedPlayers[curPlayer]) {
+                                    if (msg.content == "pass" || msg.content == "p") {
+                                        passCount++;
+                                        played = true;
+                                        const nickname = "<@!" + msg.author.id +">";
+                                        interaction.channel.send(`${nickname} passed.`)
+                                        collector.stop();
+                                        resolve()
+                                    } else {
+                                        const numbers = msg.content.split(' ').map(Number);
+                                        if (numbers.length == play.length && numbers.every(num => num >= 1 && num <= hands[curPlayer].length && Number.isInteger(num))) {
+                                            let checker = {};
+                                            let c = 0;
+                                            let card = 0;
+                                            let skip = false;
+                                            let threeofspadesbeatsjoker = false;
+                                            for (let i = 0; i < numbers.length; i++) {
+                                                if (!checker[numbers[i]]) {
+                                                    c++;
+                                                }
+                                                checker[numbers[i]] = true;
+                                            }
+                                            if (c != numbers.length) {
+                                                interaction.channel.send(`<@!${reorderedPlayers[curPlayer]}>, dont select the same card twice.`);
+                                                skip = true;
+                                            } //checks if selected same card multiple times
+                                            else {
+                                                if (play.length == 1 && play[0].charAt(0) == 'w' && hands[curPlayer][numbers[i] - 1] == "3s") {
+                                                    threeofspadesbeatsjoker = true;
+                                                } else {
+                                                    for (let i = 0; i < numbers.length; i++) {
+                                                        if (!card && hands[curPlayer][numbers[i] - 1].charAt(0) != 'w') {
+                                                            card = hands[curPlayer][numbers[i] - 1].charAt(0);
+                                                            if (card == 8) {
+                                                                eightstop = true;
+                                                            }
+                                                            if (revolution % 2 == 0) {
+                                                                if (!compareCards(card.toString(), play[0])) {
+                                                                    interaction.channel.send(`<@!${reorderedPlayers[curPlayer]}>, select a higher card than the previous play. or pass`);
+                                                                    skip = true;
+                                                                    eightstop = false;
+                                                                    break;
+                                                                }
+                                                            } else {
+                                                                if (!compareCards(play[0]), card.toString()) {
+                                                                    interaction.channel.send(`<@!${reorderedPlayers[curPlayer]}>, select a lower card than the previous play. or pass`);
+                                                                    skip = true;
+                                                                    eightstop = false;
+                                                                    break;
+                                                                }
+                                                            } //checks if the play is higher than the previous play
+                                                        }
+                                                        if (hands[curPlayer][numbers[i] - 1].charAt(0) != 'w' && hands[curPlayer][numbers[i] - 1].charAt(0) != card) {
+                                                            interaction.channel.send(`<@!${reorderedPlayers[curPlayer]}>, please select the same value card (or joker) for all cards.`);
+                                                            skip = true;
+                                                            eightstop = false;
+                                                            break;
+                                                        } //checks if the play is the same as the previous play
+                                                        if (card == 0) {
+                                                            if (play[0].charAt(0) == 'w') {
+                                                                interaction.channel.send(`<@!${reorderedPlayers[curPlayer]}>, select a higher card than the previous play. or pass`);
+                                                                skip = true;
+                                                                eightstop = false;
+                                                                break;
+                                                            }
+                                                        }//cant play joker on a joker, else always legal
+                                                    } //card = the thing that was played
+                                                }
+                                            }
+                                            if (!skip) {
+                                                let str = "";
+                                                if (threeofspadesbeatsjoker) {
+                                                    interaction.channel.send("3 of Spades Reversal: 3 of Spades beats Joker")
+                                                    passCount = 4;
+                                                } else {
+                                                    numbers.sort((a, b) => b - a);
+                                                    play = [];
+                                                    for (let i = 0; i < numbers.length; i++) {
+                                                        play.push(hands[curPlayer][numbers[i] - 1]);
+                                                        hands[curPlayer].splice(numbers[i] - 1, 1);
+                                                    }
+                                                    if (numbers.length == 4) {
+                                                        revolution++;
+                                                        str = "Revolution!";
+                                                        for (let i = 1; i < revolution; i++) {
+                                                            str = "Counter-" + str;
+                                                            str = str + "!";
+                                                        }
+                                                    }
+                                                }
+                                                //const nickname = "<@!" + msg.author.id +">";
+                                                let nickname = msg.author.displayName;
+                                                passCount = 0;
+                                                let playMsg = `${nickname} played `;
+                                                for (let i = 0; i < play.length; i++) {
+                                                    playMsg = playMsg + toCard(play[i]);
+                                                }
+                                                //interaction.channel.send(playMsg);
+                                                if (str.length) {
+                                                    //interaction.channel.send(str);
+                                                    playMsg = playMsg + "\n" + str;
+                                                }
+                                                if (eightstop) {
+                                                    //interaction.channel.send("An 8-stop!");
+                                                    playMsg = playMsg + `\nAn 8-stop!`;
+                                                    passCount = 4;
+                                                }
+                                                console.log(hands[curPlayer]);
+                                                console.log(hands[curPlayer].length);
+                                                if (hands[curPlayer].length > 1) {
+                                                    //interaction.channel.send(`${nickname} has ${hands[curPlayer].length} cards left!`);
+                                                    playMsg = playMsg + `\n${nickname} has ${hands[curPlayer].length} cards left!`;
+                                                } else if (hands[curPlayer].length == 1) {
+                                                    //interaction.channel.send(`**${nickname} has 1 card left!**`);
+                                                    playMsg = playMsg + `\n**${nickname} has 1 card left!**`;
+                                                } else {
+                                                    if (tycoon == 4) {
+                                                        tycoon = curPlayer;
+                                                        //interaction.channel.send(`${nickname} is the Tycoon!`);
+                                                        playMsg = playMsg + `\n${nickname} is the Tycoon!`;
+                                                        playersLeft--;
+                                                        passCount = -1;
+                                                        if (curPlayer != lastTycoon && lastTycoon != 4) {
+                                                            beggar = lastTycoon;
+                                                            //const nickname2 = "<@!" + reorderedPlayers[lastTycoon] +">";
+                                                            let member1 = await interaction.guild.members.fetch(reorderedPlayers[lastTycoon]);
+                                                            let nickname2 = member1.displayName;
+                                                            //interaction.channel.send(`${nickname2} has fallen from the Tycoon to the Beggar!`);
+                                                            playMsg = playMsg + `\n${nickname2} has fallen from the Tycoon to the Beggar!`;
+                                                            playersLeft--;
+                                                        }
+                                                    } else if (rich == 4) {
+                                                        rich = curPlayer;
+                                                        //interaction.channel.send(`${nickname} is Rich!`);
+                                                        playMsg = playMsg + `\n${nickname} is Rich!`;
+                                                        finishThisTurn = 1;
+                                                        playersLeft--;
+                                                        if (beggar != 4) {
+                                                            poor = 6 - tycoon - rich - beggar;
+                                                            //const nickname2 = "<@!" + reorderedPlayers[poor] +">";
+                                                            let member1 = await interaction.guild.members.fetch(reorderedPlayers[poor]);
+                                                            let nickname2 = member1.displayName;
+                                                            //interaction.channel.send(`${nickname2} is Poor!`);
+                                                            playMsg = playMsg + `\n${nickname2} is Poor!`;
+                                                            unfinished = false;
+                                                            passCount = 5;
+                                                            console.log(`${tycoon} ${rich} ${poor} ${beggar}`);
+                                                        } // if beggar is 4 then game ends, otherwise continues
+                                                    } else if (poor == 4) {
+                                                        poor = curPlayer;
+                                                        //interaction.channel.send(`${nickname} is Poor!`);
+                                                        playMsg = playMsg + `\n${nickname} is Poor!`;
+                                                        beggar = 6 - tycoon - rich - poor;
+                                                        //const nickname2 = "<@!" + reorderedPlayers[beggar] +">";
+                                                        let member1 = await interaction.guild.members.fetch(reorderedPlayers[beggar]);
+                                                        let nickname2 = member1.displayName;
+                                                        playMsg = playMsg + `\n${nickname2} is the Beggar!`;
+                                                        //interaction.channel.send(`${nickname2} is the Beggar!`);
+                                                        unfinished = false;
+                                                        passCount = 5;
+                                                        console.log(`${tycoon} ${rich} ${poor} ${beggar}`);
+                                                    } // beggar should always be resolved either here or game already ended
+                                                }
+                                                interaction.channel.send(playMsg);
+                                                played = true;
+                                                resolve();
+                                                collector.stop();
+                                                
+                                            }
+                                        }
+                                    }
+                                }
+                            }); // should check for a legal message/play
+                            })
+                            await collectionPromise;
+                            if (!played) {
+                                passCount++;
+                                let member1 = await interaction.guild.members.fetch(reorderedPlayers[curPlayer]);
+                                let nickname = member1.displayName;
+                                //let nickname = "<@!" + reorderedPlayers[curPlayer] +">";
+                                interaction.channel.send(`${nickname} didnt respond, so they passed.`);
+                                collector.stop();
+                            } //if not played then assume pass
+                            curPlayer = (curPlayer + 1) % 4;
+                        }
+                        if (passCount == 4) {
+                            curPlayer = (curPlayer - 1) % 4;
+                            passCount = 0;
+                        } else if (passCount == 3) {
+                            interaction.channel.send("All players passed.");
+                        }
+                        curPlayer = curPlayer % 4;
+                    }
+                    if (round == maxround) {
+                        if (tycoon != 4) {
+                            interaction.channel.send(`Results: <@!${reorderedPlayers[tycoon]}> is the Tycoon. <@!${reorderedPlayers[rich]}> is the Rich. <@!${reorderedPlayers[poor]}> is the Poor. <@!${reorderedPlayers[beggar]}> is the Beggar. \n` + 
+                                `Round ${round} reached, game ending.`
+                            );
+                            scores[tycoon] += 15;
+                            scores[rich] += 10;
+                            scores[poor] += 5;
+                            let scoreder = [0,1,2,3];
+                            for (let i = 0; i < 4; i++) {
+                                for (let j = i + 1; j < 4; j++) {
+                                    if (scores[scoreder[i]] < scores[scoreder[j]]) {
+                                        let temp = scoreder[i];
+                                        scoreder[i] = scoreder[j];
+                                        scoreder[j] = temp;
+                                    }
+                                }
+                            }
+                            const scoresEmbed = {
+                                color: 0x0099ff,
+                                title: 'Some title',
+                                fields: [
+                                    {
+                                        name: `<@${reorderedPlayers[scoreder[0]]}>`,
+                                        value: `${scores[scoreder[0]]}`,
+                                        inline: false,
+                                    },
+                                    {
+                                        name: `<@${reorderedPlayers[scoreder[1]]}>`,
+                                        value: `${scores[scoreder[1]]}`,
+                                        inline: false,
+                                    },
+                                    {
+                                        name: `<@${reorderedPlayers[scoreder[2]]}>`,
+                                        value: `${scores[scoreder[2]]}`,
+                                        inline: false,
+                                    },
+                                    {
+                                        name: `<@${reorderedPlayers[scoreder[3]]}>`,
+                                        value: `${scores[scoreder[3]]}`,
+                                        inline: false,
+                                    },
+                                ],
+                            };
+                            interaction.channel.send({embeds: [scoresEmbed]});
+                        }
+                    }
+                    if (tycoon != 4) {
+                        interaction.channel.send(`Results: <@!${reorderedPlayers[tycoon]}> is the Tycoon. <@!${reorderedPlayers[rich]}> is the Rich. <@!${reorderedPlayers[poor]}> is the Poor. <@!${reorderedPlayers[beggar]}> is the Beggar. `);
+                        scores[tycoon] += 15;
+                        scores[rich] += 10;
+                        scores[poor] += 5;
+                        let scoreder = [0,1,2,3]
+                        for (let i = 0; i < 4; i++) {
+                            for (let j = i + 1; j < 4; j++) {
+                                if (scores[scoreder[i]] < scores[scoreder[j]]) {
+                                    let temp = scoreder[i];
+                                    scoreder[i] = scoreder[j];
+                                    scoreder[j] = temp;
+                                }
+                            }
+                        }
+                        const scoresEmbed = {
+                            color: 0x0099ff,
+                            title: 'Some title',
+                            fields: [
+                                {
+                                    name: `<@${reorderedPlayers[scoreder[0]]}>`,
+                                    value: `${scores[scoreder[0]]}`,
+                                    inline: false,
+                                },
+                                {
+                                    name: `<@${reorderedPlayers[scoreder[1]]}>`,
+                                    value: `${scores[scoreder[1]]}`,
+                                    inline: false,
+                                },
+                                {
+                                    name: `<@${reorderedPlayers[scoreder[2]]}>`,
+                                    value: `${scores[scoreder[2]]}`,
+                                    inline: false,
+                                },
+                                {
+                                    name: `<@${reorderedPlayers[scoreder[3]]}>`,
+                                    value: `${scores[scoreder[3]]}`,
+                                    inline: false,
+                                },
+                            ],
+                        };
+                        interaction.channel.send({embeds: [scoresEmbed]});
+                    }
+                    let cont = false;
+                    collectionPromise = new Promise (async (resolve) => {
+                        interaction.channel.send("Play again?").then((msg) => {
+                            msg.react('👍');
+                            msg.react('👎');
+                            // set up a filter to only collect reactions with the ❤ emoji
+                            let filter = (reaction, user) => (reaction.emoji.name == '👍' || reaction.emoji.name == '👎');
+                            let collector = msg.createReactionCollector(filter);
+                            collector.on('collect', (reaction, user) => {
+                                if (!user.bot) {
+                                    if (reaction.emoji.name == '👍') {
+                                        cont = true;
+                                        collector.stop();
+                                        resolve();
+                                    } else {
+                                        cont = false;
+                                        collector.stop();
+                                        resolve();
+                                    }
+                                }
+                            });
+                        });
+                    }); // wait for either react
+                    await collectionPromise;
+                    if (!cont) {
+                        interaction.channel.send("Game over.");
+                        //you can add capso coins or something here
+                        scores = [0,0,0,0];
+                        tycoonGameOngoing = false;
+                        break;
+                    }
+                }
+                tycoonGameOngoing = false;
+                break;
+           
         }
         } catch (error) {
             console.log(error)  
@@ -5592,7 +6650,7 @@ client.on('messageCreate', async (message)=>{
         console.log(paffsongs);
         break;
     case 'n':
-        generateNewHeardle();''
+        generateNewHeardle();
         break;
     case 'setnumber':
         let number = message.content
@@ -5987,6 +7045,8 @@ client.on('messageCreate', async (message)=>{
 
 
             break;
+        case 'n':
+            generateNewHeardle()
         case 'fullsong':
             if (fullsongprocessed == 0){
             ffmpeg({source: './songlist/' + songname +'.mp4'}) 
@@ -6402,7 +7462,7 @@ client.on('messageCreate', async (message)=>{
                     */
                 } else if(userResponse == 5){
                     const specialchance = await message.channel.send("Enter the new special chance")
-                    const filter = () => true;
+                    filter = () => true;
                     const collector = specialchance.channel.createMessageCollector(filter, { max: 1, time: 60000, errors: ["time"]})
                     collector.on("collect", async response => {
                         const userinput = response.content
@@ -6606,53 +7666,8 @@ client.on('messageCreate', async (message)=>{
             }
             saveprofiles()
             break;   
-        case 'play':
-            directory = message.content.substring(6, message.content.length);
-            if (!message.member.voice.channel) {
-                return message.reply('You need to be in a voice channel to use this command.');
-            }
-            console.log("directory:" + directory);
-    
-            // Join the voice channel
-            const voiceChannel = message.member.voice.channel;
-            const connection = joinVoiceChannel({
-                channelId: voiceChannel.id,
-                guildId: voiceChannel.guild.id,
-                adapterCreator: voiceChannel.guild.voiceAdapterCreator
-            });
-    
-            // Create the audio player
-            const player = createAudioPlayer();
-    
-            try{
-            // Create the audio resource (replace 'your-file.mp3' with the actual path to your MP3 file)
-            const filePath = path.join(__dirname, directory);
-            const resource = createAudioResource(filePath);
-    
             
-            // Play the resource
-            player.play(resource);
-            connection.subscribe(player);
-            
-            } catch (error) {
-                message.channel.send("Error")
-            }
-            // Log player status changes
-            player.on(AudioPlayerStatus.Playing, () => {
-                console.log('The audio is now playing!');
-            });
-    
-            player.on(AudioPlayerStatus.Idle, () => {
-                console.log('The audio has finished playing!');
-                connection.destroy(); // Leave the voice channel when finished
-            });
-    
-            player.on('error', error => {
-                console.error(`Error: ${error.message}`);
-                connection.destroy(); // Leave the voice channel on error
-            });
-            break;
-            }
+        }
 
 })
 
@@ -6693,6 +7708,8 @@ Steps for updating live build:
 (3) change the token at the bottom at client.login to the live CytusHeardleBottoken
 (4) change the channelid for sending Cytus Heardles to the CytusHeardleChannel ID
 (5) chance in -dungeon the test to false if it is true
+(6) change channelid in sendVideosToVideoCallChannel to CytusHeardleChannelID
+(7) change in the score command the to let targetChannel = await client.channels.fetch(CytusHeardleServerScoresChannelID)
 If getting the format error:
 npm i fluent-ffmpeg
 change the variables for the sleep() functions
@@ -6931,7 +7948,69 @@ const registerSlashCommands = async () => {
                     autocomplete: true 
                 }
             ]
-        }
+        },
+        {    
+            name: 'tierlist',
+            description: "Leave blank to view tierlist",
+            options: [
+                {
+                    type: 3, //string
+                    name: 'add',
+                    description: 'Add restaurant to the tier list',
+                    required: false
+                }, 
+                {
+                    type: 3, //string
+                    name: 'remove',
+                    description: 'Remove restaurant from the tier list',
+                    required: false
+                }, {
+                    type: 3, //string
+                    name: 'tier',
+                    description: 'Tier to add restaurant to',
+                    required: false
+                }
+            ]
+        },
+        {
+            name: 'viewcard',
+            description: 'Shows you your hand in tycoon'
+        },
+        {
+            name: 'sethand',
+            description: 'Sets hand in tycoon to like 2 cards (debug feature)'
+        },
+        {
+            name: 'tycoon',
+            description: "Play tycoon",
+            options: [
+                {
+                    type: 6,  // 6 is the type for USER
+                    name: 'user1',
+                    description: 'First user',
+                    required: true
+                },
+                {
+                    type: 6,  // 6 is the type for USER
+                    name: 'user2',
+                    description: 'Second user',
+                    required: true
+                },
+                {
+                    type: 6,  // 6 is the type for USER
+                    name: 'user3',
+                    description: 'Third user',
+                    required: true
+                },
+                {
+                    type: 4, // integer
+                    name: 'maxround1',
+                    description: 'Max number of rounds to run before quitting',
+                    required: false
+                }
+            ]
+    
+        },
         //Add more commands here
     ];
 
@@ -6970,12 +8049,6 @@ client.on('interactionCreate', async (interaction) => {
     }
 });
 
-
-const tycoonDeck = ["ah","2h","3h","4h","5h", "6h", "7h", "8h", "9h", "th", "jh", "qh", "kh", "ac", "2c", "3c", "4c", "5c", "6c", "7c", "8c", "9c", "tc", "jc", "qc", "kc", "as", "2s", "3s", "4s", "5s", "6s", "7s", "8s", "9s", "ts", "js", "qs", "ks", "ad", "2d", "3d", "4d", "5d", "6d", "7d", "8d", "9d", "td", "jd", "qd", "kd", "w1", "w2"];
-let hands = [[],[],[],[]];
-let scores = [0,0,0,0] //maybe make playing the game give capso coins lol
-let reorderedPlayers;
-let tycoonGameOngoing = false;
 
 
 function toCard(a) {
@@ -7468,4 +8541,136 @@ async function loadShop() {
             reject(err);
         }
     })
+}
+
+
+function loadtierlist(){
+    const tierListData = fs.readFileSync("tierlist.json", "utf-8");
+    let tierListJSON = {};
+    if (tierListData) {
+        tierListJSON = JSON.parse(tierListData);
+    }
+    tierListS = tierListJSON["S"];
+    tierListA = tierListJSON["A"];
+    tierListB = tierListJSON["B"];
+    tierListC = tierListJSON["C"];
+    tierListD = tierListJSON["D"];
+    tierListF = tierListJSON["F"];
+}
+
+async function savetierlist() {
+    let tierListJSON = {}
+    tierListJSON["S"] = tierListS;
+    tierListJSON["A"] = tierListA;
+    tierListJSON["B"] = tierListB;
+    tierListJSON["C"] = tierListC;
+    tierListJSON["D"] = tierListD;
+    tierListJSON["F"] = tierListF;
+    try {
+        // null, 4 formats the JSON beautifully with 4-space indentation
+        const jsonString = JSON.stringify(tierListJSON, null, 4);
+        await fsp.writeFile("tierlist.json", jsonString, 'utf8');
+    } catch (error) {
+        console.error('Error writing to tierlist.json:', error);
+        throw error;
+    }
+}
+
+async function savetierlist() {
+    let tierListJSON = {}
+    tierListJSON["S"] = tierListS;
+    tierListJSON["A"] = tierListA;
+    tierListJSON["B"] = tierListB;
+    tierListJSON["C"] = tierListC;
+    tierListJSON["D"] = tierListD;
+    tierListJSON["F"] = tierListF;
+    try {
+        // null, 4 formats the JSON beautifully with 4-space indentation
+        const jsonString = JSON.stringify(tierListJSON, null, 4);
+        await fsp.writeFile("tierlist.json", jsonString, 'utf8');
+    } catch (error) {
+        console.error('Error writing to tierlist.json:', error);
+        throw error;
+    }
+}
+
+function getLevenshteinDistance(a, b) {
+  const an = a ? a.length : 0;
+  const bn = b ? b.length : 0;
+  if (an === 0) return bn;
+  if (bn === 0) return an;
+
+  const matrix = Array.from({ length: an + 1 }, (_, i) => [i]);
+  for (let j = 1; j <= bn; j++) {
+    matrix[0][j] = j;
+  }
+
+  for (let i = 1; i <= an; i++) {
+    for (let j = 1; j <= bn; j++) {
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      matrix[i][j] = Math.min(
+        matrix[i - 1][j] + 1,      // deletion
+        matrix[i][j - 1] + 1,      // insertion
+        matrix[i - 1][j - 1] + cost // substitution (FIXED)
+      );
+    }
+  }
+  return matrix[an][bn];
+}
+
+function toCard(a) {
+    let thing;
+    switch(a[0]) {
+        case 'w':
+            return 'Joker';
+        case 't':
+            thing = '10'
+            break;
+        case 'j':
+        case 'q':
+        case 'k':
+        case 'a':
+            thing = a[0].toUpperCase();
+            break;
+        default:
+            thing = a[0];
+            break;
+    }
+    switch (a[1]) {
+        case "h":
+            return thing + "♡"
+        case "d":
+            return thing + "◇"
+        case "s":
+            return thing + "♤"
+        case "c":
+            return thing + "♧"
+    } 
+    /*
+    switch (a) {
+        case "ah":
+            return "<:aceofhearts:emojiid>";
+        case "2h":
+            return "<:2ofhearts:emojiid>";
+        //yeah idk this is probalby the best way to do this
+        //u need to just add all the emotes to a server the bot is in cuz it can send emotes from different servers
+    }*/ return a;
+}
+
+function compareCards(str1, str2) {
+    // Define the custom order in an array
+    const order = ['w', '2', 'a', 'k', 'q', 'j', 't', '9', '8', '7', '6', '5', '4', '3'];
+    
+    // Get the first character of each string
+    const char1 = str1.charAt(0);
+    const char2 = str2.charAt(0);
+
+    // Find the index of the characters in the custom order
+    const index1 = order.indexOf(char1);
+    const index2 = order.indexOf(char2);
+
+    // Compare based on the custom order
+    if (index1 < index2)
+        return true;
+    return false;
 }
